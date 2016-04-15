@@ -1,0 +1,35 @@
+{
+	"venue": {
+		"name": "ExampleVenue",
+		"platforms": [{
+			"name": "1",
+			"entrance_beacon_major": 1,
+			"entrance_beacon_minor": 5,
+			"exit_beacon_major": 1,
+			"exit_beacon_minor": 5,
+			"destinations": ["Destination Name A"]
+		}, {
+			"name": "2",
+			"entrance_beacon_major": 1,
+			"entrance_beacon_minor": 8,
+			"exit_beacon_major": 1,
+			"exit_beacon_minor": 8,
+			"destinations": ["Destination Name B"]
+		}],
+		"exits": [{
+			"name": "High Street",
+			"entrance_beacon_major": 1,
+			"entrance_beacon_minor": 1,
+			"exit_beacon_major": 1,
+			"exit_beacon_minor": 1,
+			"mode": "Lift"
+		}, {
+			"name": "East Avenue",
+			"entrance_beacon_major": 1,
+			"entrance_beacon_minor": 6,
+			"exit_beacon_major": 1,
+			"exit_beacon_minor": 6,
+			"mode": "Escalator"
+		}]
+	}
+}

@@ -1,0 +1,41 @@
+{
+    "venue": {
+        "name": "Foo",
+        "platforms": [
+                      {
+                      "name": "1",
+                      "entrance_beacon_major": 1,
+                      "entrance_beacon_minor": 1,
+                      "exit_beacon_major": 1,
+                      "exit_beacon_minor": 1,
+                      "destinations": ["Here"]
+                      },
+                      {
+                      "name": "2",
+                      "entrance_beacon_major": 1,
+                      "entrance_beacon_minor": 2,
+                      "exit_beacon_major": 1,
+                      "exit_beacon_minor": 2,
+                      "destinations": ["There"]
+                      }
+                      ],
+        "exits": [
+                  {
+                  "name": "A",
+                  "entrance_beacon_major": 1,
+                  "entrance_beacon_minor": 1,
+                  "exit_beacon_major": 1,
+                  "exit_beacon_minor": 1,
+                  "mode": "Escalator"
+                  },
+                  {
+                  "name": "B",
+                  "entrance_beacon_major": 1,
+                  "entrance_beacon_minor": 2,
+                  "exit_beacon_major": 1,
+                  "exit_beacon_minor": 2,
+                  "mode": "Lift"
+                  }
+                  ]
+    }
+}

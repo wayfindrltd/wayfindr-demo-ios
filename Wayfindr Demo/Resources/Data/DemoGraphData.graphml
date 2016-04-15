@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+    http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+    
+    
+    <!-- NODE KEYS -->
+    
+    <!-- Required -->
+    <key id="major" for="node" attr.name="major" attr.type="int" />
+    <key id="minor" for="node" attr.name="minor" attr.type="int" />
+    <key id="name" for="node" attr.name="name" attr.type="string" />
+    <!-- Optional -->
+    <key id="waypoint_type" for="node" attr.name="waypoint_type" attr.type="string" />
+    <key id="accuracy" for="node" attr.name="accuracy" attr.type="double">
+        <default>4.0</default>
+    </key>
+    
+    
+    <!-- EDGE KEYS -->
+    
+    <!-- Required -->
+    <key id="travel_time" for="edge" attr.name="travel_time" attr.type="double" />
+    <key id="language" for="edge" attr.name="language" attr.type="string" />
+    <!-- Optional -->
+    <key id="beginning" for="edge" attr.name="instruction-beginning" attr.type="string" />
+    <key id="middle" for="edge" attr.name="instruction-middle" attr.type="string" />
+    <key id="ending" for="edge" attr.name="instruction-end" attr.type="string" />
+    <key id="starting_only" for="edge" attr.name="instruction-starting_only" attr.type="string" />
+    
+    
+    <!-- GRAPH -->
+    <graph id="ExampleStation" edgedefault="directed">
+        
+        
+        <!-- NODES -->
+        <node id="1">
+            <data key="major">1</data>
+            <data key="minor">1</data>
+            <data key="name"> Example: In the forecourt outside the south entrance on the High Street</data>
+            <data key="waypoint_type"> Entrance </data>
+            <data key="accuracy">3.0</data>
+        </node>
+        <node id="2">
+            <data key="major">1</data>
+            <data key="minor">2</data>
+            <data key="name"> Example: In the unpaid concourse in front of the ticket gates </data>
+            <data key="waypoint_type"> TicketBarrier </data>
+            <data key="accuracy">4.5</data>
+        </node>
+        <node id="3">
+            <data key="major">1</data>
+            <data key="minor">3</data>
+            <data key="name"> Example: In the paid concourse in front of the ticket gates </data>
+            <data key="waypoint_type"> TicketBarrier </data>
+            <data key="accuracy">3.0</data>
+        </node>
+        <node id="4">
+            <data key="major">1</data>
+            <data key="minor">4</data>
+            <data key="name"> Example: In the paid concourse in front of the west set of escalators, escalators 1 and 2 </data>
+            <data key="waypoint_type"> Escalator </data>
+            <data key="accuracy">2.5</data>
+        </node>
+        <node id="5">
+            <data key="major">1</data>
+            <data key="minor">5</data>
+            <data key="name"> Example: On Platform 1 in front of the escalators, escalators 1 and 2 </data>
+            <data key="waypoint_type"> Platform </data>
+            <data key="accuracy">3.5</data>
+        </node>
+        <node id="6">
+            <data key="major">1</data>
+            <data key="minor">6</data>
+            <data key="name"> Example: In the forecourt outside the east entrance on the East Avenue</data>
+            <data key="waypoint_type"> Entrance </data>
+            <data key="accuracy">4.0</data>
+        </node>
+        <node id="7">
+            <data key="major">1</data>
+            <data key="minor">7</data>
+            <data key="name"> Example: In the paid concourse in front of the north set of escalators, escalators 3 and 4 </data>
+            <data key="waypoint_type"> Escalator </data>
+            <data key="accuracy">2.5</data>
+        </node>
+        <node id="8">
+            <data key="major">1</data>
+            <data key="minor">8</data>
+            <data key="name"> Example: On Platform 2 in front of the escalators, escalators 3 and 4 </data>
+            <data key="waypoint_type"> Platform </data>
+            <data key="accuracy">3.5</data>
+        </node>
+        
+        <!-- EDGES -->
+        
+        <edge id="1to2" source="1" target="2">
+            <data key="travel_time">10.0</data>
+            <data key="beginning">Example: For the Station entrance, walk forward to the ticket hall.</data>
+            <data key="ending">Example: You are now in the ticket hall of StationName. For your platform, walk forward and go through the gates in front of you. The wide gate is the one on the left. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="2to1" source="2" target="1">
+            <data key="travel_time">15.0</data>
+            <data key="beginning">Example: Walk forward to the exit. </data>
+            <data key="ending">Example: End of navigation. You are now at the South Exit on the Hight Street. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="2to3" source="2" target="3">
+            <data key="travel_time">15.0</data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="2to6" source="2" target="6">
+            <data key="travel_time">25.0</data>
+            <data key="beginning">Example: Turn left and walk forward to the exit. </data>
+            <data key="ending">Example: End of navigation. You are now at the East Exit on the East Avenue. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="3to2" source="3" target="2">
+            <data key="travel_time">15.0</data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="3to4" source="3" target="4">
+            <data key="travel_time">10.0</data>
+            <data key="beginning">Example: Turn left and walk forward to the escalators up to the platform. The up escalator is the one on the left. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="3to7" source="3" target="7">
+            <data key="travel_time">10.0</data>
+            <data key="beginning">Example: Walk forward and take the escalators up to the platform. The up escalator is the one on the left. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="4to3" source="4" target="3">
+            <data key="travel_time">10.0</data>
+            <data key="ending"> Example: Turn right and go through the ticket gates. The wide gate is the one on the right. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="4to5" source="4" target="5">
+            <data key="travel_time">30.0</data>
+            <data key="beginning">Example: You are approaching the escalators.</data>
+            <data key="middle">Example: At the top of the escalator, walk forward. You will be on Platform 1.</data>
+            <data key="ending">Example: End of navigation. You are now at Platform 1. The trains leave from your right.</data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="5to4" source="5" target="4">
+            <data key="travel_time">30.0</data>
+            <data key="beginning">Example: You are now at Platform 1. For your destination, walk forward and take the escalator down to the concourse. The down escalator is the one on the left. </data>
+            <data key="middle">Example: At the bottom of the escalator, walk forward. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="6to2" source="6" target="2">
+            <data key="travel_time">25.0</data>
+            <data key="beginning">Example: For the Station entrance, walk forward to the ticket hall.</data>
+            <data key="ending">Example: Welcome to the Station. You are now in the ticket hall. For Platform 1, turn right and go through the gates in front of you. The wide gate is the one on the left. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="7to3" source="7" target="3">
+            <data key="travel_time">10.0</data>
+            <data key="ending"> Example: Keep walking forward and go through the ticket gates. The wide gate is the one on the right. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="7to8" source="7" target="8">
+            <data key="travel_time">30.0</data>
+            <data key="beginning">Example: You are approaching the escalators.</data>
+            <data key="middle">Example: At the top of the escalator, walk forward. You will be on Platform 2.</data>
+            <data key="ending">Example: End of navigation. You are now at Platform 2. The trains leave in front of you.</data>
+            <data key="language">en-GB</data>
+        </edge>
+        <edge id="8to7" source="8" target="7">
+            <data key="travel_time">30.0</data>
+            <data key="beginning">Example: You are now at Platform 2. For your destination, walk forward and take the escalator down to the concourse. The down escalator is the one on the left. </data>
+            <data key="middle">Example: At the bottom of the escalator, walk forward. </data>
+            <data key="language">en-GB</data>
+        </edge>
+        
+        
+    </graph>
+    
+</graphml>

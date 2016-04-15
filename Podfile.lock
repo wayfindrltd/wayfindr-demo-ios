@@ -1,0 +1,49 @@
+PODS:
+  - AEXML (2.0.1)
+  - Alamofire (3.1.4)
+  - GRValidation (0.2.0)
+  - Moya (6.0.0):
+    - Moya/Core (= 6.0.0)
+  - Moya/Core (6.0.0):
+    - Alamofire (~> 3.0)
+    - Result (~> 1.0)
+  - OHHTTPStubs (4.7.0):
+    - OHHTTPStubs/Default (= 4.7.0)
+  - OHHTTPStubs/Core (4.7.0)
+  - OHHTTPStubs/Default (4.7.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (4.7.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (4.7.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (4.7.0)
+  - Result (1.0.1)
+  - SVProgressHUD (2.0-beta)
+  - SwiftGraph (1.0.3)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - AEXML (~> 2.0)
+  - Alamofire (~> 3.1)
+  - GRValidation (~> 0.2)
+  - Moya (~> 6.0)
+  - OHHTTPStubs (~> 4.6)
+  - SVProgressHUD (= 2.0-beta)
+  - SwiftGraph (~> 1.0)
+  - SwiftyJSON (~> 2.3)
+
+SPEC CHECKSUMS:
+  AEXML: d6bb5b994521fcf3667ee8ccc1ed533f31b19218
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
+  GRValidation: ec1728af9afbaae160261f26f18231a7d77ac751
+  Moya: 9bd9f20e6451c820c17ca40e1b3f6489757fa821
+  OHHTTPStubs: d2bf6a0f407620d67e75a1d3f12d86a2b1dd15c0
+  Result: caef80340451e1f07492fa1e89117f83613bce24
+  SVProgressHUD: c83337f10ed32d701c423d519059a249973c8662
+  SwiftGraph: e214622d710af96a002b85ce2d1d90bfcca4546d
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0

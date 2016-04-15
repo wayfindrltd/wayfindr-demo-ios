@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+    http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+    
+    <!-- Node Keys -->
+    <key id="major" for="node" attr.name="major" attr.type="int" />
+    <key id="minor" for="node" attr.name="minor" attr.type="int" />
+    <key id="name" for="node" attr.name="name" attr.type="string" />
+    <key id="waypoint_type" for="node" attr.name="waypoint_type" attr.type="string" />
+    <key id="accuracy" for="node" attr.name="accuracy" attr.type="float">
+        <default>5.0</default>
+    </key>
+    
+    <!-- Edge Key -->
+    <key id="travel_time" for="edge" attr.name="travel_time" attr.type="float" />
+    <key id="beginning" for="edge" attr.name="instruction-beginning" attr.type="string" />
+    <key id="middle" for="edge" attr.name="instruction-middle" attr.type="string" />
+    <key id="ending" for="edge" attr.name="instruction-end" attr.type="string" />
+    <key id="language" for="edge" attr.name="language" attr.type="string" />
+    
+    <!-- Graph -->
+    <graph id="G" edgedefault="directed">
+        
+        <!-- Nodes -->
+        <node id="1">
+            <data key="major">1</data>
+            <data key="minor">1</data>
+            <data key="name">White</data>
+            <data key="waypoint_type">Exit</data>
+        </node>
+        <node id="2">
+            <data key="major">1</data>
+            <data key="minor">2</data>
+            <data key="name">Black</data>
+            <data key="waypoint_type">Entrance,Exit,MensToilet,WomensToilet</data>
+        </node>
+        
+        <!-- Edges -->
+        <edge id="e0" source="1" target="2">
+            <data key="travel_time">1.0</data>
+            <data key="beginning">Welcome to station X. Where would you like to go? Please select from the list... Walk forwards and bear right towards the ticket barrier. You will find some tactile paving.</data>
+            <data key="middle">You are approaching the ticket barrier.</data>
+            <data key="ending">Follow the tactile paving towards the platform.</data>
+            <data key="language">en-GB</data>
+        </edge>
+        
+        <edge id="e1" source="1" target="2">
+            <data key="travel_time">1.0</data>
+            <data key="beginning">Hello and welcome!</data>
+            <data key="language">en-US</data>
+        </edge>
+        
+    </graph>
+    
+</graphml>
