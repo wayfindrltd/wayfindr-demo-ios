@@ -7,7 +7,7 @@ A repo for the Wayfindr demonstration iOS app
 
 We know that there is a community of organisations and individuals worldwide interesting in exploring digital wayfinding for vision impaired people. We want to support these people who are planning to explore audio wayfinding in different types of built-environments, e.g. transport, retails, health, entertainment etc. We  have open-sourced the Wayfindr Demo mobile app that has been used in the Wayfindr trials so far, in order to provide developers, designers and researchers around the world with a free, open tool to conduct their research in context.
 
-This app serves also as a demonstration of the Guidelines for Mobile App Development as seen on the Wayfindr Open Standard. 
+This app serves also as a demonstration of the [Guidelines for Mobile App Development](http://www.wayfindr.net/open-standard/guidelines/mobile-app-development/) as seen on the Wayfindr Open Standard. 
 
 We invite all the interested parties to download the Wayfindr Demo mobile app, customise it based on their needs, run their experiments and then share new versions of the app with the Wayfindr open community.
 
@@ -86,9 +86,9 @@ The project contain sample data to explain how to construct the `GraphML` and `J
 
 An example of how to put these data files into use can be found in the class `DemoVenueInterface`.
 
-Any mentions of "platforms" or "exits" found in the code are legacy from Wayfindr's previous trials in [Mainline Rail and Metro Stations](http://www.wayfindr.net).
+Any mentions of "platforms" or "exits" found in the code are legacy from Wayfindr's previous trials in [Mainline Rail and Metro Stations](http://www.wayfindr.net/open-standard/guidelines/venue-types/mainline-rail-and-metro-stations/).
 
-Information about the beacons parameters (e.g.major, minor, accuracy etc.) can be found in the [Wayfindr Open Standard](http://www.wayfindr.net).
+Information about the beacons parameters (e.g.major, minor, accuracy etc.) can be found in the [Wayfindr Open Standard](http://wayfindr.staging.wpengine.com/open-standard/wayfinding-technologies/bluetooth-low-energy-beacons/).
 
 ## Team
 
