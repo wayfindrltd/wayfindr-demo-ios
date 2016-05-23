@@ -18,7 +18,7 @@ To learn more, visit the [Wayfindr website](http://www.wayfindr.net).
 ## Dependencies
 
 * [Xcode 7.3](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12)
-* [CocoaPods](https://www.cocoapods.org)
+* [CocoaPods 0.39.0](https://www.cocoapods.org)
 
 ## Usage
 
@@ -26,7 +26,7 @@ To learn more, visit the [Wayfindr website](http://www.wayfindr.net).
 
 The following steps are required to run the project:
 
-Download the required dependencies using cocoapods:
+Download the required dependencies using cocoapods 0.39.0:
 
     $ pod install
 
