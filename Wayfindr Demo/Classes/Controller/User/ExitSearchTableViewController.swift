@@ -33,14 +33,14 @@ final class ExitSearchTableViewController: BaseSearchTableViewController {
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private let interface: BeaconInterface
+    fileprivate let interface: BeaconInterface
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     /// Engine for speech playback.
-    private let speechEngine: AudioEngine
+    fileprivate let speechEngine: AudioEngine
     
     /// List of destination exits to choose from.
-    private var destinations = [String]()
+    fileprivate var destinations = [String]()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -50,7 +50,7 @@ final class ExitSearchTableViewController: BaseSearchTableViewController {
         self.venue = venue
         self.speechEngine = speechEngine
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +75,7 @@ final class ExitSearchTableViewController: BaseSearchTableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedDestination = itemForIndexPath(tableView, indexPath: indexPath)
         
         if let selectedExit = exitForDestination(selectedDestination) {
@@ -84,7 +84,7 @@ final class ExitSearchTableViewController: BaseSearchTableViewController {
             navigationController?.pushViewController(directionsPreview, animated: true)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
@@ -93,14 +93,14 @@ final class ExitSearchTableViewController: BaseSearchTableViewController {
     /**
     Sets up the `destinations` array of possible destination exits.
     */
-    private func setupDestinations() {
+    fileprivate func setupDestinations() {
         var destinationSet = Set<String>()
         
         for exit in venue.exits {
             destinationSet.insert(exit.mode)
         }
         
-        destinations = Array(destinationSet).sort()
+        destinations = Array(destinationSet).sorted()
     }
     
     /**
@@ -110,8 +110,8 @@ final class ExitSearchTableViewController: BaseSearchTableViewController {
      
      - returns: The `WAYExit` representation of the exit to use to get to `destination`, if such an exit exists. Otherwise returns `nil`.
      */
-    private func exitForDestination(destination: String) -> WAYExit? {
-        guard let exitIndex = venue.exits.indexOf({$0.mode == destination}) else {
+    fileprivate func exitForDestination(_ destination: String) -> WAYExit? {
+        guard let exitIndex = venue.exits.index(where: {$0.mode == destination}) else {
             return nil
         }
         

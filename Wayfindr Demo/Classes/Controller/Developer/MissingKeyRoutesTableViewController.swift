@@ -36,16 +36,16 @@ final class MissingKeyRoutesTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "RouteCell"
+    fileprivate let reuseIdentifier = "RouteCell"
  
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     
     /// Whether the controller is still computing missing routes.
-    private var parsingData = true
+    fileprivate var parsingData = true
     
     /// Array of all the currently missing routes (or a congratulations message if there are none).
-    private var missingRoutes = [String]()
+    fileprivate var missingRoutes = [String]()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -58,7 +58,7 @@ final class MissingKeyRoutesTableViewController: UITableViewController {
     init(venue: WAYVenue) {
         self.venue = venue
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -71,25 +71,25 @@ final class MissingKeyRoutesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
         title = WAYStrings.MissingKeyRoutes.MissingRoutes
         
         SVProgressHUD.show()
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
             self?.determineMissingRoutes()
             self?.parsingData = false
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 SVProgressHUD.dismiss()
                 self?.tableView.reloadData()
             })
         })
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         SVProgressHUD.dismiss()
@@ -101,7 +101,7 @@ final class MissingKeyRoutesTableViewController: UITableViewController {
     /**
      Calculates all the missing key routes (those between platforms and exits) and adds them to the  `missingRoutes` array.
      */
-    private func determineMissingRoutes() {
+    fileprivate func determineMissingRoutes() {
         let venueGraph = venue.destinationGraph
         
         // Routes starting at a platform
@@ -164,20 +164,20 @@ final class MissingKeyRoutesTableViewController: UITableViewController {
     
     // MARK: - UITableViewDatasource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return parsingData ? 0 : 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return missingRoutes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         cell.textLabel?.text = missingRoutes[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .ByWordWrapping
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         
         return cell
     }
@@ -185,8 +185,8 @@ final class MissingKeyRoutesTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

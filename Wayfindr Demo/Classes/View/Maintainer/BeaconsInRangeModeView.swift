@@ -56,10 +56,10 @@ final class BeaconsInRangeModeView: BaseStackView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraint(NSLayoutConstraint(item: mainView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: mainView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[mainView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[mainView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }
@@ -80,19 +80,19 @@ final class BeaconsInRangeModeMainView: BaseStackView {
     override func setup() {
         super.setup()
         
-        stackView.distribution = .EqualCentering
+        stackView.distribution = .equalCentering
         
-        descriptionLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        descriptionLabel.lineBreakMode = .ByWordWrapping
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        descriptionLabel.lineBreakMode = .byWordWrapping
         descriptionLabel.numberOfLines = 0
         descriptionLabel.text = WAYStrings.BeaconsInRangeMode.Instructions
         addSubview(descriptionLabel)
         
-        specificButton.setTitle(WAYStrings.BeaconsInRangeMode.SpecificBeacon, forState: .Normal)
+        specificButton.setTitle(WAYStrings.BeaconsInRangeMode.SpecificBeacon, for: UIControlState())
         specificButton.tintColor = WAYConstants.WAYColors.Maintainer
         addSubview(specificButton)
         
-        anyButton.setTitle(WAYStrings.BeaconsInRangeMode.AnyBeacon, forState: .Normal)
+        anyButton.setTitle(WAYStrings.BeaconsInRangeMode.AnyBeacon, for: UIControlState())
         anyButton.tintColor = WAYConstants.WAYColors.Maintainer
         addSubview(anyButton)
     }
@@ -113,12 +113,12 @@ final class BeaconsInRangeModeMainView: BaseStackView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-HalfMargin-[descriptionLabel]-DoubleMargin-[specificButton]-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[descriptionLabel]-DoubleMargin-[specificButton]-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[descriptionLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[specificButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[descriptionLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[specificButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

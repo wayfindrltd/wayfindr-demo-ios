@@ -33,7 +33,7 @@ final class RouteCalculationView: BaseView {
     
     let calculatingStackView    = UIStackView()
     let calculatingLabel        = UILabel()
-    let activityIndicator       = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    let activityIndicator       = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     let optionsStackView    = UIStackView()
     let instructionsLabel   = UITextView()
@@ -42,8 +42,8 @@ final class RouteCalculationView: BaseView {
     
     dynamic var calculating = true {
         didSet {
-            calculatingStackView.hidden = !calculating
-            optionsStackView.hidden = calculating
+            calculatingStackView.isHidden = !calculating
+            optionsStackView.isHidden = calculating
             
             calculating ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         }
@@ -59,44 +59,44 @@ final class RouteCalculationView: BaseView {
         // Calculating
         
         setupStackView(calculatingStackView)
-        calculatingStackView.distribution = .FillEqually
+        calculatingStackView.distribution = .fillEqually
         addSubview(calculatingStackView)
         
         activityIndicator.color = WAYConstants.WAYColors.WayfindrMainColor
         calculatingStackView.addArrangedSubview(activityIndicator)
         
-        calculatingLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        calculatingLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         calculatingLabel.text = WAYStrings.RouteCalculation.CalculatingRoute
-        calculatingLabel.textAlignment = .Center
+        calculatingLabel.textAlignment = .center
         calculatingLabel.numberOfLines = 0
-        calculatingLabel.lineBreakMode = .ByWordWrapping
+        calculatingLabel.lineBreakMode = .byWordWrapping
         calculatingStackView.addArrangedSubview(calculatingLabel)
         
         
         // Options
         
         setupStackView(optionsStackView)
-        optionsStackView.distribution = .Fill
+        optionsStackView.distribution = .fill
         addSubview(optionsStackView)
         
-        instructionsLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        instructionsLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         instructionsLabel.text = WAYStrings.RouteCalculation.InstructionsQuestion
-        instructionsLabel.textAlignment = .Center
-        instructionsLabel.editable = false
-        instructionsLabel.selectable = false
+        instructionsLabel.textAlignment = .center
+        instructionsLabel.isEditable = false
+        instructionsLabel.isSelectable = false
         optionsStackView.addArrangedSubview(instructionsLabel)
         
-        yesButton.setTitle(WAYStrings.RouteCalculation.Yes, forState: .Normal)
+        yesButton.setTitle(WAYStrings.RouteCalculation.Yes, for: UIControlState())
         optionsStackView.addArrangedSubview(yesButton)
         
-        skipButton.setTitle(WAYStrings.RouteCalculation.SkipPreview, forState: .Normal)
+        skipButton.setTitle(WAYStrings.RouteCalculation.SkipPreview, for: UIControlState())
         optionsStackView.addArrangedSubview(skipButton)
         
         calculating = true
     }
     
-    private func setupStackView(stackView: UIStackView) {
-        stackView.axis = .Vertical
+    fileprivate func setupStackView(_ stackView: UIStackView) {
+        stackView.axis = .vertical
         stackView.spacing = WAYConstants.WAYLayout.DefaultMargin
     }
     
@@ -110,7 +110,7 @@ final class RouteCalculationView: BaseView {
         setupStackViewConstraints(optionsStackView)
     }
     
-    private func setupStackViewConstraints(stackView: UIStackView) {
+    fileprivate func setupStackViewConstraints(_ stackView: UIStackView) {
         // Turn off autoresizing mask
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -119,10 +119,10 @@ final class RouteCalculationView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

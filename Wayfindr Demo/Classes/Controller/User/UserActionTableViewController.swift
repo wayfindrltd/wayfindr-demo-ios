@@ -37,27 +37,27 @@ final class UserActionTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "ActionCell"
+    fileprivate let reuseIdentifier = "ActionCell"
     
     /// Actions that can be taken in User Mode. Each action is displayed as a cell in the table.
-    private enum Actions: Int {
-        case GoToPlatform
-        case ExitVenue
+    fileprivate enum Actions: Int {
+        case goToPlatform
+        case exitVenue
         
-        static let allValues = [GoToPlatform, ExitVenue]
+        static let allValues = [goToPlatform, exitVenue]
     }
     
     /// Interface for gathering information about the venue
-    private var venueInterface: VenueInterface?
+    fileprivate var venueInterface: VenueInterface?
     /// Interface for interacting with beacons.
-    private var interface: BeaconInterface?
+    fileprivate var interface: BeaconInterface?
     /// Model representation of entire venue.
-    private var venue: WAYVenue?
+    fileprivate var venue: WAYVenue?
     
-    private let speechEngine = AudioEngine()
+    fileprivate let speechEngine = AudioEngine()
     
     /// Whether the controller is still parsing graph and venue data.
-    private var parsingData = true
+    fileprivate var parsingData = true
     
     
     // MARK: - View Lifecycle
@@ -65,7 +65,7 @@ final class UserActionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -74,7 +74,7 @@ final class UserActionTableViewController: UITableViewController {
         // Improve voice-over by different spelling
         accessibilityLabel = "Way finder"
         
-        let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .Plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         
         fetchData()
@@ -84,7 +84,7 @@ final class UserActionTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         SVProgressHUD.dismiss()
@@ -96,7 +96,7 @@ final class UserActionTableViewController: UITableViewController {
     /**
     Sets up the `BeaconInterface`.
     */
-    private func setupBeaconInterface() {
+    fileprivate func setupBeaconInterface() {
         guard let myVenueInterface = venueInterface else {
             return
         }
@@ -115,7 +115,7 @@ final class UserActionTableViewController: UITableViewController {
                         self.interface?.validBeacons = validBeacons
                     }
                 }
-            } else if let myError = error, case .FailedInitialization(let localizedDescription) = myError {
+            } else if let myError = error, case .failedInitialization(let localizedDescription) = myError {
                 self.displayError(title: "", message: localizedDescription)
             } else {
                 self.displayError(title: "", message: WAYStrings.ErrorMessages.UnknownError)
@@ -126,14 +126,14 @@ final class UserActionTableViewController: UITableViewController {
     
     // MARK: - Load Data
     
-    private func fetchData() {
+    fileprivate func fetchData() {
         SVProgressHUD.show()
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
             self?.loadData()
             self?.parsingData = false
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self?.tableView.reloadData()
                 SVProgressHUD.dismiss()
                 
@@ -145,7 +145,7 @@ final class UserActionTableViewController: UITableViewController {
     /**
     Loads all of the data for the venue (both GraphML and JSON). If there is a failure, an alert is presented to the user.
     */
-    private func loadData() {
+    fileprivate func loadData() {
         venueInterface = DemoVenueInterface()
         
         guard let myVenueInterface = venueInterface else {
@@ -167,59 +167,58 @@ final class UserActionTableViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return parsingData ? 0 : 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Actions.allValues.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
     
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let selectedAction = Actions(rawValue: indexPath.row) {
             let text: String
             let accessibilityID: String
             
             switch selectedAction {
-            case .GoToPlatform:
+            case .goToPlatform:
                 text = WAYStrings.UserActionSelection.CatchTrain
                 accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.CatchTrainCell
-            case .ExitVenue:
+            case .exitVenue:
                 text = WAYStrings.UserActionSelection.ExitVenue
                 accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.ExitVenueCell
             }
             
             cell.textLabel?.text = text
             cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.lineBreakMode = .ByWordWrapping
+            cell.textLabel?.lineBreakMode = .byWordWrapping
             
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
             
             cell.accessibilityIdentifier = accessibilityID
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedAction = Actions(rawValue: indexPath.row),
-            myVenue = venue,
-            myInterface = interface
-            where myInterface.interfaceState == BeaconInterfaceState.Operating {
+            let myVenue = venue,
+            let myInterface = interface, myInterface.interfaceState == BeaconInterfaceState.operating {
             
             let newViewController: UIViewController
             
             switch selectedAction {
-            case .GoToPlatform:
+            case .goToPlatform:
                 let searchViewController = DestinationSearchTableViewController(interface: myInterface, venue: myVenue, speechEngine: speechEngine)
                 
                 newViewController = searchViewController
-            case .ExitVenue:
+            case .exitVenue:
                 let searchViewController = ExitSearchTableViewController(interface: myInterface, venue: myVenue, speechEngine: speechEngine)
                 
                 newViewController = searchViewController
@@ -228,7 +227,7 @@ final class UserActionTableViewController: UITableViewController {
             navigationController?.pushViewController(newViewController, animated: true)
             
         } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     

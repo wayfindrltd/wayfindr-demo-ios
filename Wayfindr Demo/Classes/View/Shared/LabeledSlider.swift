@@ -40,13 +40,13 @@ class LabeledSlider: BaseStackView {
     override func setup() {
         super.setup()
         
-        stackView.axis = .Horizontal
-        stackView.distribution = .Fill
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
         
         stackView.addArrangedSubview(slider)
         
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, forAxis: .Horizontal)
+        textLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         stackView.addArrangedSubview(textLabel)
     }
     

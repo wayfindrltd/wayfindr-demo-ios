@@ -59,7 +59,7 @@ class BaseView: UIView {
     }
     
     // Abstract method. Subclasses should override this method to add accessibility to their subviews
-    func setupAccessibility(accessibilityLabel: NSString, accessibilityIdentifier: NSString) {
+    func setupAccessibility(_ accessibilityLabel: NSString, accessibilityIdentifier: NSString) {
         
     }
     

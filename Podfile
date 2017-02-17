@@ -1,15 +1,19 @@
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'AEXML', '~> 2.0'
-pod 'Alamofire', '~> 3.1'
-pod 'GRValidation', '~> 0.2'
-pod 'Moya', '~> 6.0'
-pod 'SwiftGraph', '~> 1.0'
-pod 'SwiftyJSON', '~> 2.3'
-pod 'SVProgressHUD', '2.0-beta'
+target 'Wayfindr Demo' do
+  pod 'AEXML', '~> 4.0.2'
+  pod 'Alamofire', '~> 4.3.0'
+  pod 'Moya', '~> 8.0.1'
+  pod 'SwiftGraph', '~> 1.2.0'
+  pod 'SwiftyJSON', '~> 3.1.4'
+  pod 'SVProgressHUD', '~> 2.1.2'
+end
 
 target 'Wayfindr DemoTests' do
+  pod 'AEXML', '~> 4.0.2'
+  pod 'SwiftyJSON', '~> 3.1.4'
+  pod 'SwiftGraph', '~> 1.2.0'
   pod 'OHHTTPStubs', '~> 4.6'
 end
 

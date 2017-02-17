@@ -38,14 +38,14 @@ final class BatteryLevelsHeaderView: BaseView {
     // MARK: - Setup
     
     override func setup() {
-        for (index, item) in BatteryLevelFilters.allValues.enumerate() {
-            segmentControl.insertSegmentWithTitle(item.description, atIndex: index, animated: false)
+        for (index, item) in BatteryLevelFilters.allValues.enumerated() {
+            segmentControl.insertSegment(withTitle: item.description, at: index, animated: false)
         }
         segmentControl.selectedSegmentIndex = 0
         segmentControl.tintColor = WAYConstants.WAYColors.Maintainer
         addSubview(segmentControl)
         
-        addBorder(edges: .Bottom, colour: WAYConstants.WAYColors.Border, thickness: borderThickness)
+        addBorder(edges: .bottom, colour: WAYConstants.WAYColors.Border, thickness: borderThickness)
     }
     
     
@@ -61,10 +61,10 @@ final class BatteryLevelsHeaderView: BaseView {
         metrics["QuarterAndBorder"] = WAYConstants.WAYLayout.QuarterMargin + borderThickness
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-QuarterMargin-[segmentControl]-QuarterAndBorder-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-QuarterMargin-[segmentControl]-QuarterAndBorder-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraint(NSLayoutConstraint(item: segmentControl, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: segmentControl, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
     }
     
 }

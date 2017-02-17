@@ -39,20 +39,20 @@ protocol VenueInterface {
     
     - parameter completionHandler: Asynchronous call back closure that is called when the `BeaconInterface` is created. There are three parameters: a `Bool` that states whether or not the creation of the interface was successful, an optional `BeaconInterface` with the resulting interface, and an optional `BeaconInterfaceError` storing information if the creation was unsuccessful.
     */
-    func getBeaconInterface(completionHandler completionHandler: ((Bool, BeaconInterface?, BeaconInterfaceError?) -> Void))
+    func getBeaconInterface(completionHandler: ((Bool, BeaconInterface?, BeaconInterfaceError?) -> Void))
     
     /**
      Fetches an appropriate `WAYVenue` to represent the venue.
      
      - parameter completionHandler: Asynchronous call back closure that is called when the `WAYVenue` is created. There are three parameters: a `Bool` that states whether or not the creation of the venue was successful, an optional `WAYVenue` with the resulting venue, and an optional `WAYError` storing information if the creation was unsuccessful.
      */
-    func getVenue(completionHandler completionHandler: ((Bool, WAYVenue?, WAYError?) -> Void))
+    func getVenue(completionHandler: ((Bool, WAYVenue?, WAYError?) -> Void))
     
     /**
      Fetches a URL to a PDF map of the venue.
      
      - parameter completionHandler: Asynchronous call back closure that is called when the `WAYVenue` is created. There are three parameters: a `Bool` that states whether or not the creation of the URL to the map was successful, an optional `NSURL` with the resulting url, and an optional `VenueInterfaceAPIError` storing information if the fetch unsuccessful.
      */
-    func getVenueMap(completionHandler completionHandler: ((Bool, NSURL?, VenueInterfaceAPIError?) -> Void))
+    func getVenueMap(completionHandler: ((Bool, URL?, VenueInterfaceAPIError?) -> Void))
     
 }

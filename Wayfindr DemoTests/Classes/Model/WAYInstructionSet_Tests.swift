@@ -35,9 +35,9 @@ class WAYInstructionSet_Tests: XCTestCase {
 
     var xmlElement : AEXMLElement!
     
-    private let beginning = "Welcome to station X. Where would you like to go? Please select from the list... Walk forwards and bear right towards the ticket barrier. You will find some tactile paving."
-    private let middle = "You are approaching the ticket barrier."
-    private let ending = "Follow the tactile paving towards the platform."
+    fileprivate let beginning = "Welcome to station X. Where would you like to go? Please select from the list... Walk forwards and bear right towards the ticket barrier. You will find some tactile paving."
+    fileprivate let middle = "You are approaching the ticket barrier."
+    fileprivate let ending = "Follow the tactile paving towards the platform."
     
     
     // MARK: - Setup/Teardown
@@ -46,7 +46,7 @@ class WAYInstructionSet_Tests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        xmlElement = AEXMLElement()
+        xmlElement = AEXMLElement(name: "edge")
         xmlElement.name = "edge"
         xmlElement.attributes["id"] = "e0"
         xmlElement.attributes["source"] = "0"
@@ -79,10 +79,10 @@ class WAYInstructionSet_Tests: XCTestCase {
         let badXMLElement = xmlElement
         
         // When
-        badXMLElement.children.last?.removeFromParent()
+        badXMLElement?.children.last?.removeFromParent()
         
         // Then
-        AssertThrow(WAYError.InvalidInstructionSet, try WAYInstructionSet(xmlElement: badXMLElement))
+        AssertThrow(WAYError.invalidInstructionSet, try WAYInstructionSet(xmlElement: badXMLElement!))
     }
     
     

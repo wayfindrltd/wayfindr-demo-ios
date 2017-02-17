@@ -32,10 +32,11 @@ extension Graph {
     
     /// Whether or not the graph is connected (i.e. you can travel from any node to any other node).
     var isConnected: Bool {
-        for (index, _) in self.enumerate() {
-            for (index2, _) in self.enumerate() {
+        for (index, _) in self.enumerated() {
+            for (index2, _) in self.enumerated() {
                 if index != index2 {
-                    let route = bfs(index, to: index2, graph: self)
+                    
+                    let route = self.bfs(from: index, to: index2)
                     
                     if route.isEmpty {
                         return false
@@ -51,10 +52,10 @@ extension Graph {
     var discontinuities: [(Int, Int)] {
         var missingEdges = [(Int, Int)]()
         
-        for (index, _) in self.enumerate() {
-            for (index2, _) in self.enumerate() {
+        for (index, _) in self.enumerated() {
+            for (index2, _) in self.enumerated() {
                 if index != index2 {
-                    let route = bfs(index, to: index2, graph: self)
+                    let route = self.bfs(from: index, to: index2)
                     
                     if route.isEmpty {
                         missingEdges.append((index, index2))

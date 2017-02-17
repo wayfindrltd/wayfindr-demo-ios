@@ -33,34 +33,34 @@ final class AudioEngine: NSObject {
     
     // MARK: - Properties
     
-    private let audioSession = AVAudioSession()
+    fileprivate let audioSession = AVAudioSession()
     
     /// Font to use for displaying instructions.
-    private let instructionFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+    fileprivate let instructionFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     
     /// Ping sound to play at the beginning of instructions to get user's attention.
-    private var pingSound: AVAudioPlayer?
+    fileprivate var pingSound: AVAudioPlayer?
     /// Ping sound to play when arriving at the destination to get user's attention.
-    private var arrivalSound: AVAudioPlayer?
+    fileprivate var arrivalSound: AVAudioPlayer?
 
     /// Speech synthesizer to read aloud instructions using text-to-speech.
-    private let speechSynthesizer = AVSpeechSynthesizer()
+    fileprivate let speechSynthesizer = AVSpeechSynthesizer()
     /// Voice to use for `speechSynthesizer`.
-    private let voice = AVSpeechSynthesisVoice(language: "en-GB")
+    fileprivate let voice = AVSpeechSynthesisVoice(language: "en-GB")
     
     /// The currently playing (or most recently played) instruction.
-    private(set) var currentInstruction: String?
+    fileprivate(set) var currentInstruction: String?
     /// Instruction that will be played after `delayTimer` has fired.
-    private var upcomingInstruction: String?
+    fileprivate var upcomingInstruction: String?
     /// Timer to delay the playing of `upcomingInstruction`.
-    private var delayTimer: NSTimer?
+    fileprivate var delayTimer: Timer?
     
     /// Text view to display instructions during playback.
     weak var textView: UITextView?
     /// Repeat button to disable during playback and re-enable afterwards.
     weak var repeatButton: UIButton?
     
-    private(set) var valid = true
+    fileprivate(set) var valid = true
     
     
     // MARK: - Initializers
@@ -74,7 +74,7 @@ final class AudioEngine: NSObject {
         setupNotificationPlayers()
         
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.InterruptSpokenAudioAndMixWithOthers)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.interruptSpokenAudioAndMixWithOthers)
             try audioSession.setActive(true)
         } catch {
             valid = false
@@ -84,13 +84,13 @@ final class AudioEngine: NSObject {
     }
 
 
-    private func setupNotificationPlayers() {
-        if let pingURL = NSBundle.mainBundle().URLForResource(WAYConstants.WAYFilenames.pingSound, withExtension: "mp3") {
-            pingSound = try? AVAudioPlayer(contentsOfURL: pingURL)
+    fileprivate func setupNotificationPlayers() {
+        if let pingURL = Bundle.main.url(forResource: WAYConstants.WAYFilenames.pingSound, withExtension: "mp3") {
+            pingSound = try? AVAudioPlayer(contentsOf: pingURL)
         }
 
-        if let pingURL = NSBundle.mainBundle().URLForResource(WAYConstants.WAYFilenames.arrivalSound, withExtension: "mp3") {
-            arrivalSound = try? AVAudioPlayer(contentsOfURL: pingURL)
+        if let pingURL = Bundle.main.url(forResource: WAYConstants.WAYFilenames.arrivalSound, withExtension: "mp3") {
+            arrivalSound = try? AVAudioPlayer(contentsOf: pingURL)
         }
     }
 
@@ -104,7 +104,7 @@ final class AudioEngine: NSObject {
         delayTimer?.invalidate()
         upcomingInstruction = nil
         
-        speechSynthesizer.stopSpeakingAtBoundary(.Immediate)
+        speechSynthesizer.stopSpeaking(at: .immediate)
         
         // Reset the text to remove any highlighting
         if let myCurrentInstruction = currentInstruction {
@@ -117,7 +117,7 @@ final class AudioEngine: NSObject {
      
      - parameter instruction: String to read aloud to the user.
      */
-    func playInstruction(instruction: String) {
+    func playInstruction(_ instruction: String) {
         pingSound?.play()
         doPlayInstruction(instruction)
     }
@@ -128,11 +128,11 @@ final class AudioEngine: NSObject {
      - parameter instruction:   String to read aloud to the user.
      - parameter delayInterval: Time delay in seconds.
      */
-    func playInstruction(instruction: String, delayInterval: NSTimeInterval) {
+    func playInstruction(_ instruction: String, delayInterval: TimeInterval) {
         delayTimer?.invalidate()
         
         upcomingInstruction = instruction
-        let timer = NSTimer.scheduledTimerWithTimeInterval(delayInterval, target: self, selector: #selector(AudioEngine.delayTimerFired), userInfo: nil, repeats: false)
+        let timer = Timer.scheduledTimer(timeInterval: delayInterval, target: self, selector: #selector(AudioEngine.delayTimerFired), userInfo: nil, repeats: false)
         
         delayTimer = timer
     }
@@ -142,7 +142,7 @@ final class AudioEngine: NSObject {
 
      - parameter instruction: String to read aloud to the user.
      */
-    func playArrivalInstruction(instruction: String) {
+    func playArrivalInstruction(_ instruction: String) {
         arrivalSound?.play()
         doPlayInstruction(instruction)
     }
@@ -152,7 +152,7 @@ final class AudioEngine: NSObject {
      
      - parameter instruction: String to read aloud to the user.
      */
-    private func doPlayInstruction(instruction: String) {
+    fileprivate func doPlayInstruction(_ instruction: String) {
         // Create and configure utterance from string
         let utterance = AVSpeechUtterance(string: instruction)
         utterance.voice = voice
@@ -160,7 +160,7 @@ final class AudioEngine: NSObject {
         utterance.postUtteranceDelay = WAYConstants.WAYSpeech.postUtteranceDelay
         
         // Play utterance
-        speechSynthesizer.speakUtterance(utterance)
+        speechSynthesizer.speak(utterance)
         
         // Save instruction for later
         currentInstruction = instruction
@@ -187,20 +187,20 @@ final class AudioEngine: NSObject {
 
 extension AudioEngine: AVSpeechSynthesizerDelegate {
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
         // Highlight the characters that are about to be spoken.
         
         displayInstruction(utterance.speechString, highlightRange: characterRange)
     }
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didStartSpeechUtterance utterance: AVSpeechUtterance) {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         displayInstruction(utterance.speechString)
-        repeatButton?.enabled = false
+        repeatButton?.isEnabled = false
     }
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didFinishSpeechUtterance utterance: AVSpeechUtterance) {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         displayInstruction(utterance.speechString)
-        repeatButton?.enabled = true
+        repeatButton?.isEnabled = true
     }
     
     /**
@@ -209,7 +209,7 @@ extension AudioEngine: AVSpeechSynthesizerDelegate {
      - parameter instruction:    Instruction `String` to display.
      - parameter highlightRange: Range of characters in `instruction` to highlight, if any. Default value is nil.
      */
-    func displayInstruction(instruction: String, highlightRange: NSRange? = nil) {
+    func displayInstruction(_ instruction: String, highlightRange: NSRange? = nil) {
         // Initialize the string
         let mutableAttributedString = NSMutableAttributedString(string: instruction)
         
@@ -223,7 +223,7 @@ extension AudioEngine: AVSpeechSynthesizerDelegate {
         
         // Set the text alignment
         let style = NSMutableParagraphStyle()
-        style.alignment = NSTextAlignment.Center
+        style.alignment = NSTextAlignment.center
         mutableAttributedString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: mutableAttributedString.length))
         
         // Update the display

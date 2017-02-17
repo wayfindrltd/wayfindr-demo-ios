@@ -45,7 +45,7 @@ class GraphValidationViewController_Tests : XCTestCase {
         
         viewController = GraphValidationViewController(venueInterface: mockInterface)
         
-        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController
+        UIApplication.shared.keyWindow!.rootViewController = viewController
         
         // Test and Load the View at the Same Time!
         XCTAssertNotNil(viewController.view)

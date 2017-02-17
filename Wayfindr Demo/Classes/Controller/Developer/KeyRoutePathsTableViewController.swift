@@ -50,7 +50,7 @@ struct KeyRouteData {
         self.name = name
         self.route = route
         
-        self.travelTime = route.reduce(0.0, combine: {$0 + $1.weight})
+        self.travelTime = route.reduce(0.0, {$0 + $1.weight})
     }
 }
 
@@ -62,16 +62,16 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "RouteCell"
+    fileprivate let reuseIdentifier = "RouteCell"
     
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     
     /// Whether the controller is still computing missing routes.
-    private var parsingData = true
+    fileprivate var parsingData = true
     
     /// Array of all the currently available routes.
-    private var keyRoutes = [KeyRouteData]()
+    fileprivate var keyRoutes = [KeyRouteData]()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -79,7 +79,7 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     init(venue: WAYVenue) {
         self.venue = venue
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,25 +92,25 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
         title = WAYStrings.KeyRoutePaths.KeyPaths
         
         SVProgressHUD.show()
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
             self?.determineKeyRoutes()
             self?.parsingData = false
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 SVProgressHUD.dismiss()
                 self?.tableView.reloadData()
             })
         })
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         SVProgressHUD.dismiss()
     }
     
@@ -120,7 +120,7 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     /**
      Calculates all the missing key routes (those between platforms and exits) and adds them to the  `missingRoutes` array.
      */
-    private func determineKeyRoutes() {
+    fileprivate func determineKeyRoutes() {
         let venueGraph = venue.destinationGraph
         
         // Routes starting at a platform
@@ -195,24 +195,24 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDatasource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return parsingData ? 0 : 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return keyRoutes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         let routeData = keyRoutes[indexPath.row]
         
         cell.textLabel?.text = routeData.name + " (\(routeData.travelTime)s)"
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .ByWordWrapping
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
@@ -220,7 +220,7 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let routeData = keyRoutes[indexPath.row]
         
         let viewController = KeyRoutePathsDetailViewController(routeData: routeData)

@@ -45,7 +45,7 @@ class BeaconsInRangeSearchTableViewController_Tests : XCTestCase {
         
         viewController = BeaconsInRangeSearchTableViewController(interface: mockInterface)
         
-        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController
+        UIApplication.shared.keyWindow!.rootViewController = viewController
         
         // Test and Load the View at the Same Time!
         XCTAssertNotNil(viewController.view)
@@ -58,23 +58,17 @@ class BeaconsInRangeSearchTableViewController_Tests : XCTestCase {
         XCTAssertTrue(true)
     }
     
-    func testViewDidAppear() {
-        viewController.viewDidAppear(false)
-        
-        XCTAssertTrue(true)
-    }
-    
     func testCellForRowAtIndexPath() {
         let numberOfSections = viewController.tableView.numberOfSections
         
         for section in 0 ..< numberOfSections {
-            let numberOfCells = viewController.tableView.numberOfRowsInSection(section)
+            let numberOfCells = viewController.tableView.numberOfRows(inSection: section)
             
             for row in 0 ..< numberOfCells {
-                let indexPath = NSIndexPath(forRow: row, inSection: section)
+                let indexPath = IndexPath(row: row, section: section)
                 
                 // Test
-                let _ = viewController.tableView.cellForRowAtIndexPath(indexPath)
+                let _ = viewController.tableView.cellForRow(at: indexPath)
                 
                 XCTAssertTrue(true)
             }

@@ -26,6 +26,6 @@
 import Foundation
 
 
-enum VenueInterfaceAPIError: ErrorType {
-    case UnableToFindResource
+enum VenueInterfaceAPIError: Error {
+    case unableToFindResource
 }

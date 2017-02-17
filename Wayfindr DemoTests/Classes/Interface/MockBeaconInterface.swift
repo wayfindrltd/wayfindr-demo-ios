@@ -36,7 +36,7 @@ struct MockBeaconInterface : BeaconInterface {
     
     var needsFullBeaconData: Bool = false
     
-    private(set) var interfaceState = BeaconInterfaceState.Initializing {
+    fileprivate(set) var interfaceState = BeaconInterfaceState.initializing {
         didSet {
             stateDelegate?.beaconInterface(self, didChangeState: interfaceState)
         }
@@ -54,15 +54,15 @@ struct MockBeaconInterface : BeaconInterface {
     // MARK: - Initializers
     
     init() {
-        loadFakeBeacon()
+        //loadFakeBeacon()
         
-        interfaceState = .Operating
+        interfaceState = .operating
     }
     
     
     // MARK: - GET
     
-    func getBeacons(completionHandler completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?) {
+    func getBeacons(completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?) {
         let beacon = WAYBeacon(beacon: fakeBeacon)
         
         completionHandler?(true, [beacon], nil)
@@ -77,12 +77,12 @@ struct MockBeaconInterface : BeaconInterface {
         delegate?.beaconInterface(self, didChangeBeacons: [fakeWAYBeacon])
     }
     
-    private func loadFakeBeacon() {
+    fileprivate func loadFakeBeacon() {
         fakeBeacon.setValue(1, forKey: "major")
         fakeBeacon.setValue(1, forKey: "minor")
         fakeBeacon.setValue(0.12345, forKey: "accuracy")
         fakeBeacon.setValue(-68, forKey: "rssi")
-        fakeBeacon.setValue(CLProximity.Near.rawValue, forKey: "proximity")
+        fakeBeacon.setValue(CLProximity.near.rawValue, forKey: "proximity")
     }
     
 }

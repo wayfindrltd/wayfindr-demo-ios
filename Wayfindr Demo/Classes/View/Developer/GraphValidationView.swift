@@ -41,16 +41,16 @@ final class GraphValidationView: BaseStackView {
     override func setup() {
         super.setup()
         
-        stackView.distribution = .Fill
+        stackView.distribution = .fill
         
-        headerLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1)
+        headerLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
         headerLabel.numberOfLines = 0
-        headerLabel.lineBreakMode = .ByWordWrapping
+        headerLabel.lineBreakMode = .byWordWrapping
         stackView.addArrangedSubview(headerLabel)
         
-        textView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textView.editable = false
-        textView.setContentHuggingPriority(UILayoutPriorityDefaultLow, forAxis: .Vertical)
+        textView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        textView.isEditable = false
+        textView.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
         stackView.addArrangedSubview(textView)
         
         verboseLabeledSwitch.textLabel.text = "Verbose"

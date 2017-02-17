@@ -23,11 +23,9 @@
 		003B66071BF5D03E00551B3A /* BaseSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B66051BF5D03E00551B3A /* BaseSearchTableViewController.swift */; };
 		003B66081BF5D03E00551B3A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B66061BF5D03E00551B3A /* BaseViewController.swift */; };
 		003B660A1BF5D07A00551B3A /* KeyValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B66091BF5D07A00551B3A /* KeyValueLabel.swift */; };
-		003F881B1C0F30DC00215BFE /* ActiveRouteViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F881A1C0F30DC00215BFE /* ActiveRouteViewController_Tests.swift */; };
 		003F881D1C0F323800215BFE /* ExitSearchTableViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F881C1C0F323800215BFE /* ExitSearchTableViewController_Tests.swift */; };
 		003F881F1C0F329A00215BFE /* DestinationSearchTableViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F881E1C0F329A00215BFE /* DestinationSearchTableViewController_Tests.swift */; };
 		003F88211C0F32D500215BFE /* UserActionTableViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F88201C0F32D500215BFE /* UserActionTableViewController_Tests.swift */; };
-		003F88231C0F338000215BFE /* RouteCalculationViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F88221C0F338000215BFE /* RouteCalculationViewController_Tests.swift */; };
 		004439251BF218D700031373 /* dualPing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 004439241BF218D700031373 /* dualPing.mp3 */; };
 		0044392B1BF22A0000031373 /* WAYGraphNode_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044392A1BF22A0000031373 /* WAYGraphNode_Tests.swift */; };
 		004439321BF22C1D00031373 /* TestData.graphml in Resources */ = {isa = PBXBuildFile; fileRef = 004439311BF22C1D00031373 /* TestData.graphml */; };
@@ -115,8 +113,8 @@
 		00FF76811BF9BF8A007215B4 /* WAYError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FF76801BF9BF8A007215B4 /* WAYError.swift */; };
 		00FF76831BF9D371007215B4 /* ActiveRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FF76821BF9D371007215B4 /* ActiveRouteViewController.swift */; };
 		00FF76851BF9D38B007215B4 /* ActiveRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FF76841BF9D38B007215B4 /* ActiveRouteView.swift */; };
-		1C5643269F7B73CFE95242A2 /* Pods_Wayfindr_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B6E0E22C84DFDA44DDAE12 /* Pods_Wayfindr_DemoTests.framework */; };
-		7D964E7132DF048E2EF67ED2 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56393D20E05B9D6AC56358B5 /* Pods.framework */; };
+		435C640F885CD28B00169299 /* Pods_Wayfindr_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */; };
+		69455B6DA7D34EE81D28296C /* Pods_Wayfindr_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D58745AAAF741C9E71F5E9C /* Pods_Wayfindr_DemoTests.framework */; };
 		7EB62E311CBD2B2200E16472 /* triPing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EB62E301CBD2B2200E16472 /* triPing.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -147,11 +145,9 @@
 		003B66051BF5D03E00551B3A /* BaseSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSearchTableViewController.swift; sourceTree = "<group>"; };
 		003B66061BF5D03E00551B3A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		003B66091BF5D07A00551B3A /* KeyValueLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueLabel.swift; sourceTree = "<group>"; };
-		003F881A1C0F30DC00215BFE /* ActiveRouteViewController_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRouteViewController_Tests.swift; sourceTree = "<group>"; };
 		003F881C1C0F323800215BFE /* ExitSearchTableViewController_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitSearchTableViewController_Tests.swift; sourceTree = "<group>"; };
 		003F881E1C0F329A00215BFE /* DestinationSearchTableViewController_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationSearchTableViewController_Tests.swift; sourceTree = "<group>"; };
 		003F88201C0F32D500215BFE /* UserActionTableViewController_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionTableViewController_Tests.swift; sourceTree = "<group>"; };
-		003F88221C0F338000215BFE /* RouteCalculationViewController_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculationViewController_Tests.swift; sourceTree = "<group>"; };
 		004439221BF216BA00031373 /* WayfindrDemo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WayfindrDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		004439241BF218D700031373 /* dualPing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dualPing.mp3; sourceTree = "<group>"; };
 		0044392A1BF22A0000031373 /* WAYGraphNode_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAYGraphNode_Tests.swift; sourceTree = "<group>"; };
@@ -244,13 +240,14 @@
 		00FF76801BF9BF8A007215B4 /* WAYError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAYError.swift; sourceTree = "<group>"; };
 		00FF76821BF9D371007215B4 /* ActiveRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRouteViewController.swift; sourceTree = "<group>"; };
 		00FF76841BF9D38B007215B4 /* ActiveRouteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRouteView.swift; sourceTree = "<group>"; };
-		1BD45E5174FDD478F0D01CD4 /* Pods-Wayfindr DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		27B6E0E22C84DFDA44DDAE12 /* Pods_Wayfindr_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A69862B9038C88352E5BECB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		248E758C55471CF5B34BBA8E /* Pods-Wayfindr DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		29E4C7B92ECD8ECE8015317A /* Pods-Wayfindr Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo.release.xcconfig"; sourceTree = "<group>"; };
+		3D58745AAAF741C9E71F5E9C /* Pods_Wayfindr_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56393D20E05B9D6AC56358B5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB62E301CBD2B2200E16472 /* triPing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = triPing.mp3; sourceTree = "<group>"; };
-		AA46AE87A70F799F37907DFC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		CF3DA66614E18B3CBB105B63 /* Pods-Wayfindr DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		D414CA3DEDD7EF543468350E /* Pods-Wayfindr Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,7 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D964E7132DF048E2EF67ED2 /* Pods.framework in Frameworks */,
+				435C640F885CD28B00169299 /* Pods_Wayfindr_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C5643269F7B73CFE95242A2 /* Pods_Wayfindr_DemoTests.framework in Frameworks */,
+				69455B6DA7D34EE81D28296C /* Pods_Wayfindr_DemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,8 +528,8 @@
 				00BF3D5C1BF20ED40075533D /* Wayfindr DemoTests */,
 				0044392E1BF22BCA00031373 /* Common Tests */,
 				00BF3D461BF20ED40075533D /* Products */,
-				2A24E60D1DB2F00628B0B947 /* Pods */,
 				80C22D04DB8DA3B66964392E /* Frameworks */,
+				0B73F64F0DACFA64D6056DB3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -724,23 +721,21 @@
 		00F9C89D1BFF06BE00A12B44 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				003F881A1C0F30DC00215BFE /* ActiveRouteViewController_Tests.swift */,
 				00F9C8A01BFF072600A12B44 /* DirectionsPreviewViewController_Tests.swift */,
 				003F881C1C0F323800215BFE /* ExitSearchTableViewController_Tests.swift */,
-				003F88221C0F338000215BFE /* RouteCalculationViewController_Tests.swift */,
 				003F881E1C0F329A00215BFE /* DestinationSearchTableViewController_Tests.swift */,
 				003F88201C0F32D500215BFE /* UserActionTableViewController_Tests.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
 		};
-		2A24E60D1DB2F00628B0B947 /* Pods */ = {
+		0B73F64F0DACFA64D6056DB3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3A69862B9038C88352E5BECB /* Pods.debug.xcconfig */,
-				AA46AE87A70F799F37907DFC /* Pods.release.xcconfig */,
-				CF3DA66614E18B3CBB105B63 /* Pods-Wayfindr DemoTests.debug.xcconfig */,
-				1BD45E5174FDD478F0D01CD4 /* Pods-Wayfindr DemoTests.release.xcconfig */,
+				248E758C55471CF5B34BBA8E /* Pods-Wayfindr DemoTests.debug.xcconfig */,
+				C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */,
+				D414CA3DEDD7EF543468350E /* Pods-Wayfindr Demo.debug.xcconfig */,
+				29E4C7B92ECD8ECE8015317A /* Pods-Wayfindr Demo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -758,7 +753,8 @@
 			isa = PBXGroup;
 			children = (
 				56393D20E05B9D6AC56358B5 /* Pods.framework */,
-				27B6E0E22C84DFDA44DDAE12 /* Pods_Wayfindr_DemoTests.framework */,
+				3D58745AAAF741C9E71F5E9C /* Pods_Wayfindr_DemoTests.framework */,
+				941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -770,12 +766,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00BF3D6D1BF20ED40075533D /* Build configuration list for PBXNativeTarget "Wayfindr Demo" */;
 			buildPhases = (
-				3082042A8147821E264BA306 /* Check Pods Manifest.lock */,
+				24AF8B1771EE8C3574531195 /* [CP] Check Pods Manifest.lock */,
 				00BF3D411BF20ED40075533D /* Sources */,
 				00BF3D421BF20ED40075533D /* Frameworks */,
 				00BF3D431BF20ED40075533D /* Resources */,
-				EC703142B572892FA1DE779B /* Embed Pods Frameworks */,
-				9D8E020CDAAE55749FDED793 /* Copy Pods Resources */,
+				52DF9563CB2D8764128A188B /* [CP] Embed Pods Frameworks */,
+				F6E1C600174F2F509982ACE8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -790,12 +786,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00BF3D701BF20ED40075533D /* Build configuration list for PBXNativeTarget "Wayfindr DemoTests" */;
 			buildPhases = (
-				4B963928D65A5751020A189D /* Check Pods Manifest.lock */,
+				4D6BCAD703CC439F623110C4 /* [CP] Check Pods Manifest.lock */,
 				00BF3D551BF20ED40075533D /* Sources */,
 				00BF3D561BF20ED40075533D /* Frameworks */,
 				00BF3D571BF20ED40075533D /* Resources */,
-				CB3B5CE375DFD7385E9A295A /* Embed Pods Frameworks */,
-				778B4674D7F436334AD6BAA3 /* Copy Pods Resources */,
+				DEEF593662B7114F9F3B1F08 /* [CP] Embed Pods Frameworks */,
+				994BE85DDFF991E562D734FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -815,14 +811,16 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Wayfindr.org Limited";
 				TargetAttributes = {
 					00BF3D441BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 					};
 					00BF3D581BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 00BF3D441BF20ED40075533D;
 					};
 				};
@@ -874,44 +872,59 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3082042A8147821E264BA306 /* Check Pods Manifest.lock */ = {
+		24AF8B1771EE8C3574531195 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4B963928D65A5751020A189D /* Check Pods Manifest.lock */ = {
+		4D6BCAD703CC439F623110C4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		778B4674D7F436334AD6BAA3 /* Copy Pods Resources */ = {
+		52DF9563CB2D8764128A188B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		994BE85DDFF991E562D734FB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -919,29 +932,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9D8E020CDAAE55749FDED793 /* Copy Pods Resources */ = {
+		DEEF593662B7114F9F3B1F08 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB3B5CE375DFD7385E9A295A /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -949,19 +947,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC703142B572892FA1DE779B /* Embed Pods Frameworks */ = {
+		F6E1C600174F2F509982ACE8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1059,7 +1057,6 @@
 				00FE281C1C203916003B9162 /* BeaconsInRangeModeViewController_Tests.swift in Sources */,
 				008843611C0C4EDF00B1363C /* DeveloperOptionsTableViewController_Tests.swift in Sources */,
 				004439371BF24AB900031373 /* WAYGraphEdge_Tests.swift in Sources */,
-				003F88231C0F338000215BFE /* RouteCalculationViewController_Tests.swift in Sources */,
 				00F9C8A11BFF072600A12B44 /* DirectionsPreviewViewController_Tests.swift in Sources */,
 				00A0A42A1C0F14D6000DDFB3 /* ConvenienceFunctions.swift in Sources */,
 				00F9C89F1BFF06EF00A12B44 /* BeaconsInRangeViewController_Tests.swift in Sources */,
@@ -1068,7 +1065,6 @@
 				003F881D1C0F323800215BFE /* ExitSearchTableViewController_Tests.swift in Sources */,
 				0044392B1BF22A0000031373 /* WAYGraphNode_Tests.swift in Sources */,
 				004439351BF2469300031373 /* WAYInstructionSet_Tests.swift in Sources */,
-				003F881B1C0F30DC00215BFE /* ActiveRouteViewController_Tests.swift in Sources */,
 				00A0A42E1C0F1705000DDFB3 /* MaintainerActionSelectionTableView_Tests.swift in Sources */,
 				0068F9421C0ED7E000DFA484 /* MockBeaconInterface.swift in Sources */,
 				0007A1D11C10858E0004474D /* SwiftGraph+Additions_Tests.swift in Sources */,
@@ -1104,8 +1100,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1149,8 +1147,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1169,6 +1169,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1176,42 +1177,46 @@
 		};
 		00BF3D6E1BF20ED40075533D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A69862B9038C88352E5BECB /* Pods.debug.xcconfig */;
+			baseConfigurationReference = D414CA3DEDD7EF543468350E /* Pods-Wayfindr Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		00BF3D6F1BF20ED40075533D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA46AE87A70F799F37907DFC /* Pods.release.xcconfig */;
+			baseConfigurationReference = 29E4C7B92ECD8ECE8015317A /* Pods-Wayfindr Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		00BF3D711BF20ED40075533D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF3DA66614E18B3CBB105B63 /* Pods-Wayfindr DemoTests.debug.xcconfig */;
+			baseConfigurationReference = 248E758C55471CF5B34BBA8E /* Pods-Wayfindr DemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Wayfindr DemoTests/Info.plist";
@@ -1220,13 +1225,14 @@
 				PRODUCT_MODULE_NAME = Wayfindr_DemoTests;
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wayfindr Demo.app/Wayfindr Demo";
 			};
 			name = Debug;
 		};
 		00BF3D721BF20ED40075533D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BD45E5174FDD478F0D01CD4 /* Pods-Wayfindr DemoTests.release.xcconfig */;
+			baseConfigurationReference = C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Wayfindr DemoTests/Info.plist";
@@ -1235,6 +1241,7 @@
 				PRODUCT_MODULE_NAME = Wayfindr_DemoTests;
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wayfindr Demo.app/Wayfindr Demo";
 			};
 			name = Release;

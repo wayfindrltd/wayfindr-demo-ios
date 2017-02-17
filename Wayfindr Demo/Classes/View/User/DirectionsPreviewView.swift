@@ -39,9 +39,9 @@ final class DirectionsPreviewView: BaseStackView {
     override func setup() {
         super.setup()
         
-        stackView.distribution = .Fill
+        stackView.distribution = .fill
         
-        beginRouteButton.setTitle(WAYStrings.DirectionsPreview.BeginRoute, forState: .Normal)
+        beginRouteButton.setTitle(WAYStrings.DirectionsPreview.BeginRoute, for: UIControlState())
         stackView.addArrangedSubview(beginRouteButton)
     }
     

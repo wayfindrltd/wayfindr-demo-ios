@@ -34,7 +34,7 @@ final class ModeSelectionTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.translucent = false
+        tabBar.isTranslucent = false
         
         setupTabs()
     }
@@ -42,7 +42,7 @@ final class ModeSelectionTabViewController: UITabBarController {
     
     // MARK: - Setup
     
-    private func setupTabs() {
+    fileprivate func setupTabs() {
         // Setup Modes
         
         let userMode = setupUserMode()
@@ -54,13 +54,13 @@ final class ModeSelectionTabViewController: UITabBarController {
         setViewControllers([userMode, maintainerMode, developerMode], animated: false)
     }
     
-    private func setupUserMode() -> UIViewController {
+    fileprivate func setupUserMode() -> UIViewController {
         let userController = UserActionTableViewController()
         
         let userNavigationController = UINavigationController(rootViewController: userController)
         userNavigationController.navigationBar.barTintColor = WAYConstants.WAYColors.WayfindrMainColor
         userNavigationController.navigationBar.tintColor = WAYConstants.WAYColors.NavigationText
-        userNavigationController.navigationBar.translucent = false
+        userNavigationController.navigationBar.isTranslucent = false
         
         let userTabBarItem = UITabBarItem(title: WAYStrings.ModeSelection.User, image: UIImage(assetIdentifier: .User), tag: 1)
         userTabBarItem.accessibilityIdentifier = WAYAccessibilityIdentifier.ModeSelection.UserTabBarItem
@@ -69,12 +69,12 @@ final class ModeSelectionTabViewController: UITabBarController {
         return userNavigationController
     }
     
-    private func setupMaintainerMode() -> UIViewController {
+    fileprivate func setupMaintainerMode() -> UIViewController {
         let maintainerController = MaintainerActionSelectionTableView()
         
         let maintainerNavigationController = UINavigationController(rootViewController: maintainerController)
         maintainerNavigationController.navigationBar.barTintColor = WAYConstants.WAYColors.Maintainer
-        maintainerNavigationController.navigationBar.translucent = false
+        maintainerNavigationController.navigationBar.isTranslucent = false
         
         let maintainerTabBarItem = UITabBarItem(title: WAYStrings.CommonStrings.Maintainer, image: UIImage(assetIdentifier: .Maintenance), tag: 1)
         maintainerTabBarItem.accessibilityIdentifier = WAYAccessibilityIdentifier.ModeSelection.MaintainerTabBarItem
@@ -84,12 +84,12 @@ final class ModeSelectionTabViewController: UITabBarController {
     }
 
     
-    private func setupDeveloperMode() -> UIViewController {
+    fileprivate func setupDeveloperMode() -> UIViewController {
         let viewController = DeveloperActionSelectionTableView()
         
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.barTintColor = WAYConstants.WAYColors.Developer
-        navigationController.navigationBar.translucent = false
+        navigationController.navigationBar.isTranslucent = false
         
         let tabBarItem = UITabBarItem(title: WAYStrings.CommonStrings.Developer, image: UIImage(assetIdentifier: .Developer), tag: 1)
         tabBarItem.accessibilityIdentifier = WAYAccessibilityIdentifier.ModeSelection.DeveloperTabBarItem

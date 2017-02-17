@@ -50,7 +50,7 @@ class KeyRoutePathsDetailViewController_Tests : XCTestCase {
         
         viewController = KeyRoutePathsDetailViewController(routeData: routeData)
         
-        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController
+        UIApplication.shared.keyWindow!.rootViewController = viewController
         
         // Test and Load the View at the Same Time!
         XCTAssertNotNil(viewController.view)

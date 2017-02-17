@@ -33,7 +33,7 @@ final class BeaconsInRangeModeViewController: BaseViewController<BeaconsInRangeM
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private var interface: BeaconInterface
+    fileprivate var interface: BeaconInterface
     
     
     // MARK: - Initializers
@@ -49,16 +49,20 @@ final class BeaconsInRangeModeViewController: BaseViewController<BeaconsInRangeM
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        underlyingView.mainView.specificButton.addTarget(self, action: #selector(BeaconsInRangeModeViewController.specificButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        underlyingView.mainView.anyButton.addTarget(self, action: #selector(BeaconsInRangeModeViewController.anyButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        underlyingView.mainView.specificButton.addTarget(self, action: #selector(BeaconsInRangeModeViewController.specificButtonPressed(_:)), for: .touchUpInside)
+        underlyingView.mainView.anyButton.addTarget(self, action: #selector(BeaconsInRangeModeViewController.anyButtonPressed(_:)), for: .touchUpInside)
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: WAYStrings.BeaconsInRangeMode.ModeWord, style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: WAYStrings.BeaconsInRangeMode.ModeWord, style: .plain, target: nil, action: nil)
         
         title = WAYStrings.BeaconsInRangeMode.SelectMode
     }
@@ -66,13 +70,13 @@ final class BeaconsInRangeModeViewController: BaseViewController<BeaconsInRangeM
     
     // MARK: - Control Actions
     
-    func specificButtonPressed(sender: UIButton) {
+    func specificButtonPressed(_ sender: UIButton) {
         let viewController = BeaconsInRangeSearchTableViewController(interface: interface)
         
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func anyButtonPressed(sender: UIButton) {
+    func anyButtonPressed(_ sender: UIButton) {
         let viewController = BeaconsInRangeViewController(interface: interface)
         
         navigationController?.pushViewController(viewController, animated: true)

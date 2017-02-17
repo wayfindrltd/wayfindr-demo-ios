@@ -27,22 +27,22 @@ final class DataExportView: BaseStackView {
     override func setup() {
         super.setup()
         
-        headerLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1)
-        headerLabel.lineBreakMode = .ByWordWrapping
+        headerLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        headerLabel.lineBreakMode = .byWordWrapping
         headerLabel.numberOfLines = 0
         headerLabel.text = "What data would you like to export?"
         stackView.addArrangedSubview(headerLabel)
         
-        nodesButton.setTitle("Nodes", forState: .Normal)
+        nodesButton.setTitle("Nodes", for: UIControlState())
         stackView.addArrangedSubview(nodesButton)
         
-        edgesButton.setTitle("Edges", forState: .Normal)
+        edgesButton.setTitle("Edges", for: UIControlState())
         stackView.addArrangedSubview(edgesButton)
         
-        platformsButton.setTitle("Platforms", forState: .Normal)
+        platformsButton.setTitle("Platforms", for: UIControlState())
         stackView.addArrangedSubview(platformsButton)
         
-        exitsButton.setTitle("Exits", forState: .Normal)
+        exitsButton.setTitle("Exits", for: UIControlState())
         stackView.addArrangedSubview(exitsButton)
     }
     

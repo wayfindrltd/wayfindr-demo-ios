@@ -33,12 +33,12 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
     // MARK: - Properties
     
     /// Selected route data to be displayed
-    private let routeData: KeyRouteData
+    fileprivate let routeData: KeyRouteData
     
     /// Aggregate of all the instructions from the route
-    private var allInstructions = ""
+    fileprivate var allInstructions = ""
     /// Aggregate of all the edges from the route
-    private var allEdges = ""
+    fileprivate var allEdges = ""
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -52,6 +52,10 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
         self.routeData = routeData
         
         super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -68,7 +72,7 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
         underlyingView.bodyView.textView.text = allInstructions
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         underlyingView.bodyView.textView.flashScrollIndicators()
@@ -86,13 +90,13 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
         underlyingView.headerView.titleLabel.text = routeData.name
         underlyingView.headerView.subtitleLabel.text = "\(routeData.travelTime)s"
         
-        underlyingView.bodyView.segmentControl.addTarget(self, action: #selector(KeyRoutePathsDetailViewController.segmentedControlChanged(_:)), forControlEvents: .ValueChanged)
+        underlyingView.bodyView.segmentControl.addTarget(self, action: #selector(KeyRoutePathsDetailViewController.segmentedControlChanged(_:)), for: .valueChanged)
     }
     
     /**
      Extracts all of the instructions for the route and stores it in `allInstructions`.
      */
-    private func extractInstructions() {
+    fileprivate func extractInstructions() {
         var instructions = ""
         for routeItem in routeData.route {
             for instruction in routeItem.instructions.allInstructions() {
@@ -110,9 +114,9 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
     /**
      Extracts all of the edges for the route and stores it in `allEdges`.
      */
-    private func extractEdges() {
+    fileprivate func extractEdges() {
         var edges = ""
-        for (index, routeItem) in routeData.route.enumerate() {
+        for (index, routeItem) in routeData.route.enumerated() {
             edges += "\(index + 1). Node \(routeItem.sourceID) to Node \(routeItem.targetID)\n"
         }
         
@@ -126,16 +130,16 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
     
     // MARK: - Control Actions
     
-    func segmentedControlChanged(sender: UISegmentedControl) {
+    func segmentedControlChanged(_ sender: UISegmentedControl) {
         guard let segmentType = KeyRoutePathsDetailBodyView.RouteDetailOptions(rawValue: sender.selectedSegmentIndex) else {
             
             return
         }
         
         switch segmentType {
-        case .Instructions:
+        case .instructions:
             underlyingView.bodyView.textView.text = allInstructions
-        case .Paths:
+        case .paths:
             underlyingView.bodyView.textView.text = allEdges
         }
         

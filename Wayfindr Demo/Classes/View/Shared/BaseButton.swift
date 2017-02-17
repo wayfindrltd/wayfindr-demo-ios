@@ -28,7 +28,7 @@ import UIKit
 
 class BaseButton: UIButton {
     
-    override var enabled: Bool {
+    override var isEnabled: Bool {
         
         didSet {
             
@@ -69,7 +69,7 @@ class BaseButton: UIButton {
     // Abstract method. Subclasses should override this method to setup their subviews
     func setup() {
         
-        self.setTitleColor(WAYConstants.WAYColors.WayfindrMainColor, forState: .Normal)
+        self.setTitleColor(WAYConstants.WAYColors.WayfindrMainColor, for: UIControlState())
         self.adjustsImageWhenHighlighted = false
     }
     
@@ -82,7 +82,7 @@ class BaseButton: UIButton {
     }
     
     // Abstract method. Subclasses should override this method to add accessibility to their subviews
-    func setupAccessibility(accessibilityLabel: NSString, accessibilityIdentifier: NSString) {
+    func setupAccessibility(_ accessibilityLabel: NSString, accessibilityIdentifier: NSString) {
         
     }
     

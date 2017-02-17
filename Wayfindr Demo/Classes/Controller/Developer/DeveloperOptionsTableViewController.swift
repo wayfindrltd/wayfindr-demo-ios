@@ -33,29 +33,29 @@ final class DeveloperOptionsTableViewController: UITableViewController {
     // MARK: - Types
     
     /// List of options to show the user.
-    private enum DeveloperOptions: Int {
-        case ShowForceNext
-        case ShowRepeatInAccessibility
+    fileprivate enum DeveloperOptions: Int {
+        case showForceNext
+        case showRepeatInAccessibility
         
-        static let allValues = [ShowForceNext, ShowRepeatInAccessibility]
+        static let allValues = [showForceNext, showRepeatInAccessibility]
     }
     
     
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "OptionCell"
+    fileprivate let reuseIdentifier = "OptionCell"
     
     
     
     // MARK: - Initializers
     
     init() {
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
     }
     
     override init(style: UITableViewStyle) {
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +68,7 @@ final class DeveloperOptionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(SwitchTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -78,31 +78,31 @@ final class DeveloperOptionsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DeveloperOptions.allValues.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         if let switchCell = cell as? SwitchTableViewCell {
             if let selectedOption = DeveloperOptions(rawValue: indexPath.row) {
                 switch selectedOption {
-                case .ShowForceNext:
+                case .showForceNext:
                     switchCell.textLabel?.text = WAYStrings.DeveloperOptions.ShowForceNextButton
                     
-                    switchCell.switchControl.on = WAYDeveloperSettings.sharedInstance.showForceNextButton
-                case .ShowRepeatInAccessibility:
+                    switchCell.switchControl.isOn = WAYDeveloperSettings.sharedInstance.showForceNextButton
+                case .showRepeatInAccessibility:
                     switchCell.textLabel?.text = WAYStrings.DeveloperOptions.ShowRepeatButton
                     
-                    switchCell.switchControl.on = WAYDeveloperSettings.sharedInstance.showRepeatButton
+                    switchCell.switchControl.isOn = WAYDeveloperSettings.sharedInstance.showRepeatButton
                 }
             }
             
             switchCell.textLabel?.numberOfLines = 0
-            switchCell.textLabel?.lineBreakMode = .ByWordWrapping
+            switchCell.textLabel?.lineBreakMode = .byWordWrapping
             
-            switchCell.switchControl.addTarget(self, action: #selector(DeveloperOptionsTableViewController.switchValueChanged(_:)), forControlEvents: .ValueChanged)
+            switchCell.switchControl.addTarget(self, action: #selector(DeveloperOptionsTableViewController.switchValueChanged(_:)), for: .valueChanged)
             switchCell.switchControl.tag = indexPath.row
         }
         
@@ -117,13 +117,13 @@ final class DeveloperOptionsTableViewController: UITableViewController {
     
     - parameter sender: `UISwitch` that changed value.
     */
-    func switchValueChanged(sender: UISwitch) {
+    func switchValueChanged(_ sender: UISwitch) {
         if let selectedOption = DeveloperOptions(rawValue: sender.tag) {
             switch selectedOption {
-            case .ShowForceNext:
-                WAYDeveloperSettings.sharedInstance.showForceNextButton = sender.on
-            case .ShowRepeatInAccessibility:
-                WAYDeveloperSettings.sharedInstance.showRepeatButton = sender.on
+            case .showForceNext:
+                WAYDeveloperSettings.sharedInstance.showForceNextButton = sender.isOn
+            case .showRepeatInAccessibility:
+                WAYDeveloperSettings.sharedInstance.showRepeatButton = sender.isOn
             }
         }
     }

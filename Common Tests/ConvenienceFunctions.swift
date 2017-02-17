@@ -38,8 +38,8 @@ func testVenue() -> WAYVenue? {
     let venueFileName = "TestVenue"
     let venueFileType = "json"
     
-    if let venueFilePath = NSBundle(forClass: BeaconsInRangeViewController_Tests.self).pathForResource(venueFileName, ofType: venueFileType),
-        graphFilePath = NSBundle(forClass: BeaconsInRangeViewController_Tests.self).pathForResource(graphFileName, ofType: graphFileType) {
+    if let venueFilePath = Bundle(for: BeaconsInRangeViewController_Tests.self).path(forResource: venueFileName, ofType: venueFileType),
+        let graphFilePath = Bundle(for: BeaconsInRangeViewController_Tests.self).path(forResource: graphFileName, ofType: graphFileType) {
             
             do {
                 let venue = try WAYVenue(venueFilePath: venueFilePath, graphFilePath: graphFilePath)

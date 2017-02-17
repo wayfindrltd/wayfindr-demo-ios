@@ -39,7 +39,7 @@ final class KeyRoutePathsDetailView: BaseView {
     override func setup() {
         super.setup()
         
-        headerView.addBorder(edges: [.Bottom], colour: WAYConstants.WAYColors.Border, thickness: 3.0)
+        headerView.addBorder(edges: [.bottom], colour: WAYConstants.WAYColors.Border, thickness: 3.0)
         
         addSubview(headerView)
         addSubview(bodyView)
@@ -59,11 +59,11 @@ final class KeyRoutePathsDetailView: BaseView {
         let views = ["headerView" : headerView, "bodyView" : bodyView]
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView][bodyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[headerView][bodyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[headerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[bodyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[headerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bodyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
     
 }
@@ -82,16 +82,16 @@ final class KeyRoutePathsDetailHeaderView: BaseStackView {
     override func setup() {
         super.setup()
         
-        titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1)
-        subtitleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle2)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        subtitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2)
         
-        titleLabel.text = WAYStrings.CommonStrings.Beacon.uppercaseString
+        titleLabel.text = WAYStrings.CommonStrings.Beacon.uppercased()
         subtitleLabel.text = WAYStrings.CommonStrings.Minor
         
-        titleLabel.textAlignment = .Center
-        subtitleLabel.textAlignment = .Center
+        titleLabel.textAlignment = .center
+        subtitleLabel.textAlignment = .center
         
-        stackView.alignment = .Center
+        stackView.alignment = .center
         
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subtitleLabel)
@@ -108,8 +108,8 @@ final class KeyRoutePathsDetailBodyView: BaseView {
     let textView        = UITextView()
     
     enum RouteDetailOptions: Int {
-        case Instructions
-        case Paths
+        case instructions
+        case paths
     }
     
     
@@ -118,14 +118,14 @@ final class KeyRoutePathsDetailBodyView: BaseView {
     override func setup() {
         super.setup()
         
-        segmentControl.insertSegmentWithTitle(WAYStrings.KeyRoutePathsDetail.Instructions, atIndex: RouteDetailOptions.Instructions.rawValue, animated: false)
-        segmentControl.insertSegmentWithTitle(WAYStrings.KeyRoutePathsDetail.Paths, atIndex: RouteDetailOptions.Paths.rawValue, animated: false)
+        segmentControl.insertSegment(withTitle: WAYStrings.KeyRoutePathsDetail.Instructions, at: RouteDetailOptions.instructions.rawValue, animated: false)
+        segmentControl.insertSegment(withTitle: WAYStrings.KeyRoutePathsDetail.Paths, at: RouteDetailOptions.paths.rawValue, animated: false)
         segmentControl.selectedSegmentIndex = 0
         segmentControl.tintColor = WAYConstants.WAYColors.Developer
         addSubview(segmentControl)
         
-        textView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textView.editable = false
+        textView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        textView.isEditable = false
         addSubview(textView)
     }
     
@@ -141,11 +141,11 @@ final class KeyRoutePathsDetailBodyView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-HalfMargin-[segmentControl]-HalfMargin-[textView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[segmentControl]-HalfMargin-[textView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[textView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[segmentControl]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[textView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[segmentControl]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

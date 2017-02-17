@@ -34,22 +34,22 @@ final class DirectionsPreviewViewController: BaseViewController<DirectionsPrevie
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private let interface: BeaconInterface
+    fileprivate let interface: BeaconInterface
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     /// Engine for speech playback.
-    private let speechEngine: AudioEngine
+    fileprivate let speechEngine: AudioEngine
     
     /// Calculated route from current location to `destination`.
-    private var route: [WAYGraphEdge]
+    fileprivate var route: [WAYGraphEdge]
     
     /// The nearest iBeacon.
-    private var nearestBeacon: WAYBeacon
+    fileprivate var nearestBeacon: WAYBeacon
     
     /// Button to skip the remainder of the preview.
-    private var skipButton = UIBarButtonItem()
+    fileprivate var skipButton = UIBarButtonItem()
     
-    private let previewTableView: DirectionsPreviewTableViewController
+    fileprivate let previewTableView: DirectionsPreviewTableViewController
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -62,7 +62,7 @@ final class DirectionsPreviewViewController: BaseViewController<DirectionsPrevie
         self.speechEngine = speechEngine
         
         var directions = [DirectionData]()
-        for (index, routeItem) in route.enumerate() {
+        for (index, routeItem) in route.enumerated() {
             let allInstructions = routeItem.instructions.allInstructions()
             
             if !allInstructions.isEmpty {
@@ -82,6 +82,10 @@ final class DirectionsPreviewViewController: BaseViewController<DirectionsPrevie
         addChildViewController(previewTableView)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - View Lifecycle
     
@@ -92,11 +96,11 @@ final class DirectionsPreviewViewController: BaseViewController<DirectionsPrevie
         
         accessibilityLabel = WAYAccessibilityLabel.DirectionsPreview.PreviewDirections
         
-        underlyingView.beginRouteButton.addTarget(self, action: #selector(DirectionsPreviewViewController.beginRoute), forControlEvents: .TouchUpInside)
-        underlyingView.stackView.insertArrangedSubview(previewTableView.tableView, atIndex: 0)
+        underlyingView.beginRouteButton.addTarget(self, action: #selector(DirectionsPreviewViewController.beginRoute), for: .touchUpInside)
+        underlyingView.stackView.insertArrangedSubview(previewTableView.tableView, at: 0)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         previewTableView.tableView.reloadData()
@@ -131,10 +135,10 @@ final class DirectionsPreviewTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "DirectionsCell"
+    fileprivate let reuseIdentifier = "DirectionsCell"
     
     /// Full array of instructions (strings) for the route.
-    private let directions: [DirectionData]
+    fileprivate let directions: [DirectionData]
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -142,7 +146,7 @@ final class DirectionsPreviewTableViewController: UITableViewController {
     init(directions: [DirectionData]) {
         self.directions = directions
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -155,7 +159,7 @@ final class DirectionsPreviewTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -169,20 +173,21 @@ final class DirectionsPreviewTableViewController: UITableViewController {
     
     // MARK: - UITableViewDatasource
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return directions.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        cell.textLabel?.lineBreakMode = .ByWordWrapping
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         cell.textLabel?.numberOfLines = 0
-        let numberString = NSNumberFormatter.localizedStringFromNumber((indexPath.row + 1), numberStyle: .DecimalStyle)
+        
+        let numberString = NumberFormatter.localizedString(from: NSNumber(integerLiteral: indexPath.row + 1), number: .decimal)
         cell.textLabel?.text = "\(numberString). " + directions[indexPath.row].instruction
         
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         
         return cell
     }

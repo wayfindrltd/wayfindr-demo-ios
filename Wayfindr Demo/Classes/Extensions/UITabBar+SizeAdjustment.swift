@@ -29,7 +29,7 @@ import UIKit
 extension UITabBar {
     
     
-    override public func sizeThatFits(size: CGSize) -> CGSize {
+    override open func sizeThatFits(_ size: CGSize) -> CGSize {
         super.sizeThatFits(size)
         
         // Customize the tab bar to make it a bit taller.

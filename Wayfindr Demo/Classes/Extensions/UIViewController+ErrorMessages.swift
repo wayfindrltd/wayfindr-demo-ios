@@ -34,15 +34,15 @@ extension UIViewController {
      - parameter title:   Title for alert.
      - parameter message: Message for alert.
      */
-    func displayError(title title: String, message: String) {
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+    func displayError(title: String, message: String) {
+        DispatchQueue.main.async(execute: { [weak self] in
             let alertTitle = title.characters.count > 0 ? title : WAYStrings.CommonStrings.Error
             
-            let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: .Alert)
-            let doneButton = UIAlertAction(title: WAYStrings.CommonStrings.Done, style: .Default, handler: nil)
+            let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
+            let doneButton = UIAlertAction(title: WAYStrings.CommonStrings.Done, style: .default, handler: nil)
             alertController.addAction(doneButton)
             
-            self?.presentViewController(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     

@@ -37,25 +37,25 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "ActionCell"
+    fileprivate let reuseIdentifier = "ActionCell"
     
     /// Actions that can be taken in Maintainer Mode. Each action is displayed as a cell in the table.
-    private enum ToolActions: Int {
-        case BatteryLevels
-        case BeaconsInRange
+    fileprivate enum ToolActions: Int {
+        case batteryLevels
+        case beaconsInRange
         
-        static let allValues = [BatteryLevels, BeaconsInRange]
+        static let allValues = [batteryLevels, beaconsInRange]
     }
     
     /// Interface for gathering information about the venue
-    private var venueInterface: VenueInterface?
+    fileprivate var venueInterface: VenueInterface?
     /// Interface for interacting with beacons.
-    private var interface: BeaconInterface?
+    fileprivate var interface: BeaconInterface?
     /// Model representation of entire venue.
-    private var venue: WAYVenue?
+    fileprivate var venue: WAYVenue?
     
     /// Whether the controller is still parsing graph and venue data.
-    private var parsingData = true
+    fileprivate var parsingData = true
     
     
     // MARK: - View Lifecycle
@@ -63,20 +63,20 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
         title = WAYStrings.CommonStrings.Maintainer
         
-        let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .Plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .plain, target: nil, action: nil)
         backButton.accessibilityIdentifier = WAYAccessibilityIdentifier.MaintainerActionSelection.BackBarButtonItem
         navigationItem.backBarButtonItem = backButton
         
         fetchData()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         SVProgressHUD.dismiss()
@@ -88,7 +88,7 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     /**
     Sets up the `BeaconInterface`.
     */
-    private func setupBeaconInterface() {
+    fileprivate func setupBeaconInterface() {
         guard let myVenueInterface = venueInterface else {
             return
         }
@@ -96,7 +96,7 @@ final class MaintainerActionSelectionTableView: UITableViewController {
         myVenueInterface.getBeaconInterface(completionHandler: { success, newInterface, error in
             if success, let myInterface = newInterface {
                 self.interface = myInterface
-            } else if let myError = error, case .FailedInitialization(let localizedDescription) = myError {
+            } else if let myError = error, case .failedInitialization(let localizedDescription) = myError {
                 self.displayError(title: "", message: localizedDescription)
             } else {
                 self.displayError(title: "", message: WAYStrings.ErrorMessages.UnknownError)
@@ -108,14 +108,14 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     // MARK: - Load Data
     
     
-    private func fetchData() {
+    fileprivate func fetchData() {
         SVProgressHUD.show()
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
             self?.loadData()
             self?.parsingData = false
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self?.tableView.reloadData()
                 SVProgressHUD.dismiss()
                 
@@ -127,7 +127,7 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     /**
     Loads all of the data for the venue (both GraphML and JSON). If there is a failure, an alert is presented to the user.
     */
-    private func loadData() {
+    fileprivate func loadData() {
         venueInterface = DemoVenueInterface()
         
         guard let myVenueInterface = venueInterface else {
@@ -148,43 +148,43 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ToolActions.allValues.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         var text: String?
         var cellAccessibilityIdentifier: String?
         if let selectedAction = ToolActions(rawValue: indexPath.row) {
             switch selectedAction {
-            case .BatteryLevels:
+            case .batteryLevels:
                 text = WAYStrings.CommonStrings.BatteryLevels
                 cellAccessibilityIdentifier = WAYAccessibilityIdentifier.MaintainerActionSelection.BatteryLevelsCell
-            case .BeaconsInRange:
+            case .beaconsInRange:
                 text = WAYStrings.MaintainerActionSelection.CheckBeacons
                 cellAccessibilityIdentifier = WAYAccessibilityIdentifier.MaintainerActionSelection.BeaconsInRangeCell
             }
         }
         
         guard let myText = text,
-            myCellAccessibilityIdentifier = cellAccessibilityIdentifier else {
+            let myCellAccessibilityIdentifier = cellAccessibilityIdentifier else {
                 return
         }
         
         cell.textLabel?.text = myText
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .ByWordWrapping
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         
         cell.accessibilityIdentifier = myCellAccessibilityIdentifier
     }
@@ -192,9 +192,8 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let myInterface = interface
-            where myInterface.interfaceState == BeaconInterfaceState.Operating else {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let myInterface = interface, myInterface.interfaceState == BeaconInterfaceState.operating else {
             
                 return
         }
@@ -203,9 +202,9 @@ final class MaintainerActionSelectionTableView: UITableViewController {
         
         if let selectedAction = ToolActions(rawValue: indexPath.row) {
             switch selectedAction {
-            case .BatteryLevels:
+            case .batteryLevels:
                 newViewController = BatteryLevelsTableViewController(interface: myInterface)
-            case .BeaconsInRange:
+            case .beaconsInRange:
                 newViewController = BeaconsInRangeModeViewController(interface: myInterface)
             }
         }

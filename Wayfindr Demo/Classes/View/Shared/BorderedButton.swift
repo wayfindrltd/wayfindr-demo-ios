@@ -29,15 +29,15 @@ final class BorderedButton: BaseButton {
     
     
     // MARK: - Properties
-    private(set) var mainColor  = WAYConstants.WAYColors.WayfindrMainColor
-    private let disabledColor   = WAYConstants.WAYColors.Disabled
+    fileprivate(set) var mainColor  = WAYConstants.WAYColors.WayfindrMainColor
+    fileprivate let disabledColor   = WAYConstants.WAYColors.Disabled
     
-    override var enabled: Bool {
+    override var isEnabled: Bool {
         didSet {
-            if enabled {
-                layer.borderColor = mainColor.CGColor
+            if isEnabled {
+                layer.borderColor = mainColor.cgColor
             } else {
-                layer.borderColor = disabledColor.CGColor
+                layer.borderColor = disabledColor.cgColor
             }
         }
     }
@@ -46,11 +46,11 @@ final class BorderedButton: BaseButton {
         didSet {
             mainColor = tintColor
             
-            if enabled {
-                layer.borderColor = tintColor.CGColor
+            if isEnabled {
+                layer.borderColor = tintColor.cgColor
             }
             
-            setTitleColor(tintColor, forState: .Normal)
+            setTitleColor(tintColor, for: UIControlState())
         }
     }
     
@@ -60,13 +60,13 @@ final class BorderedButton: BaseButton {
     override func setup() {
         super.setup()
         
-        setTitleColor(mainColor, forState: .Normal)
-        setTitleColor(disabledColor, forState: .Disabled)
+        setTitleColor(mainColor, for: UIControlState())
+        setTitleColor(disabledColor, for: .disabled)
         
-        titleLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         
         layer.borderWidth = 2.0
-        layer.borderColor = mainColor.CGColor
+        layer.borderColor = mainColor.cgColor
         layer.cornerRadius = 5.0
         
         let edgeSpacing: CGFloat = WAYConstants.WAYLayout.HalfMargin

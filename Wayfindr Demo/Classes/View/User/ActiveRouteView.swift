@@ -41,15 +41,15 @@ final class ActiveRouteView: BaseView {
     override func setup() {
         super.setup()
         
-        textView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textView.textAlignment = .Center
-        textView.editable = false
-        textView.selectable = false
+        textView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        textView.textAlignment = .center
+        textView.isEditable = false
+        textView.isSelectable = false
         addSubview(textView)
         
         repeatButton.accessibilityLabel = WAYStrings.ActiveRoute.Repeat
-        repeatButton.setTitle(WAYStrings.ActiveRoute.Repeat, forState: .Normal)
-        repeatButton.enabled = false
+        repeatButton.setTitle(WAYStrings.ActiveRoute.Repeat, for: UIControlState())
+        repeatButton.isEnabled = false
         addSubview(repeatButton)
     }
     
@@ -68,11 +68,11 @@ final class ActiveRouteView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-DefaultMargin-[text]-DefaultMargin-[button]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-DefaultMargin-[text]-DefaultMargin-[button]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-DefaultMargin-[text]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-DefaultMargin-[button]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[text]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[button]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

@@ -32,16 +32,16 @@ struct MockVenueInterface: VenueInterface {
     
     // MARK: - GET
     
-    func getBeaconInterface(completionHandler completionHandler: ((Bool, BeaconInterface?, BeaconInterfaceError?) -> Void)) {
+    func getBeaconInterface(completionHandler: ((Bool, BeaconInterface?, BeaconInterfaceError?) -> Void)) {
         completionHandler(true, MockBeaconInterface(), nil)
     }
     
-    func getVenue(completionHandler completionHandler: ((Bool, WAYVenue?, WAYError?) -> Void)) {
+    func getVenue(completionHandler: ((Bool, WAYVenue?, WAYError?) -> Void)) {
         completionHandler(true, testVenue(), nil)
     }
     
-    func getVenueMap(completionHandler completionHandler: ((Bool, NSURL?, VenueInterfaceAPIError?) -> Void)) {
-        completionHandler(false, nil, .UnableToFindResource)
+    func getVenueMap(completionHandler: ((Bool, URL?, VenueInterfaceAPIError?) -> Void)) {
+        completionHandler(false, nil, .unableToFindResource)
     }
     
 }

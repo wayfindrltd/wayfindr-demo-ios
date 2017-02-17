@@ -35,10 +35,10 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private let interface: BeaconInterface
+    fileprivate let interface: BeaconInterface
     
     /// List of beacons to choose from.
-    private var beacons = [WAYBeacon]()
+    fileprivate var beacons = [WAYBeacon]()
     
     
     // MARK: - Initializers
@@ -51,7 +51,7 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
     init(interface: BeaconInterface) {
         self.interface = interface
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,7 +72,7 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
         title = WAYStrings.BeaconsInRangeSearch.BeaconSearch
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Clear out any old beacon data
@@ -81,15 +81,15 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
         tableView.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         SVProgressHUD.show()
         
         // Fetch new beacon data
         interface.getBeacons(completionHandler: { success, beacons, error in
-            if let myBeacons = beacons where success {
-                self.beacons = myBeacons.sort { $0.minor < $1.minor }
+            if let myBeacons = beacons, success {
+                self.beacons = myBeacons.sorted { $0.minor < $1.minor }
                 
                 self.reloadItems()
             } else {
@@ -103,7 +103,7 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
         })
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         SVProgressHUD.dismiss()
@@ -112,23 +112,23 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBeaconID = itemForIndexPath(tableView, indexPath: indexPath)
         
-        if let selectedBeaconIndex = beacons.indexOf({ $0.identifier.description == selectedBeaconID }) {
+        if let selectedBeaconIndex = beacons.index(where: { $0.identifier.description == selectedBeaconID }) {
             let selectedBeacon = beacons[selectedBeaconIndex]
             let viewController = BeaconsInRangeViewController(interface: interface, desiredBeacon: selectedBeacon.identifier)
             
             navigationController?.pushViewController(viewController, animated: true)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
     // MARK: - Convenience
     
-    private func reloadItems() {
+    fileprivate func reloadItems() {
         items = beacons.map { $0.identifier.description }
     }
     

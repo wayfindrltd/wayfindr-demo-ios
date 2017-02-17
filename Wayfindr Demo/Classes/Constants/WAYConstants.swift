@@ -26,8 +26,6 @@
 import Foundation
 import CoreGraphics
 
-import Validation
-
 #if os(iOS) || os(watchOS) || os(tvOS)
     import UIKit.UIColor
     typealias WAYColor = UIColor
@@ -43,14 +41,14 @@ import Validation
 struct WAYConstants {
     
     struct WAYColors {
-        static let Background       = WAYColor.whiteColor()
-        static let Border           = WAYColor.blackColor()
+        static let Background       = WAYColor.white
+        static let Border           = WAYColor.black
         static let Developer        = WAYColor(white: 43.0 / 255.0, alpha: 1.0)
-        static let Disabled         = WAYColor.grayColor()
-        static let Error            = WAYColor.redColor()
+        static let Disabled         = WAYColor.gray
+        static let Error            = WAYColor.red
         static let Maintainer       = WAYColor(red: 0.0, green: 163.0 / 255.0, blue: 184.0 / 255.0, alpha: 1.0)
-        static let NavigationText   = WAYColor.whiteColor()
-        static let TextHighlight    = WAYColor.redColor()
+        static let NavigationText   = WAYColor.white
+        static let TextHighlight    = WAYColor.red
 
         static let WayfindrMainColor    = WAYColor(red: 7.0 / 255.0, green: 24.0 / 255.0, blue: 48.0 / 255.0, alpha: 1.0)
     }
@@ -79,12 +77,7 @@ struct WAYConstants {
     }
     
     struct WAYSpeech {
-        static let preUtteranceDelay: NSTimeInterval = 0.1
-        static let postUtteranceDelay: NSTimeInterval = 0.1
+        static let preUtteranceDelay: TimeInterval = 0.1
+        static let postUtteranceDelay: TimeInterval = 0.1
     }
-    
-    struct WAYValidation {
-        static let emailValidation = ValidationRegularExpression(pattern: "^[+\\w\\.\\-']+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{2,})+$")
-    }
-    
 }

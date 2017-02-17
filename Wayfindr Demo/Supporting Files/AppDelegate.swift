@@ -42,14 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - UIApplicationDelegate
     
-    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         WAYDeveloperSettings.registerSettings()
         
         return true
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         setupTheme()
@@ -62,11 +62,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Setup
     
-    private func setupTheme() {
-        UINavigationBar.appearance().barStyle = .Black
+    fileprivate func setupTheme() {
+        UINavigationBar.appearance().barStyle = .black
         UINavigationBar.appearance().tintColor = WAYConstants.WAYColors.NavigationText
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)], forState: UIControlState.Normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)], for: UIControlState())
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -5.0)
         
         UITabBar.appearance().tintColor = WAYConstants.WAYColors.WayfindrMainColor
@@ -75,13 +75,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         BaseView.appearance().backgroundColor = WAYConstants.WAYColors.Background
         
-        SVProgressHUD.setDefaultStyle(.Dark)
+        SVProgressHUD.setDefaultStyle(.dark)
     }
     
-    private func loadMainView() {
+    fileprivate func loadMainView() {
         let rootViewController = ModeSelectionTabViewController()
 
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }

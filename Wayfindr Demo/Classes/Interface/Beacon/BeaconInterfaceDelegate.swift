@@ -34,7 +34,7 @@ protocol BeaconInterfaceDelegate: class {
      - parameter beaconInterface: `BeaconInterface` calling the delegate.
      - parameter beacons:         New and/or updated array of `WAYBeacon` nearby.
      */
-    func beaconInterface(beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon])
+    func beaconInterface(_ beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon])
     
 }
 
@@ -47,6 +47,6 @@ protocol BeaconInterfaceStateDelegate: class {
      - parameter beaconInterface: `BeaconInterface` calling the delegate.
      - parameter state:           New and/or updated state.
      */
-    func beaconInterface(beaconInterface: BeaconInterface, didChangeState state: BeaconInterfaceState)
+    func beaconInterface(_ beaconInterface: BeaconInterface, didChangeState state: BeaconInterfaceState)
     
 }

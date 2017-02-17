@@ -51,13 +51,13 @@ class WAYGraph_Tests: XCTestCase {
         super.tearDown()
     }
     
-    private func loadTestGraphData() {
+    fileprivate func loadTestGraphData() {
         let filename = "TestData"
         let filetype = "graphml"
         
-        if let filepath = NSBundle(forClass: WAYGraph_Tests.self).pathForResource(filename, ofType: filetype),
-            let xmlData = NSData(contentsOfFile: filepath),
-            let myXMLDocument = try? AEXMLDocument(xmlData: xmlData) {
+        if let filepath = Bundle(for: WAYGraph_Tests.self).path(forResource: filename, ofType: filetype),
+            let xmlData = try? Data(contentsOf: URL(fileURLWithPath: filepath)),
+            let myXMLDocument = try? AEXMLDocument(xml: xmlData) {
                 
                 xmlDocument = myXMLDocument
                 
@@ -80,10 +80,10 @@ class WAYGraph_Tests: XCTestCase {
         let badXMLDocument = xmlDocument
         
         // When
-        badXMLDocument.root["graph"].removeFromParent()
+        badXMLDocument?.root["graph"].removeFromParent()
         
         // Then
-        AssertThrow(WAYError.InvalidGraph, try WAYGraph(xmlDocument: badXMLDocument))
+        AssertThrow(WAYError.invalidGraph, try WAYGraph(xmlDocument: badXMLDocument!))
     }
     
     func testInitXMLElement_BadXML_MissingNode() {
@@ -91,10 +91,10 @@ class WAYGraph_Tests: XCTestCase {
         let badXMLDocument = xmlDocument
         
         // When
-        badXMLDocument.root["graph"]["node"].first?.removeFromParent()
+        badXMLDocument?.root["graph"]["node"].first?.removeFromParent()
         
         // Then
-        AssertThrow(WAYError.InvalidGraphEdge, try WAYGraph(xmlDocument: badXMLDocument))
+        AssertThrow(WAYError.invalidGraphEdge, try WAYGraph(xmlDocument: badXMLDocument!))
     }
     
     

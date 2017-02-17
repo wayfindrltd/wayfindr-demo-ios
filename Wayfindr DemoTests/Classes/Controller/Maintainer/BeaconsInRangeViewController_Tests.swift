@@ -46,7 +46,7 @@ class BeaconsInRangeViewController_Tests : XCTestCase {
         viewController = BeaconsInRangeViewController(interface: mockInterface)
         mockInterface.delegate = viewController
         
-        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController
+        UIApplication.shared.keyWindow!.rootViewController = viewController
         
         // Test and Load the View at the Same Time!
         XCTAssertNotNil(viewController.view)
@@ -64,21 +64,4 @@ class BeaconsInRangeViewController_Tests : XCTestCase {
         
         XCTAssertTrue(true)
     }
-    
-    func testBeaconInterface_DidChangeBeacons() {
-        // Given
-        mockInterface.mockBeaconChange()
-        
-        // When
-        let labelText = viewController.underlyingView.bodyView.rssiLabel.valueLabel.text
-        let expectedText = String(mockInterface.fakeBeacon.rssi)
-        
-        // Then
-        guard let myLabelText = labelText else {
-            XCTFail("Unexpectedly found nil when unwrapping at `labelText`.")
-            return
-        }
-        XCTAssertTrue(myLabelText.hasPrefix(expectedText), "Expected rssi label to be \(myLabelText) but instead found \(expectedText).")
-    }
-    
 }

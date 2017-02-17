@@ -55,7 +55,7 @@ struct WAYBeacon: Equatable {
     /// Battery level of the beacon rounded to the nearest percent (%).
     let batteryLevel: String?
     /// The last time the data for the beacon was updated.
-    let lastUpdated: NSDate?
+    let lastUpdated: Date?
     /// Received signal strength indicator measured in decible-milliwatts (dBm).
     let rssi: Int?
     /// Optional short identifier to use as separate from the `UUIDString`.
@@ -80,7 +80,7 @@ struct WAYBeacon: Equatable {
     - parameter shortID:             Optional short identifier to use as separate from the `UUIDString`.
     - parameter txPower:             Relative indicator of transmission power level.
     */
-    init(major: Int, minor: Int, UUIDString: String, accuracy: CLLocationAccuracy? = nil, advertisingInterval: String? = nil, batteryLevel: String? = nil, lastUpdated: NSDate? = nil, rssi: Int? = nil, shortID: String? = nil, txPower: String? = nil) {
+    init(major: Int, minor: Int, UUIDString: String, accuracy: CLLocationAccuracy? = nil, advertisingInterval: String? = nil, batteryLevel: String? = nil, lastUpdated: Date? = nil, rssi: Int? = nil, shortID: String? = nil, txPower: String? = nil) {
         self.accuracy = accuracy
         self.advertisingInterval = advertisingInterval
         self.batteryLevel = batteryLevel
@@ -105,12 +105,12 @@ struct WAYBeacon: Equatable {
      - parameter shortID:             Optional short identifier to use as separate from the `UUIDString`.
      - parameter txPower:             Relative indicator of transmission power level.
      */
-    init(beacon: CLBeacon, advertisingInterval: String? = nil, batteryLevel: String? = nil, lastUpdated: NSDate? = nil, shortID: String? = nil, txPower: String? = nil) {
+    init(beacon: CLBeacon, advertisingInterval: String? = nil, batteryLevel: String? = nil, lastUpdated: Date? = nil, shortID: String? = nil, txPower: String? = nil) {
         self.accuracy = beacon.accuracy
         self.major = Int(beacon.major)
         self.minor = Int(beacon.minor)
         self.rssi = beacon.rssi
-        self.UUIDString = beacon.proximityUUID.UUIDString
+        self.UUIDString = beacon.proximityUUID.uuidString
         
         self.advertisingInterval = advertisingInterval
         self.batteryLevel = batteryLevel
@@ -132,7 +132,7 @@ struct WAYBeacon: Equatable {
     
     - returns: Merged `WAYBeacon` object.
     */
-    static func mergeBeacons(newBeacon: WAYBeacon, oldBeacon: WAYBeacon) -> WAYBeacon {
+    static func mergeBeacons(_ newBeacon: WAYBeacon, oldBeacon: WAYBeacon) -> WAYBeacon {
         let major = newBeacon.major
         let minor = newBeacon.minor
         let UUIDString = newBeacon.UUIDString

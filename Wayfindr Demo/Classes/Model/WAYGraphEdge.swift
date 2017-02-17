@@ -89,7 +89,7 @@ struct WAYGraphEdge {
             let mySourceID = xmlElement.attributes[WAYGraphEdgeAttributes.sourceID],
             let myTargetID = xmlElement.attributes[WAYGraphEdgeAttributes.targetID] else {
             
-            throw WAYError.InvalidGraphEdge
+            throw WAYError.invalidGraphEdge
         }
         identifier = myID
         sourceID = mySourceID
@@ -103,7 +103,7 @@ struct WAYGraphEdge {
                     
                     switch dataItemType {
                     case .Weight:
-                        tempWeight = dataItem.doubleValue
+                        tempWeight = dataItem.double
                     }
             }
             
@@ -111,7 +111,7 @@ struct WAYGraphEdge {
         
         // Ensure we have found all elements
         guard let myWeight = tempWeight else {
-            throw WAYError.InvalidGraphEdge
+            throw WAYError.invalidGraphEdge
         }
         
         // Permanently store the elements

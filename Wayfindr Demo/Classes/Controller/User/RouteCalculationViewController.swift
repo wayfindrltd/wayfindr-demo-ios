@@ -27,6 +27,20 @@ import UIKit
 import CoreLocation
 
 import SwiftGraph
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+//https://github.com/wayfindrltd/wayfindr-demo-ios/issues/6
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 
 /// Calculated the route to the desired `desintation` based on the nearest beacon. Gives user option to preview all the instructions or to start route immediately.
@@ -36,18 +50,18 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private var interface: BeaconInterface
+    fileprivate var interface: BeaconInterface
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     /// Selected destination of the route.
-    private let destination: WAYGraphNode
+    fileprivate let destination: WAYGraphNode
     /// Engine for speech playback.
-    private let speechEngine: AudioEngine
+    fileprivate let speechEngine: AudioEngine
     
     /// Calculated route from current location to `destination`.
-    private var route = [WAYGraphEdge]()
+    fileprivate var route = [WAYGraphEdge]()
     /// The nearest iBeacon, if one exists.
-    private var nearestBeacon: WAYBeacon?
+    fileprivate var nearestBeacon: WAYBeacon?
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -61,6 +75,10 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - View Lifecycle
     
@@ -69,14 +87,14 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
         
         title = WAYStrings.RouteCalculation.Routing
         
-        underlyingView.yesButton.addTarget(self, action: #selector(RouteCalculationViewController.yesButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        underlyingView.skipButton.addTarget(self, action: #selector(RouteCalculationViewController.skipButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        underlyingView.yesButton.addTarget(self, action: #selector(RouteCalculationViewController.yesButtonPressed(_:)), for: .touchUpInside)
+        underlyingView.skipButton.addTarget(self, action: #selector(RouteCalculationViewController.skipButtonPressed(_:)), for: .touchUpInside)
         
-        let recalculateButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .Plain, target: nil, action: nil)
+        let recalculateButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = recalculateButton
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         nearestBeacon = nil
@@ -84,7 +102,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
         underlyingView.calculating = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         interface.delegate = self
@@ -93,7 +111,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
     
     // MARK: - BeaconInterfaceDelegate
     
-    func beaconInterface(beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon]) {
+    func beaconInterface(_ beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon]) {
         guard nearestBeacon == nil else {
             return
         }
@@ -104,7 +122,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
             }
             
             return false
-        }).sort({
+        }).sorted(by: {
             $0.accuracy < $1.accuracy
         })
         
@@ -122,26 +140,26 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
     
     - parameter beacons: An array of `WAYBeacon` that shows all the nearest beacons. Array in order of nearest to farthest.
     */
-    private func determineRoute(beacons: [WAYBeacon]) {
+    fileprivate func determineRoute(_ beacons: [WAYBeacon]) {
         let myGraph = venue.destinationGraph
         
         if let newNearestBeacon = beacons.first,
-            _ = myGraph.getNode(major: newNearestBeacon.major, minor: newNearestBeacon.minor) {
+            let _ = myGraph.getNode(major: newNearestBeacon.major, minor: newNearestBeacon.minor) {
                 
                 nearestBeacon = newNearestBeacon
                 
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
                     guard let success = self?.calculateShortestPath() else {
                         return
                     }
                     
                     if success {
-                        dispatch_async(dispatch_get_main_queue(), {
+                        DispatchQueue.main.async(execute: {
                             self?.underlyingView.activityIndicator.stopAnimating()
                             self?.underlyingView.calculating = false
                         })
                     } else {
-                        dispatch_async(dispatch_get_main_queue(), {
+                        DispatchQueue.main.async(execute: {
                             self?.underlyingView.calculatingLabel.text = WAYStrings.RouteCalculation.TroubleRouting
                             self?.nearestBeacon = nil
                         })
@@ -155,16 +173,15 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
      
      - returns: Returns `true` if a path was calculated. Returns `false` if a path was not calculated.
      */
-    private func calculateShortestPath() -> Bool {
+    fileprivate func calculateShortestPath() -> Bool {
         let myGraph = venue.destinationGraph
         
         guard let myNearestBeacon = nearestBeacon,
-            nearestNode = myGraph.getNode(major: myNearestBeacon.major, minor: myNearestBeacon.minor) else {
+            let nearestNode = myGraph.getNode(major: myNearestBeacon.major, minor: myNearestBeacon.minor) else {
                 return false
         }
         
-        guard let shortestPath = myGraph.shortestRoute(nearestNode, toNode: destination)
-                where !shortestPath.isEmpty else {
+        guard let shortestPath = myGraph.shortestRoute(nearestNode, toNode: destination), !shortestPath.isEmpty else {
                     
             return false
         }
@@ -182,7 +199,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
     
     - parameter sender: Button that has been pressed.
     */
-    func yesButtonPressed(sender: UIButton) {
+    func yesButtonPressed(_ sender: UIButton) {
         guard let myNearestBeacon = nearestBeacon else {
             return
         }
@@ -197,7 +214,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
      
      - parameter sender: Button that has been pressed.
      */
-    func skipButtonPressed(sender: UIButton) {
+    func skipButtonPressed(_ sender: UIButton) {
         guard let myNearestBeacon = nearestBeacon else {
             return
         }

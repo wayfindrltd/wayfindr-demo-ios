@@ -33,14 +33,14 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private let interface: BeaconInterface
+    fileprivate let interface: BeaconInterface
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     /// Engine for speech playback.
-    private let speechEngine: AudioEngine
+    fileprivate let speechEngine: AudioEngine
     
     /// List of destination venues to choose from.
-    private var destinations = [String]()
+    fileprivate var destinations = [String]()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -50,7 +50,7 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
         self.venue = venue
         self.speechEngine = speechEngine
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -76,7 +76,7 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedDestination = itemForIndexPath(tableView, indexPath: indexPath)
         
         if let selectedPlatform = platformForDestination(selectedDestination) {
@@ -85,7 +85,7 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
             navigationController?.pushViewController(directionsPreview, animated: true)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
@@ -94,7 +94,7 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     /**
     Sets up the `destinations` array of possible destination venues.
     */
-    private func setupDestinations() {
+    fileprivate func setupDestinations() {
         var destinationSet = Set<String>()
         
         let platforms: [WAYPlatform]
@@ -125,7 +125,7 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
             }
         }
         
-        destinations = Array(destinationSet).sort()
+        destinations = Array(destinationSet).sorted()
     }
     
     /**
@@ -135,8 +135,8 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
      
      - returns: The `WAYPlatform` representation of the platform to use to get to `destination`, if such a platform exists. Otherwise returns `nil`.
      */
-    private func platformForDestination(destination: String) -> WAYPlatform? {
-        guard let platformIndex = venue.platforms.indexOf({$0.destinations.contains(destination)}) else {
+    fileprivate func platformForDestination(_ destination: String) -> WAYPlatform? {
+        guard let platformIndex = venue.platforms.index(where: {$0.destinations.contains(destination)}) else {
             return nil
         }
         

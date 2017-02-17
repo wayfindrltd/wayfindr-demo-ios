@@ -86,15 +86,15 @@ struct WAYInstructionSet {
                     
                     switch dataItemType {
                     case .Language:
-                        tempLanguage = dataItem.stringValue
+                        tempLanguage = dataItem.string
                     case .InstructionBeginning:
-                        tempBeginning = dataItem.stringValue
+                        tempBeginning = dataItem.string
                     case .InstructionMiddle:
-                        tempMiddle = dataItem.stringValue
+                        tempMiddle = dataItem.string
                     case .InstructionEnd:
-                        tempEnding = dataItem.stringValue
+                        tempEnding = dataItem.string
                     case .InstructionStartingOnly:
-                        tempStartingOnly = dataItem.stringValue
+                        tempStartingOnly = dataItem.string
                     }
             }
             
@@ -102,7 +102,7 @@ struct WAYInstructionSet {
         
         // Ensure we have found all elements
         guard let myLanguage = tempLanguage else {
-            throw WAYError.InvalidInstructionSet
+            throw WAYError.invalidInstructionSet
         }
         
         // Permanently store the elements
@@ -115,7 +115,7 @@ struct WAYInstructionSet {
         
         // Check to ensure that the `startingOnly` instruction only exists if no other instructions do.
         if (beginning != nil || middle != nil || ending != nil) && startingOnly != nil {
-            throw WAYError.InvalidInstructionSet
+            throw WAYError.invalidInstructionSet
         }
     }
     

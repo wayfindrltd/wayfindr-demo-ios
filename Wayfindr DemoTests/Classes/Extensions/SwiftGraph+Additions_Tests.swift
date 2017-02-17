@@ -57,8 +57,8 @@ class SwiftGraph_Additions_Tests : XCTestCase {
         let graph = venue.destinationGraph.graph
         
         // When
-        graph.addEdge(0, to: 1, directed: true, weight: 1.0)
-        graph.addEdge(1, to: 0, directed: true, weight: 1.0)
+        graph.addEdge(from: 0, to: 1, directed: true, weight: 1.0)
+        graph.addEdge(from: 1, to: 0, directed: true, weight: 1.0)
         
         // Then
         XCTAssertTrue(graph.isConnected, "Expected graph to be connected but instead found it was disconnected.")
@@ -69,7 +69,7 @@ class SwiftGraph_Additions_Tests : XCTestCase {
         let graph = venue.destinationGraph.graph
         
         // When
-        graph.removeAllEdges(0, to: 1)
+        graph.removeAllEdges(from: 0, to: 1)
         
         // Then
         XCTAssertFalse(graph.isConnected, "Expected graph to be disconnected but instead found it was connected.")

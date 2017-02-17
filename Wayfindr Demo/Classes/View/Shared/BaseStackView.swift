@@ -20,8 +20,8 @@ class BaseStackView: BaseView {
     override func setup() {
         super.setup()
         
-        stackView.axis = .Vertical
-        stackView.distribution = .EqualSpacing
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
         stackView.spacing = WAYConstants.WAYLayout.HalfMargin
         
         addSubview(stackView)
@@ -41,10 +41,10 @@ class BaseStackView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

@@ -26,34 +26,34 @@
 import Foundation
 
 
-enum WAYError: ErrorType, Equatable, CustomStringConvertible {
+enum WAYError: Error, Equatable, CustomStringConvertible {
     
-    case Failed(localizedDescription: String)
-    case InvalidExit
-    case InvalidGraph
-    case InvalidGraphEdge
-    case InvalidGraphNode
-    case InvalidInstructionSet
-    case InvalidPlatform
-    case InvalidVenue
+    case failed(localizedDescription: String)
+    case invalidExit
+    case invalidGraph
+    case invalidGraphEdge
+    case invalidGraphNode
+    case invalidInstructionSet
+    case invalidPlatform
+    case invalidVenue
     
     var description: String {
         switch self {
-        case let .Failed(localizedDescription):
+        case let .failed(localizedDescription):
             return "Failed: \(localizedDescription)"
-        case .InvalidExit:
+        case .invalidExit:
             return "Invalid Exit"
-        case .InvalidGraph:
+        case .invalidGraph:
             return "Invalid Graph"
-        case InvalidGraphEdge:
+        case .invalidGraphEdge:
             return "Invalid Graph Edge"
-        case InvalidGraphNode:
+        case .invalidGraphNode:
             return "Invalid Graph Node"
-        case InvalidInstructionSet:
+        case .invalidInstructionSet:
             return "Invalid Instruction Set"
-        case InvalidPlatform:
+        case .invalidPlatform:
             return "Invalid Platform"
-        case InvalidVenue:
+        case .invalidVenue:
             return "Invalid Venue"
         }
     }

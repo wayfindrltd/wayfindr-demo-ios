@@ -37,7 +37,7 @@ struct WAYDeveloperSettings {
     /**
     *  `NSUserDefaults` keys for developer settings.
     */
-    private struct WAYDeveloperSettingsKeys {
+    fileprivate struct WAYDeveloperSettingsKeys {
         static let ShowForceNextButton  = "Developer_ShowForceNextButton"
         static let ShowRepeatButton     = "Developer_ShowRepeatButton"
     }
@@ -68,10 +68,10 @@ struct WAYDeveloperSettings {
     // MARK: - Initializers
     
     init() {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        showForceNextButton = defaults.boolForKey(WAYDeveloperSettingsKeys.ShowForceNextButton)
-        showRepeatButton = defaults.boolForKey(WAYDeveloperSettingsKeys.ShowRepeatButton)
+        showForceNextButton = defaults.bool(forKey: WAYDeveloperSettingsKeys.ShowForceNextButton)
+        showRepeatButton = defaults.bool(forKey: WAYDeveloperSettingsKeys.ShowRepeatButton)
     }
     
     
@@ -80,14 +80,14 @@ struct WAYDeveloperSettings {
     /**
     Save the settings into `NSUserDefaults`.
     */
-    private func saveSettings() {
-        let defaults = NSUserDefaults.standardUserDefaults()
+    fileprivate func saveSettings() {
+        let defaults = UserDefaults.standard
         
-        defaults.setBool(showForceNextButton, forKey: WAYDeveloperSettingsKeys.ShowForceNextButton)
-        defaults.setBool(showRepeatButton, forKey: WAYDeveloperSettingsKeys.ShowRepeatButton)
+        defaults.set(showForceNextButton, forKey: WAYDeveloperSettingsKeys.ShowForceNextButton)
+        defaults.set(showRepeatButton, forKey: WAYDeveloperSettingsKeys.ShowRepeatButton)
         defaults.synchronize()
         
-        NSNotificationCenter.defaultCenter().postNotificationName(WAYDeveloperSettings.DeveloperSettingsChangedNotification, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: WAYDeveloperSettings.DeveloperSettingsChangedNotification), object: nil)
     }
     
     
@@ -97,10 +97,10 @@ struct WAYDeveloperSettings {
     Register the default `WAYDeveloperSettings` settings.
     */
     static func registerSettings() {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        defaults.registerDefaults([WAYDeveloperSettingsKeys.ShowForceNextButton : false])
-        defaults.registerDefaults([WAYDeveloperSettingsKeys.ShowRepeatButton : true])
+        defaults.register(defaults: [WAYDeveloperSettingsKeys.ShowForceNextButton : false])
+        defaults.register(defaults: [WAYDeveloperSettingsKeys.ShowRepeatButton : true])
     }
 
 }

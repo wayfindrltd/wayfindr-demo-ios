@@ -40,8 +40,8 @@ class LabeledSwitch: BaseView {
     override func setup() {
         super.setup()
         
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, forAxis: .Horizontal)
+        textLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         addSubview(textLabel)
         
         addSubview(switchControl)
@@ -59,11 +59,11 @@ class LabeledSwitch: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-HalfMargin-[textLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraint(NSLayoutConstraint(item: switchControl, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[textLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraint(NSLayoutConstraint(item: switchControl, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[textLabel]-HalfMargin-[switchControl]-(>=QuarterMargin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[textLabel]-HalfMargin-[switchControl]-(>=QuarterMargin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

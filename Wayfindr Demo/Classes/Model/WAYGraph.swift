@@ -52,12 +52,12 @@ struct WAYGraph: CustomStringConvertible {
     }
     
     /// Name of the root graph node in the xml.
-    private let rootNodeName = "graph"
+    fileprivate let rootNodeName = "graph"
     
     /**
      Data element names the `graph` GraphML element.
      */
-    private enum WAYGraphElementType: String {
+    fileprivate enum WAYGraphElementType: String {
         case Node = "node"
         case Edge = "edge"
     }
@@ -73,12 +73,13 @@ struct WAYGraph: CustomStringConvertible {
     // MARK: - Initializers
     
     init?(filePath: String, updatedEdges: [WAYGraphEdge]? = nil) throws {
-        if let xmlData = NSData(contentsOfFile: filePath),
-            xmlDocument = try? AEXMLDocument(xmlData: xmlData) {
+        if let xmlData = try? Data(contentsOf: URL(fileURLWithPath: filePath)),
+            let xmlDocument = try? AEXMLDocument(xml: xmlData) {
                 
                 try self.init(xmlDocument: xmlDocument, updatedEdges: updatedEdges)
                 
                 return
+            
         }
         
         return nil
@@ -95,14 +96,15 @@ struct WAYGraph: CustomStringConvertible {
      */
     init(xmlDocument: AEXMLDocument, languageCode: String = "en-GB", updatedEdges: [WAYGraphEdge]? = nil) throws {
         // Ensure the document contains a `graph` element.
-        guard xmlDocument.root[rootNodeName].all?.count > 0 else {
-            throw WAYError.InvalidGraph
-        }
         
-        guard let defaultAccuracyNode = xmlDocument.root["key"].allWithAttributes(["id" : "accuracy"])?.first,
-            let defaultAccuracy = defaultAccuracyNode["default"].first?.doubleValue else {
+        guard let count = xmlDocument.root[rootNodeName].all?.count, count > 0 else {
+            throw WAYError.invalidGraph
+        }
+        // TODO: @AL check defaultAccuracy is a double
+        guard let defaultAccuracyNode = xmlDocument.root["key"].all(withAttributes: ["id" : "accuracy"])?.first,
+            let value = defaultAccuracyNode["default"].first?.value, let defaultAccuracy = Double(value) else {
             
-            throw WAYError.InvalidGraph
+            throw WAYError.invalidGraph
         }
         
         let graphRootNode = xmlDocument.root[rootNodeName]
@@ -115,7 +117,7 @@ struct WAYGraph: CustomStringConvertible {
                 case .Node:
                     do {
                         let node = try WAYGraphNode(xmlElement: child, defaultAccuracy: defaultAccuracy)
-                        graph.addVertex(node)
+                        let _ = graph.addVertex(node)
                     } catch let error as WAYError {
                         throw error
                     }
@@ -133,25 +135,24 @@ struct WAYGraph: CustomStringConvertible {
         }
         
         // Add the edges to the graph
-        for (index, edge) in edges.enumerate() {
-            guard let sourceIndex = graph.indexOf({$0.identifier == edge.sourceID}),
-                let targetIndex = graph.indexOf({$0.identifier == edge.targetID}) else {
+        for (index, edge) in edges.enumerated() {
+            guard let sourceIndex = graph.index(where: {$0.identifier == edge.sourceID}),
+                let targetIndex = graph.index(where: {$0.identifier == edge.targetID}) else {
                     
                     // We created an edge but can't find one of its node endpoints. We must have bad XML.
-                    throw WAYError.InvalidGraphEdge
+                    throw WAYError.invalidGraphEdge
             }
             
             // Check to see if there is updated edge information (e.g. there may be a partial closure)
             if let myUpdatedEdges = updatedEdges,
-                updatedEdgeIndex = myUpdatedEdges.indexOf({$0.identifier == edge.identifier}) {
+                let updatedEdgeIndex = myUpdatedEdges.index(where: {$0.identifier == edge.identifier}) {
                     let updatedEdge = myUpdatedEdges[updatedEdgeIndex]
                 
-                    edges.removeAtIndex(index)
-                    edges.insert(updatedEdge, atIndex: index)
-                    
-                    graph.addEdge(sourceIndex, to: targetIndex, directed: true, weight: updatedEdge.weight)
+                    edges.remove(at: index)
+                    edges.insert(updatedEdge, at: index)
+                    graph.addEdge(from: sourceIndex, to: targetIndex, directed: true, weight: updatedEdge.weight)
             } else {
-                graph.addEdge(sourceIndex, to: targetIndex, directed: true, weight: edge.weight)
+                graph.addEdge(from: sourceIndex, to: targetIndex, directed: true, weight: edge.weight)
             }
         }
     }
@@ -167,8 +168,8 @@ struct WAYGraph: CustomStringConvertible {
     
     - returns: The `WAYGraphNode` with the given `major` and `minor` values, if one exists.
     */
-    func getNode(major major: Int, minor: Int) -> WAYGraphNode? {
-        guard let vertexIndex = graph.indexOf({ $0.major == major && $0.minor == minor }) else {
+    func getNode(major: Int, minor: Int) -> WAYGraphNode? {
+        guard let vertexIndex = graph.index(where: { $0.major == major && $0.minor == minor }) else {
             return nil
         }
         
@@ -183,7 +184,7 @@ struct WAYGraph: CustomStringConvertible {
      - returns: The `WAYGraphNode` with the given identifier, if one exists.
      */
     func getNode(identifier nodeIdentifier: String) -> WAYGraphNode? {
-        guard let vertexIndex = graph.indexOf({ $0.identifier == nodeIdentifier }) else {
+        guard let vertexIndex = graph.index(where: { $0.identifier == nodeIdentifier }) else {
             return nil
         }
         
@@ -198,7 +199,7 @@ struct WAYGraph: CustomStringConvertible {
      
      - returns: The `WAYGraphEdge` with the given source and target node indices, if one exists.
      */
-    func getEdge(sourceNodeIndex: Int, targetNodeIndex: Int) -> WAYGraphEdge? {
+    func getEdge(_ sourceNodeIndex: Int, targetNodeIndex: Int) -> WAYGraphEdge? {
         guard sourceNodeIndex < graph.count &&
             targetNodeIndex < graph.count else {
                 return nil
@@ -207,7 +208,7 @@ struct WAYGraph: CustomStringConvertible {
         let sourceNode = graph.vertexAtIndex(sourceNodeIndex)
         let targetNode = graph.vertexAtIndex(targetNodeIndex)
         
-        guard let edgeIndex = edges.indexOf({ $0.sourceID == sourceNode.identifier && $0.targetID == targetNode.identifier }) else {
+        guard let edgeIndex = edges.index(where: { $0.sourceID == sourceNode.identifier && $0.targetID == targetNode.identifier }) else {
             return nil
         }
         
@@ -225,13 +226,13 @@ struct WAYGraph: CustomStringConvertible {
     
     - returns: Whether or not you can find a path from the `fromNode` to the `toNode`.
     */
-    func canRoute(fromNode: WAYGraphNode, toNode: WAYGraphNode) -> Bool {
-        guard let startNodeIndex = graph.indexOf(fromNode),
-            let destinationNodeIndex = graph.indexOf(toNode) else {
+    func canRoute(_ fromNode: WAYGraphNode, toNode: WAYGraphNode) -> Bool {
+        guard let startNodeIndex = graph.index(of: fromNode),
+            let destinationNodeIndex = graph.index(of: toNode) else {
                 return false
         }
         
-        let route = bfs(startNodeIndex, to: destinationNodeIndex, graph: graph)
+        let route = graph.bfs(from: startNodeIndex, to: destinationNodeIndex)
         
         return !route.isEmpty
     }
@@ -244,19 +245,19 @@ struct WAYGraph: CustomStringConvertible {
      
      - returns: The shortest route between the nodes, if one exists. Otherwise returns nil.
      */
-    func shortestRoute(fromNode: WAYGraphNode, toNode: WAYGraphNode) -> [WAYGraphEdge]? {
+    func shortestRoute(_ fromNode: WAYGraphNode, toNode: WAYGraphNode) -> [WAYGraphEdge]? {
         guard canRoute(fromNode, toNode: toNode) else {
             return nil
         }
         
-        guard let fromIndex = graph.indexOf(fromNode),
-            let toIndex = graph.indexOf(toNode) else {
+        guard let fromIndex = graph.index(of: fromNode),
+            let toIndex = graph.index(of: toNode) else {
                 return nil
         }
         
-        let (_, paths) = dijkstra(graph, root: fromNode)
+        let (_, paths) = graph.dijkstra(root: fromNode, startDistance: Double(fromIndex))//graph.dijkstra(graph, root: fromNode)
         
-        let shortestPath = pathDictToPath(fromIndex, to: toIndex, pathDict: paths)
+        let shortestPath = pathDictToPath(from: fromIndex, to: toIndex, pathDict: paths)
         
         var route = [WAYGraphEdge]()
         for pathItem in shortestPath {

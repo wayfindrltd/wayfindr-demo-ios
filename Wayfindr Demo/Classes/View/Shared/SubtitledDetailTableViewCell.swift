@@ -55,27 +55,27 @@ final class SubtitledDetailTableViewCell: UITableViewCell {
     
     // MARK: - Setup
     
-    private func setup() {
-        mainTextLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        mainTextLabel.textColor = UIColor.blackColor()
-        mainTextLabel.textAlignment = .Left
+    fileprivate func setup() {
+        mainTextLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        mainTextLabel.textColor = UIColor.black
+        mainTextLabel.textAlignment = .left
         contentView.addSubview(mainTextLabel)
         
-        subtitleTextLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        subtitleTextLabel.textColor = UIColor.blackColor()
-        subtitleTextLabel.textAlignment = .Left
+        subtitleTextLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        subtitleTextLabel.textColor = UIColor.black
+        subtitleTextLabel.textAlignment = .left
         contentView.addSubview(subtitleTextLabel)
         
-        rightValueLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        rightValueLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         rightValueLabel.textColor = WAYConstants.WAYColors.WayfindrMainColor
-        rightValueLabel.textAlignment = .Right
+        rightValueLabel.textAlignment = .right
         contentView.addSubview(rightValueLabel)
     }
     
     
     // MARK: - Layout
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         // Turn off autoresizing mask
         mainTextLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -86,12 +86,12 @@ final class SubtitledDetailTableViewCell: UITableViewCell {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-QuarterMargin-[mainTextLabel][subtitleTextLabel]-QuarterMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        contentView.addConstraint(NSLayoutConstraint(item: rightValueLabel, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-QuarterMargin-[mainTextLabel][subtitleTextLabel]-QuarterMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        contentView.addConstraint(NSLayoutConstraint(item: rightValueLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
         // Horizontal Constraints
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[mainTextLabel]-(>=HalfMargin)-[rightValueLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[subtitleTextLabel]-(>=HalfMargin)-[rightValueLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[mainTextLabel]-(>=HalfMargin)-[rightValueLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[subtitleTextLabel]-(>=HalfMargin)-[rightValueLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

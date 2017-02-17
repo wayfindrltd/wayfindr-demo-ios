@@ -36,14 +36,14 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     // MARK: - Properties
     
     /// Interface for gathering information about the venue
-    private let venueInterface: VenueInterface
+    fileprivate let venueInterface: VenueInterface
     /// Model representation of entire venue.
-    private var venue: WAYVenue?
+    fileprivate var venue: WAYVenue?
     
     /// Array of words that means the validation check passed.
-    private let passWords = ["PASS"]
+    fileprivate let passWords = ["PASS"]
     /// Array of words that means the validation check failed.
-    private let failWords = ["ERROR", "FAIL", "INVALID"]
+    fileprivate let failWords = ["ERROR", "FAIL", "INVALID"]
     
     
     // MARK: - Initializers
@@ -59,6 +59,10 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - View Lifecycle
     
@@ -67,7 +71,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         
         title = "Validation"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(GraphValidationViewController.actionButtonPressed(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(GraphValidationViewController.actionButtonPressed(_:)))
         
         venueInterface.getVenue(completionHandler: { success, newVenue, error in
             if success, let myVenue = newVenue {
@@ -84,7 +88,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         })
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         SVProgressHUD.dismiss()
@@ -93,7 +97,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     override func setupView() {
         super.setupView()
         
-        underlyingView.verboseLabeledSwitch.switchControl.addTarget(self, action: #selector(GraphValidationViewController.verboseSwitchValueChanged(_:)), forControlEvents: .ValueChanged)
+        underlyingView.verboseLabeledSwitch.switchControl.addTarget(self, action: #selector(GraphValidationViewController.verboseSwitchValueChanged(_:)), for: .valueChanged)
     }
     
     
@@ -105,20 +109,20 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     
     - parameter verbose: Whether or not to use a verbose output.
     */
-    private func checkGraph(verbose verbose: Bool) {
+    fileprivate func checkGraph(verbose: Bool) {
         guard let myVenue = venue else {
             return
         }
         
         SVProgressHUD.show()
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
             self?.checkPlatformConnectivity(verbose: verbose)
             self?.checkExitConnectivity(verbose: verbose)
             self?.checkEdgesWithoutInstructions(myVenue.destinationGraph, verbose: verbose)
             
             self?.checkFullConnectivity(myVenue.destinationGraph, verbose: verbose)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 SVProgressHUD.dismiss()
             })
         })
@@ -130,7 +134,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      - parameter destinationGraph: `WAYGraph` representation to check.
      - parameter verbose:          Whether or not to print out details about where the discontinuities are, if they exist.
      */
-    private func checkFullConnectivity(destinationGraph: WAYGraph, verbose: Bool) {
+    fileprivate func checkFullConnectivity(_ destinationGraph: WAYGraph, verbose: Bool) {
         var newText = ""
         
         let isConnected = destinationGraph.graph.isConnected
@@ -153,7 +157,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+        DispatchQueue.main.async(execute: { [weak self] in
             self?.addInformation(newText)
         })
     }
@@ -163,7 +167,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      
      - parameter verbose: Whether or not to print out details about where the discontinuities are, if they exist.
      */
-    private func checkPlatformConnectivity(verbose verbose: Bool) {
+    fileprivate func checkPlatformConnectivity(verbose: Bool) {
         guard let myVenue = venue else {
             return
         }
@@ -181,7 +185,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      
      - parameter verbose: Whether or not to print out details about where the discontinuities are, if they exist.
      */
-    private func checkExitConnectivity(verbose verbose: Bool) {
+    fileprivate func checkExitConnectivity(verbose: Bool) {
         guard let myVenue = venue else {
             return
         }
@@ -202,7 +206,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      - parameter connectivityTitle:  `String` to use when describing the connectivity in output.
      - parameter verbose:            Whether or not to print out details about where the discontinuities are, if they exist.
      */
-    private func checkDestinationConnectivity(destinations: [WAYDestination], ignoreDestinations: [WAYDestination], connectivityTitle: String, verbose: Bool) {
+    fileprivate func checkDestinationConnectivity(_ destinations: [WAYDestination], ignoreDestinations: [WAYDestination], connectivityTitle: String, verbose: Bool) {
         guard let myVenue = venue else {
             return
         }
@@ -214,7 +218,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         for destination in ignoreDestinations where destination.entranceNode != destination.exitNode {
             let destinationNode = destination.entranceNode
             
-            if let destinationNodeIndex = graph.indexOf(destinationNode) {
+            if let destinationNodeIndex = graph.index(of: destinationNode) {
                 ignoreEntranceIndices.append(destinationNodeIndex)
             }
         }
@@ -222,10 +226,10 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         for destination in destinations {
             let destinationNode = destination.entranceNode
             
-            if let destinationNodeIndex = graph.indexOf(destinationNode) {
-                for (index, _) in graph.enumerate() {
+            if let destinationNodeIndex = graph.index(of: destinationNode) {
+                for (index, _) in graph.enumerated() {
                     if index != destinationNodeIndex && !ignoreEntranceIndices.contains(index) {
-                        let route = bfs(index, to: destinationNodeIndex, graph: graph)
+                        let route = graph.bfs(from: index, to: destinationNodeIndex)
                         
                         if route.isEmpty {
                             missingEdges.append((index, destinationNodeIndex))
@@ -259,7 +263,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+        DispatchQueue.main.async(execute: { [weak self] in
             self?.addInformation(newText)
         })
     }
@@ -270,7 +274,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      - parameter destinationGraph: `WAYGraph` representation to check.
      - parameter verbose:          Whether or not to print out details about which edges lack instructions.
      */
-    private func checkEdgesWithoutInstructions(destinationGraph: WAYGraph, verbose: Bool) {
+    fileprivate func checkEdgesWithoutInstructions(_ destinationGraph: WAYGraph, verbose: Bool) {
         var newText = ""
         
         var edgesWithoutInstructions = [WAYGraphEdge]()
@@ -295,7 +299,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+        DispatchQueue.main.async(execute: { [weak self] in
             self?.addInformation(newText)
         })
     }
@@ -303,7 +307,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     
     // MARK: - Control Actions
     
-    func actionButtonPressed(sender: UIBarButtonItem) {
+    func actionButtonPressed(_ sender: UIBarButtonItem) {
         let text = shareableText()
         let printableText = UISimpleTextPrintFormatter(attributedText: text)
         
@@ -312,20 +316,20 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         let popoverController = viewController.popoverPresentationController
         popoverController?.barButtonItem = sender
         
-        presentViewController(viewController, animated: true, completion: nil)
+        present(viewController, animated: true, completion: nil)
     }
     
-    func verboseSwitchValueChanged(sender: UISwitch) {
+    func verboseSwitchValueChanged(_ sender: UISwitch) {
         SVProgressHUD.show()
         underlyingView.textView.text = ""
-        sender.enabled = false
+        sender.isEnabled = false
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), { [weak self] in
-            self?.checkGraph(verbose: sender.on)
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
+            self?.checkGraph(verbose: sender.isOn)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 SVProgressHUD.dismiss()
-                sender.enabled = true
+                sender.isEnabled = true
             })
         })
     }
@@ -333,24 +337,24 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     
     // MARK: - Text Manipulation
     
-    private func shareableText() -> NSAttributedString {
+    fileprivate func shareableText() -> NSAttributedString {
         // Body
         let mutableAttributedString = NSMutableAttributedString(attributedString: underlyingView.textView.attributedText)
         
         // Header
         if let headerText = underlyingView.headerLabel.text {
             let headerAttributedString = NSMutableAttributedString(string: headerText + "\n\n\n")
-            headerAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFontForTextStyle(UIFontTextStyleTitle2), range: NSRange(location: 0, length: headerAttributedString.length))
+            headerAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2), range: NSRange(location: 0, length: headerAttributedString.length))
             
-            mutableAttributedString.insertAttributedString(headerAttributedString, atIndex: 0)
+            mutableAttributedString.insert(headerAttributedString, at: 0)
         }
         
         // Title
         if let venueName = venue?.name {
             let venueNameAttributedString = NSMutableAttributedString(string: venueName + "\n\n")
-            venueNameAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1), range: NSRange(location: 0, length: venueNameAttributedString.length))
+            venueNameAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1), range: NSRange(location: 0, length: venueNameAttributedString.length))
             
-            mutableAttributedString.insertAttributedString(venueNameAttributedString, atIndex: 0)
+            mutableAttributedString.insert(venueNameAttributedString, at: 0)
         }
         
         return mutableAttributedString
@@ -361,7 +365,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     
     - parameter information: Information to add to the display.
     */
-    private func addInformation(information: String) {
+    fileprivate func addInformation(_ information: String) {
         let text: String
         
         if underlyingView.textView.attributedText.length == 0 {
@@ -378,11 +382,11 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
             highlightString(passWord, inString: &mutableAttributedString, color: WAYConstants.WAYColors.WayfindrMainColor)
         }
         for failWord in failWords {
-            highlightString(failWord, inString: &mutableAttributedString, color: UIColor.redColor())
+            highlightString(failWord, inString: &mutableAttributedString, color: UIColor.red)
         }
         
         // Set the font
-        mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFontForTextStyle(UIFontTextStyleBody), range: NSRange(location: 0, length: mutableAttributedString.length))
+        mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body), range: NSRange(location: 0, length: mutableAttributedString.length))
         
         // Display the text
         underlyingView.textView.attributedText = mutableAttributedString
@@ -395,9 +399,9 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      - parameter fullText:      `NSMutableAttributedString` in which to highlight instances of `highlightText`.
      - parameter color:         `UIColor` to use for highlighting.
      */
-    private func highlightString(highlightText: String, inout inString fullText: NSMutableAttributedString, color: UIColor) {
+    fileprivate func highlightString(_ highlightText: String, inString fullText: inout NSMutableAttributedString, color: UIColor) {
         if let regex = try? NSRegularExpression(pattern: highlightText, options: []) {
-            let ranges = regex.matchesInString(fullText.string, options: [], range: NSRange(location: 0, length: fullText.string.characters.count)).map { $0.range }
+            let ranges = regex.matches(in: fullText.string, options: [], range: NSRange(location: 0, length: fullText.string.characters.count)).map { $0.range }
             
             for range in ranges {
                 fullText.addAttribute(NSForegroundColorAttributeName, value: color, range: range)

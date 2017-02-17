@@ -33,7 +33,7 @@ class BaseSearchTableViewController: UITableViewController, UISearchBarDelegate,
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "SearchCell"
+    fileprivate let reuseIdentifier = "SearchCell"
     
     /// Array of strings to present the user. Each string corresponds to a cell.
     var items = [String]()
@@ -56,16 +56,16 @@ class BaseSearchTableViewController: UITableViewController, UISearchBarDelegate,
 
         definesPresentationContext = true
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .Plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
     
-    private func setupSearchController() {
+    fileprivate func setupSearchController() {
         let searchController = UISearchController(searchResultsController: resultsTableController)
         searchController.searchResultsUpdater = self
         searchController.searchBar.sizeToFit()
@@ -81,43 +81,43 @@ class BaseSearchTableViewController: UITableViewController, UISearchBarDelegate,
     
     // MARK: - UISearchResultsUpdating
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        resultsTableController.searchArray.removeAll(keepCapacity: false)
+    func updateSearchResults(for searchController: UISearchController) {
+        resultsTableController.searchArray.removeAll(keepingCapacity: false)
         
         guard let searchText = searchController.searchBar.text else {
             return
         }
         
-        let array = items.filter { $0.uppercaseString.rangeOfString(searchText.uppercaseString) != nil }
+        let array = items.filter { $0.uppercased().range(of: searchText.uppercased()) != nil }
         resultsTableController.searchArray = array
     }
     
     
     // MARK: - UISearchBarDelegate
     
-    func willPresentSearchController(searchController: UISearchController) {
-        navigationController?.navigationBar.translucent = true
+    func willPresentSearchController(_ searchController: UISearchController) {
+        navigationController?.navigationBar.isTranslucent = true
     }
     
-    func didDismissSearchController(searchController: UISearchController) {
-        navigationController?.navigationBar.translucent = false
+    func didDismissSearchController(_ searchController: UISearchController) {
+        navigationController?.navigationBar.isTranslucent = false
     }
 
     
     // MARK: - UITableViewDatasource
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         cell.textLabel?.text = items[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .ByWordWrapping
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
@@ -133,7 +133,7 @@ class BaseSearchTableViewController: UITableViewController, UISearchBarDelegate,
     
     - returns: The desired string.
     */
-    func itemForIndexPath(tableView: UITableView, indexPath: NSIndexPath) -> String {
+    func itemForIndexPath(_ tableView: UITableView, indexPath: IndexPath) -> String {
         if tableView == self.tableView {
             return items[indexPath.row]
         } else {

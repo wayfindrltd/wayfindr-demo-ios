@@ -49,7 +49,7 @@ struct WAYVenue {
     /**
      Keys for the data in the `venue` JSON element.
      */
-    private enum WAYVenueKeys: String {
+    fileprivate enum WAYVenueKeys: String {
         case Name       = "name"
         case Platforms  = "platforms"
         case Exits      = "exits"
@@ -58,7 +58,7 @@ struct WAYVenue {
     /**
      Keys for the data in the `platform` JSON element.
      */
-    private enum WAYPlatformKeys: String {
+    fileprivate enum WAYPlatformKeys: String {
         case Name                   = "name"
         case Destinations           = "destinations"
         case EntranceBeaconMajor    = "entrance_beacon_major"
@@ -70,7 +70,7 @@ struct WAYVenue {
     /**
      Keys for the data in the `exit` JSON element.
      */
-    private enum WAYExitKeys: String {
+    fileprivate enum WAYExitKeys: String {
         case Name           = "name"
         case Mode           = "mode"
         case EntranceBeaconMajor    = "entrance_beacon_major"
@@ -83,15 +83,15 @@ struct WAYVenue {
     // MARK: - Initializers
     
     init(venueFilePath: String, graphFilePath: String, updatedEdges: [WAYGraphEdge]? = nil) throws {
-        if let jsonData = NSData(contentsOfFile: venueFilePath),
-            myGraph = try WAYGraph(filePath: graphFilePath, updatedEdges: updatedEdges) {
+        if let jsonData = try? Data(contentsOf: URL(fileURLWithPath: venueFilePath)),
+            let myGraph = try WAYGraph(filePath: graphFilePath, updatedEdges: updatedEdges) {
                 
                 let venueJSON = JSON(data: jsonData)
                 try self.init(graph: myGraph, venueJSON: venueJSON["venue"])
                 
                 return
         } else {
-            throw WAYError.Failed(localizedDescription: WAYStrings.ErrorMessages.UnableFindFiles)
+            throw WAYError.failed(localizedDescription: WAYStrings.ErrorMessages.UnableFindFiles)
         }
     }
     
@@ -111,7 +111,7 @@ struct WAYVenue {
         guard let platformsJSON = venueJSON[WAYVenueKeys.Platforms.rawValue].array,
             let exitsJSON = venueJSON[WAYVenueKeys.Exits.rawValue].array else {
                 
-            throw WAYError.InvalidVenue
+            throw WAYError.invalidVenue
         }
         
         for platformJSON in platformsJSON {
@@ -124,7 +124,7 @@ struct WAYVenue {
                 let platformEntranceNode = graph.getNode(major: platformEntranceBeaconMajor, minor: platformEntranceBeaconMinor),
                 let platformExitNode = graph.getNode(major: platformExitBeaconMajor, minor: platformExitBeaconMinor) else {
                     
-                    throw WAYError.InvalidPlatform
+                    throw WAYError.invalidPlatform
             }
             
             let platformDestinations = platformDestinationsJSON.map { $0.stringValue }
@@ -144,7 +144,7 @@ struct WAYVenue {
                 let exitEntranceNode = graph.getNode(major: exitEntranceBeaconMajor, minor: exitEntranceBeaconMinor),
                 let exitExitNode = graph.getNode(major: exitExitBeaconMajor, minor: exitExitBeaconMinor) else {
                     
-                    throw WAYError.InvalidExit
+                    throw WAYError.invalidExit
             }
             
             let exit = WAYExit(entranceNode: exitEntranceNode, exitNode: exitExitNode, mode: exitMode, name: exitName)

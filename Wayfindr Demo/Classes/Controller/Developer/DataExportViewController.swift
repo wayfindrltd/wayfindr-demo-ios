@@ -15,7 +15,7 @@ final class DataExportViewController: BaseViewController<DataExportView> {
     // MARK: - Properties
     
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -26,40 +26,44 @@ final class DataExportViewController: BaseViewController<DataExportView> {
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - Setup
     
     override func setupView() {
         super.setupView()
         
-        underlyingView.nodesButton.addTarget(self, action: #selector(DataExportViewController.exportNodeButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        underlyingView.edgesButton.addTarget(self, action: #selector(DataExportViewController.exportEdgeButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        underlyingView.platformsButton.addTarget(self, action: #selector(DataExportViewController.exportPlatformButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        underlyingView.exitsButton.addTarget(self, action: #selector(DataExportViewController.exportExitButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        underlyingView.nodesButton.addTarget(self, action: #selector(DataExportViewController.exportNodeButtonPressed(_:)), for: .touchUpInside)
+        underlyingView.edgesButton.addTarget(self, action: #selector(DataExportViewController.exportEdgeButtonPressed(_:)), for: .touchUpInside)
+        underlyingView.platformsButton.addTarget(self, action: #selector(DataExportViewController.exportPlatformButtonPressed(_:)), for: .touchUpInside)
+        underlyingView.exitsButton.addTarget(self, action: #selector(DataExportViewController.exportExitButtonPressed(_:)), for: .touchUpInside)
     }
     
     
     // MARK: - Control Actions
     
-    func exportNodeButtonPressed(sender: UIButton) {
+    func exportNodeButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.destinationGraph.vertices)
         
         exportCSV(csvString, filePrefix: "node", sourceView: sender)
     }
     
-    func exportEdgeButtonPressed(sender: UIButton) {
+    func exportEdgeButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.destinationGraph.edges)
         
         exportCSV(csvString, filePrefix: "edge", sourceView: sender)
     }
     
-    func exportPlatformButtonPressed(sender: UIButton) {
+    func exportPlatformButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.platforms)
         
         exportCSV(csvString, filePrefix: "platform", sourceView: sender)
     }
     
-    func exportExitButtonPressed(sender: UIButton) {
+    func exportExitButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.exits)
         
         exportCSV(csvString, filePrefix: "exit", sourceView: sender)
@@ -68,7 +72,7 @@ final class DataExportViewController: BaseViewController<DataExportView> {
     
     // MARK: - Generate CSV
     
-    private func csvFromArray<T: CSVExportable>(dataArray: [T]) -> String {
+    fileprivate func csvFromArray<T: CSVExportable>(_ dataArray: [T]) -> String {
         var result = T.generateCSVHeaders() + "\n"
         
         for datum in dataArray {
@@ -81,23 +85,23 @@ final class DataExportViewController: BaseViewController<DataExportView> {
     
     // MARK: - Export CSV
     
-    private func exportCSV(csvString: String, filePrefix: String, sourceView: UIView) {
-        guard let tmpDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first else {
+    fileprivate func exportCSV(_ csvString: String, filePrefix: String, sourceView: UIView) {
+        guard let tmpDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
             displayExportError()
             print("Error fetching temp directory.")
             return
         }
         
-        let tmpDirectoryURL = NSURL(fileURLWithPath: tmpDirectory, isDirectory: true)
-        let fileURL = tmpDirectoryURL.URLByAppendingPathComponent("\(filePrefix)_export.csv", isDirectory: false)
+        let tmpDirectoryURL = URL(fileURLWithPath: tmpDirectory, isDirectory: true)
+        let fileURL = tmpDirectoryURL.appendingPathComponent("\(filePrefix)_export.csv", isDirectory: false)
         
-        guard let csvData = csvString.dataUsingEncoding(NSUTF16StringEncoding) else {
+        guard let csvData = csvString.data(using: String.Encoding.utf16) else {
             displayExportError()
             print("Error encoding data.")
             return
         }
         
-        guard csvData.writeToURL(fileURL, atomically: true) else {
+        guard (try? csvData.write(to: fileURL, options: [.atomic])) != nil else {
             displayExportError()
             print("Error writing file.")
             return
@@ -105,10 +109,10 @@ final class DataExportViewController: BaseViewController<DataExportView> {
         
         let activityController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = sourceView
-        presentViewController(activityController, animated: true, completion: nil)
+        present(activityController, animated: true, completion: nil)
     }
     
-    private func displayExportError() {
+    fileprivate func displayExportError() {
         displayError(title: WAYStrings.CommonStrings.Error, message: "There was an error exporting your data. Please try again.")
     }
     
@@ -215,7 +219,7 @@ extension WAYInstructionSet: CSVExportable {
         return csvEscapeInstruction(beginning) + separator + csvEscapeInstruction(middle) + separator + csvEscapeInstruction(ending) + separator + csvEscapeInstruction(startingOnly) + separator + language
     }
     
-    private func csvEscapeInstruction(instruction: String?) -> String {
+    fileprivate func csvEscapeInstruction(_ instruction: String?) -> String {
         var result = ""
         
         if let myInstruction = instruction {

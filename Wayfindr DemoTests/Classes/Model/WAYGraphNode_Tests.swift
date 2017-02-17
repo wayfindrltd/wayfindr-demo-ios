@@ -35,13 +35,13 @@ class WAYGraphNode_Tests: XCTestCase {
 
     var xmlElement : AEXMLElement!
     
-    private let nodeMajor = "1"
-    private let nodeMinor = "2"
-    private let nodeName = "Black"
-    private let nodeType = "Entrance,Exit"
-    private let accuracy = "2.0"
+    fileprivate let nodeMajor = "1"
+    fileprivate let nodeMinor = "2"
+    fileprivate let nodeName = "Black"
+    fileprivate let nodeType = "Entrance,Exit"
+    fileprivate let accuracy = "2.0"
     
-    private let defaultAccuracy = 5.0
+    fileprivate let defaultAccuracy = 5.0
     
     
     // MARK: - Setup/Teardown
@@ -50,7 +50,7 @@ class WAYGraphNode_Tests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        xmlElement = AEXMLElement()
+        xmlElement = AEXMLElement(name: "node")
         xmlElement.name = "node"
         xmlElement.attributes["id"] = "1"
         xmlElement.addChild(name: "data", value: nodeMajor, attributes: ["key" : "major"])
@@ -81,10 +81,10 @@ class WAYGraphNode_Tests: XCTestCase {
         let badXMLElement = xmlElement
         
         // When
-        badXMLElement.attributes.removeValueForKey("id")
+        badXMLElement?.attributes.removeValue(forKey: "id")
         
         // Then
-        AssertThrow(WAYError.InvalidGraphNode, try WAYGraphNode(xmlElement: badXMLElement, defaultAccuracy: defaultAccuracy))
+        AssertThrow(WAYError.invalidGraphNode, try WAYGraphNode(xmlElement: badXMLElement!, defaultAccuracy: defaultAccuracy))
     }
     
     func testInitXMLElement_BadXML_Data() {
@@ -92,10 +92,10 @@ class WAYGraphNode_Tests: XCTestCase {
         let badXMLElement = xmlElement
         
         // When
-        badXMLElement.children.first?.removeFromParent()
+        badXMLElement?.children.first?.removeFromParent()
         
         // Then
-        AssertThrow(WAYError.InvalidGraphNode, try WAYGraphNode(xmlElement: badXMLElement, defaultAccuracy: defaultAccuracy))
+        AssertThrow(WAYError.invalidGraphNode, try WAYGraphNode(xmlElement: badXMLElement!, defaultAccuracy: defaultAccuracy))
     }
     
     
@@ -143,8 +143,8 @@ class WAYGraphNode_Tests: XCTestCase {
         let secondXMLElement = xmlElement
         
         // When
-        secondXMLElement.attributes["id"] = "foo"
-        let secondNode = try! WAYGraphNode(xmlElement: secondXMLElement, defaultAccuracy: defaultAccuracy)
+        secondXMLElement?.attributes["id"] = "foo"
+        let secondNode = try! WAYGraphNode(xmlElement: secondXMLElement!, defaultAccuracy: defaultAccuracy)
         
         // Then
         XCTAssertFalse(firstNode == secondNode, "Two nodes generated from the different GraphML expected to be not equal.")

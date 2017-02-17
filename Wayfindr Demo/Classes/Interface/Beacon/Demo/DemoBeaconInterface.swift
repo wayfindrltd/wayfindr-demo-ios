@@ -26,14 +26,14 @@ final class DemoBeaconInterface: NSObject, BeaconInterface {
     
     var validBeacons: [BeaconIdentifier]?
     
-    private(set) var interfaceState = BeaconInterfaceState.Initializing {
+    fileprivate(set) var interfaceState = BeaconInterfaceState.initializing {
         didSet {
             stateDelegate?.beaconInterface(self, didChangeState: interfaceState)
         }
     }
     
     /// API Key used by Beacon manufacturer
-    private let apiKey: String
+    fileprivate let apiKey: String
     
     
     // MARK: - Initializers
@@ -46,22 +46,22 @@ final class DemoBeaconInterface: NSObject, BeaconInterface {
         if (displayDemoInterfaceWarning) {
             displayDemoInterfaceWarning = false
 
-            let alert = UIAlertController(title: "No Beacon Implementation", message: "The app is running with a dummy beacon implementation. No positioning features will work. For more info see the 'Interface' and 'Starting a New Trial' sections in the README file.", preferredStyle: .Alert)
-            let doneButton = UIAlertAction(title: WAYStrings.CommonStrings.Done, style: .Default, handler: nil)
+            let alert = UIAlertController(title: "No Beacon Implementation", message: "The app is running with a dummy beacon implementation. No positioning features will work. For more info see the 'Interface' and 'Starting a New Trial' sections in the README file.", preferredStyle: .alert)
+            let doneButton = UIAlertAction(title: WAYStrings.CommonStrings.Done, style: .default, handler: nil)
             alert.addAction(doneButton)
-            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
         }
         
         // Perform Beacon SDK specific setup here
         // Update interfaceState property once it is setup or setup has failed
         
-        interfaceState = .Operating
+        interfaceState = .operating
     }
 
     
     // MARK: - GET
     
-    func getBeacons(completionHandler completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?) {
+    func getBeacons(completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?) {
         
         // Fetch currently known Beacons using SDK specific methods here
         // Create new WAYBeacon instances for each beacon returned by the Beacon SDK

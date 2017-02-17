@@ -26,11 +26,11 @@
 import Foundation
 
 
-enum BeaconInterfaceAPIError: ErrorType {
-    case ErrorWithMessage(localizedDescription: String)
-    case FailedURLCreation
-    case InvalidJSON
-    case InvalidParameter
-    case NullResponse
-    case UnknownError
+enum BeaconInterfaceAPIError: Error {
+    case errorWithMessage(localizedDescription: String)
+    case failedURLCreation
+    case invalidJSON
+    case invalidParameter
+    case nullResponse
+    case unknownError
 }

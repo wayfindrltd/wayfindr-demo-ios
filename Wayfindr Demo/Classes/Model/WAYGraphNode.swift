@@ -31,7 +31,7 @@ import AEXML
 /**
  *  Option set of types for a WAYGraphNode. (e.g. Entrance, Exit, Lift, etc.)
  */
-struct WAYGraphNodeType: OptionSetType, CustomStringConvertible {
+struct WAYGraphNodeType: OptionSet, CustomStringConvertible {
     let rawValue: UInt
     
     static let None = WAYGraphNodeType(rawValue:  1 << 1)
@@ -50,7 +50,7 @@ struct WAYGraphNodeType: OptionSetType, CustomStringConvertible {
         let strings = ["None", "Entrance", "Exit", "Lift", "Escalator", "MensToilet", "WomensToilet", "Stairs", "Platform", "TicketBarrier"]
         var members = [String]()
         
-        for (flag, string) in strings.enumerate() where contains(WAYGraphNodeType(rawValue: 1 << (UInt(flag) + 1))) {
+        for (flag, string) in strings.enumerated() where contains(WAYGraphNodeType(rawValue: 1 << (UInt(flag) + 1))) {
             members.append(string)
         }
         
@@ -146,7 +146,7 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
         
         // Retrieve the ID
         guard let myID = xmlElement.attributes[WAYGraphNodeAttributes.identifier] else {
-            throw WAYError.InvalidGraphNode
+            throw WAYError.invalidGraphNode
         }
         identifier = myID
         
@@ -155,17 +155,17 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
             
             if let keyAttribute = dataItem.attributes["key"],
                 let dataItemType = WAYGraphNodeKeys(rawValue: keyAttribute) {
-                    
+                
                     switch dataItemType {
                     case .Major:
-                        tempMajor = dataItem.intValue
+                        tempMajor = dataItem.int
                     case .Minor:
-                        tempMinor = dataItem.intValue
+                        tempMinor = dataItem.int
                     case .Name:
-                        tempName = dataItem.stringValue
+                        tempName = dataItem.string
                     case .NodeType:
-                        let stringValue = dataItem.stringValue
-                        let nodeTypes = stringValue.componentsSeparatedByString(",")
+                        let stringValue = dataItem.string
+                        let nodeTypes = stringValue.components(separatedBy: ",")
                         for newNodeType in nodeTypes {
                             if let newValue = WAYGraphNode.stringToNodeType(newNodeType) {
                                 if newValue != .None && tempNodeType.contains(.None) {
@@ -176,7 +176,7 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
                             }
                         }
                     case .Accuracy:
-                        tempAccuracy = dataItem.doubleValue
+                        tempAccuracy = dataItem.double
                     }
             }
             
@@ -187,7 +187,7 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
             let myMinor = tempMinor,
             let myName = tempName else {
                 
-                throw WAYError.InvalidGraphNode
+                throw WAYError.invalidGraphNode
         }
         
         // Permanently store the elements
@@ -198,10 +198,10 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
         accuracy = tempAccuracy ?? defaultAccuracy
     }
     
-    private static func stringToNodeType(value: String) -> WAYGraphNodeType? {
+    fileprivate static func stringToNodeType(_ value: String) -> WAYGraphNodeType? {
         switch value {
         case "None":
-            return .None
+            return .none
         case "Entrance":
             return .Entrance
         case "Exit":

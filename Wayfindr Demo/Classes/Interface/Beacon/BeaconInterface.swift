@@ -26,9 +26,9 @@
 import Foundation
 
 
-enum BeaconInterfaceError: ErrorType {
-    case FailedInitialization(localizedDescription: String)
-    case FailedParsingData
+enum BeaconInterfaceError: Error {
+    case failedInitialization(localizedDescription: String)
+    case failedParsingData
 }
 
 
@@ -59,5 +59,5 @@ protocol BeaconInterface {
     
     // MARK: - GET
     
-    func getBeacons(completionHandler completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?)
+    func getBeacons(completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?)
 }

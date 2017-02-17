@@ -26,26 +26,40 @@
 import UIKit
 
 import SVProgressHUD
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+//https://github.com/wayfindrltd/wayfindr-demo-ios/issues/6
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 
 /// Filters for `BatteryLevelsTableViewController`
 enum BatteryLevelFilters {
-    case Battery
-    case Date
-    case Minor
+    case battery
+    case date
+    case minor
     
     var description: String {
         switch self {
-        case .Battery:
+        case .battery:
             return WAYStrings.CommonStrings.Battery
-        case .Date:
+        case .date:
             return WAYStrings.CommonStrings.DateWord
-        case .Minor:
+        case .minor:
             return WAYStrings.CommonStrings.Minor
         }
     }
     
-    static let allValues = [Minor, Date, Battery]
+    static let allValues = [minor, date, battery]
 }
 
 
@@ -56,19 +70,19 @@ final class BatteryLevelsTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Reuse identifier for the table cells.
-    private let reuseIdentifier = "BeaconCell"
+    fileprivate let reuseIdentifier = "BeaconCell"
     
     /// Interface for interacting with beacons.
-    private let interface: BeaconInterface
+    fileprivate let interface: BeaconInterface
     
     /// Whether the controller is still fetching beacon information.
-    private var fetchingData = true
+    fileprivate var fetchingData = true
     
     /// Beacon data to display in table. Each beacon is represented by a cell.
-    private var beacons = [WAYBeacon]()
+    fileprivate var beacons = [WAYBeacon]()
     
     /// Header for the `UITableView`.
-    private let headerView = BatteryLevelsHeaderView()
+    fileprivate let headerView = BatteryLevelsHeaderView()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -81,7 +95,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
     init(interface: BeaconInterface) {
         self.interface = interface
         
-        super.init(style: .Plain)
+        super.init(style: .plain)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -94,18 +108,18 @@ final class BatteryLevelsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(SubtitledDetailTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(SubtitledDetailTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = WAYConstants.WAYSizes.EstimatedCellHeight
         
-        headerView.segmentControl.addTarget(self, action: #selector(BatteryLevelsTableViewController.segmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
+        headerView.segmentControl.addTarget(self, action: #selector(BatteryLevelsTableViewController.segmentedControlValueChanged(_:)), for: .valueChanged)
         
         title = WAYStrings.CommonStrings.BatteryLevels
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         fetchingData = true
@@ -116,7 +130,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
         interface.getBeacons(completionHandler: { success, beacons, error in
             self.fetchingData = false
             
-            if let myBeacons = beacons where success {
+            if let myBeacons = beacons, success {
                 self.beacons = myBeacons
                 
                 let filterMode = BatteryLevelFilters.allValues[self.headerView.segmentControl.selectedSegmentIndex]
@@ -131,7 +145,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
         })
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         SVProgressHUD.dismiss()
@@ -140,16 +154,16 @@ final class BatteryLevelsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDatasource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchingData ? 0 : 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return beacons.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         if let myCell = cell as? SubtitledDetailTableViewCell {
             let beacon = beacons[indexPath.row]
@@ -158,7 +172,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
             
             let subtitleText: String
             if let lastUpdated = beacon.lastUpdated {
-                subtitleText = "\(WAYStrings.BatteryLevel.Updated): \(NSDateFormatter.localizedStringFromDate(lastUpdated, dateStyle: .MediumStyle, timeStyle: .ShortStyle))"
+                subtitleText = "\(WAYStrings.BatteryLevel.Updated): \(DateFormatter.localizedString(from: lastUpdated as Date, dateStyle: .medium, timeStyle: .short))"
             } else {
                 subtitleText = "\(WAYStrings.BatteryLevel.Updated): \(WAYStrings.CommonStrings.Unknown)"
             }
@@ -173,7 +187,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
             myCell.rightValueLabel.text = rightText
             myCell.rightValueLabel.textColor = WAYConstants.WAYColors.Maintainer
             
-            myCell.selectionStyle = .None
+            myCell.selectionStyle = .none
             
             myCell.setNeedsLayout()
         }
@@ -189,7 +203,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
     
     - parameter sender: `UISegmentedControl` whose value was changed.
     */
-    func segmentedControlValueChanged(sender: UISegmentedControl) {
+    func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         let filterMode = BatteryLevelFilters.allValues[sender.selectedSegmentIndex]
         
         sortBeacons(filterMode)
@@ -205,14 +219,14 @@ final class BatteryLevelsTableViewController: UITableViewController {
     
     - parameter sortMethod: Method to use for sorting.
     */
-    private func sortBeacons(sortMethod: BatteryLevelFilters) {
+    fileprivate func sortBeacons(_ sortMethod: BatteryLevelFilters) {
         switch sortMethod {
-        case .Battery:
-            beacons.sortInPlace {Int($0.batteryLevel ?? "-1")! < Int($1.batteryLevel ?? "-1")!}
-        case .Date:
-            beacons.sortInPlace {$0.lastUpdated?.timeIntervalSince1970 < $1.lastUpdated?.timeIntervalSince1970}
-        case .Minor:
-            beacons.sortInPlace {$0.minor < $1.minor}
+        case .battery:
+            beacons.sort {Int($0.batteryLevel ?? "-1")! < Int($1.batteryLevel ?? "-1")!}
+        case .date:
+            beacons.sort {$0.lastUpdated?.timeIntervalSince1970 < $1.lastUpdated?.timeIntervalSince1970}
+        case .minor:
+            beacons.sort {$0.minor < $1.minor}
         }
     }
     

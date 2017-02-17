@@ -25,6 +25,32 @@
 
 import UIKit
 import CoreLocation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+//https://github.com/wayfindrltd/wayfindr-demo-ios/issues/6
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+//https://github.com/wayfindrltd/wayfindr-demo-ios/issues/6
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 
 /// Displays instructions to the user based on the current route.
@@ -33,7 +59,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     
     // MARK: - Types
     
-    struct ForcePlaybackOptions: OptionSetType {
+    struct ForcePlaybackOptions: OptionSet {
         let rawValue: UInt
         
         static let None = ForcePlaybackOptions(rawValue:  1 << 1)
@@ -49,24 +75,24 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    private var interface: BeaconInterface
+    fileprivate var interface: BeaconInterface
     /// Model representation of entire venue.
-    private let venue: WAYVenue
+    fileprivate let venue: WAYVenue
     /// Engine for speech playback.
-    private let speechEngine: AudioEngine
+    fileprivate let speechEngine: AudioEngine
     
     /// Calculated route from current location to `destination`.
-    private var route: [WAYGraphEdge]
+    fileprivate var route: [WAYGraphEdge]
     /// Nodes along the calculated route from current location to `destination`.
-    private var routeNodes = [WAYGraphNode]()
+    fileprivate var routeNodes = [WAYGraphNode]()
     /// The nearest iBeacon, if one exists.
-    private var nearestBeacon: WAYBeacon
+    fileprivate var nearestBeacon: WAYBeacon
     
-    private var firstInstruction = true
+    fileprivate var firstInstruction = true
     
-    private var firstAppearance = true
+    fileprivate var firstAppearance = true
     
-    private var nextButton = UIBarButtonItem()
+    fileprivate var nextButton = UIBarButtonItem()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -81,9 +107,13 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIAccessibilityVoiceOverStatusChanged, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: WAYDeveloperSettings.DeveloperSettingsChangedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: WAYDeveloperSettings.DeveloperSettingsChangedNotification), object: nil)
     }
     
     
@@ -94,13 +124,13 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
 
         title = WAYStrings.ActiveRoute.ActiveRoute
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveRouteViewController.voiceOverStatusChanged), name: UIAccessibilityVoiceOverStatusChanged, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveRouteViewController.developerSettingsChanged), name: WAYDeveloperSettings.DeveloperSettingsChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ActiveRouteViewController.voiceOverStatusChanged), name: NSNotification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ActiveRouteViewController.developerSettingsChanged), name: NSNotification.Name(rawValue: WAYDeveloperSettings.DeveloperSettingsChangedNotification), object: nil)
         
-        nextButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(ActiveRouteViewController.nextButtonPressed(_:)))
+        nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(ActiveRouteViewController.nextButtonPressed(_:)))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if firstAppearance {
@@ -110,7 +140,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
         developerSettingsChanged()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         interface.delegate = self
@@ -124,7 +154,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         speechEngine.stopPlayback()
@@ -138,20 +168,20 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     override func setupView() {
         super.setupView()
         
-        underlyingView.repeatButton.addTarget(self, action: #selector(ActiveRouteViewController.repeatButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        underlyingView.repeatButton.addTarget(self, action: #selector(ActiveRouteViewController.repeatButtonPressed(_:)), for: .touchUpInside)
     }
     
     
     // MARK: - BeaconInterfaceDelegate
     
-    func beaconInterface(beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon]) {
+    func beaconInterface(_ beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon]) {
         let filteredSortedBeacons = beacons.filter({
             if let _ = $0.accuracy {
                 return true
             }
             
             return false
-        }).sort({
+        }).sorted(by: {
             $0.accuracy < $1.accuracy
         })
         
@@ -167,7 +197,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     /**
      Extracts the nodes from the `route` and copys them into `routeNodes`.
      */
-    private func extractNodesFromRoute() {
+    fileprivate func extractNodesFromRoute() {
         routeNodes.removeAll()
         
         guard !route.isEmpty else {
@@ -190,10 +220,10 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     /**
      Starts the user on the `route`.
      */
-    private func beginRoute() {
+    fileprivate func beginRoute() {
         guard !route.isEmpty else {
             underlyingView.textView.text = WAYStrings.ActiveRoute.UnableToRoute
-            underlyingView.repeatButton.hidden = true
+            underlyingView.repeatButton.isHidden = true
             return
         }
         
@@ -216,7 +246,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
      
      - parameter beacons: An array of `WAYBeacon` that shows all the nearest beacons. Array in order of nearest to farthest.
      */
-    private func continueRoute(beacons: [WAYBeacon]) {
+    fileprivate func continueRoute(_ beacons: [WAYBeacon]) {
         guard !route.isEmpty && !firstInstruction else {
             return
         }
@@ -230,8 +260,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
                 continue
             }
             
-            if let node = myGraph.getNode(major: beacon.major, minor: beacon.minor)
-                where beacon.accuracy < node.accuracy {
+            if let node = myGraph.getNode(major: beacon.major, minor: beacon.minor), beacon.accuracy < node.accuracy {
                     
                 let routeItem = route[0]
                 
@@ -243,7 +272,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
                     playNextInstruction()
                     
                     return
-                } else if let routeIndex = routeNodes.indexOf(node) {
+                } else if let routeIndex = routeNodes.index(of: node) {
                     // We've skipped a beacon (or a few) for some reason. Continue the route from this new point.
                     
                     skipToInstruction(routeIndex)
@@ -264,7 +293,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     
     - parameter forcePlayback: Option set to force playback of specific instructions immediately (e.g. the `middle` instruction). Default value is `None`.
      */
-    private func playNextInstruction(forcePlayback forcePlayback: ForcePlaybackOptions = .None) {
+    fileprivate func playNextInstruction(forcePlayback: ForcePlaybackOptions = .None) {
         if !firstInstruction {
             let routeItem = route[0]
             
@@ -324,13 +353,13 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
      
      - parameter index: Index of the next beacon in `routeNodes`.
      */
-    private func skipToInstruction(index: Int) {
+    fileprivate func skipToInstruction(_ index: Int) {
         guard index < route.count && index > 1 else {
             return
         }
         
-        route.removeRange(0 ..< index - 1)
-        routeNodes.removeRange(0 ..< index - 1)
+        route.removeSubrange(0 ..< index - 1)
+        routeNodes.removeSubrange(0 ..< index - 1)
         
         playNextInstruction()
     }
@@ -338,7 +367,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     
     // MARK: - Button Actions
     
-    func nextButtonPressed(sender: UIBarButtonItem) {
+    func nextButtonPressed(_ sender: UIBarButtonItem) {
         playNextInstruction()
     }
     
@@ -347,7 +376,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     
     - parameter sender: Button calling the action.
     */
-    func repeatButtonPressed(sender: UIButton) {
+    func repeatButtonPressed(_ sender: UIButton) {
         guard let myInstruction = speechEngine.currentInstruction else {
             return
         }
@@ -363,7 +392,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     */
     func voiceOverStatusChanged() {
         if !WAYDeveloperSettings.sharedInstance.showRepeatButton {
-            underlyingView.repeatButton.hidden = UIAccessibilityIsVoiceOverRunning()
+            underlyingView.repeatButton.isHidden = UIAccessibilityIsVoiceOverRunning()
         }
     }
     

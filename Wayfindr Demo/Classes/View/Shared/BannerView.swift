@@ -41,11 +41,11 @@ final class BannerView: BaseView {
         
         backgroundColor = WAYConstants.WAYColors.WayfindrMainColor
         
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+        textLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
         textLabel.numberOfLines = 0
-        textLabel.lineBreakMode = .ByWordWrapping
-        textLabel.textAlignment = .Center
-        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, forAxis: .Vertical)
+        textLabel.lineBreakMode = .byWordWrapping
+        textLabel.textAlignment = .center
+        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .vertical)
         textLabel.textColor = WAYConstants.WAYColors.NavigationText
         addSubview(textLabel)
     }
@@ -75,10 +75,10 @@ final class BannerView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-HalfMargin-[textLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[textLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-HalfMargin-[textLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[textLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

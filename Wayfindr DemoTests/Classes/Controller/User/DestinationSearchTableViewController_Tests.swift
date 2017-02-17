@@ -51,7 +51,7 @@ class DestinationSearchTableViewController_Tests : XCTestCase {
         
         viewController = DestinationSearchTableViewController(interface: mockInterface, venue: venue, speechEngine: speechEngine)
         
-        UIApplication.sharedApplication().keyWindow!.rootViewController = viewController
+        UIApplication.shared.keyWindow!.rootViewController = viewController
         
         // Test and Load the View at the Same Time!
         XCTAssertNotNil(viewController.view)
@@ -74,13 +74,13 @@ class DestinationSearchTableViewController_Tests : XCTestCase {
         let numberOfSections = viewController.tableView.numberOfSections
         
         for section in 0 ..< numberOfSections {
-            let numberOfCells = viewController.tableView.numberOfRowsInSection(section)
+            let numberOfCells = viewController.tableView.numberOfRows(inSection: section)
             
             for row in 0 ..< numberOfCells {
-                let indexPath = NSIndexPath(forRow: row, inSection: section)
+                let indexPath = IndexPath(row: row, section: section)
                 
                 // Test
-                let _ = viewController.tableView.cellForRowAtIndexPath(indexPath)
+                let _ = viewController.tableView.cellForRow(at: indexPath)
                 
                 XCTAssertTrue(true)
             }
