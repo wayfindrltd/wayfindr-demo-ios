@@ -27,9 +27,7 @@ To learn more, visit the [Wayfindr website](http://www.wayfindr.net).
 
 The following steps are required to run the project:
 
-Download the required dependencies using cocoapods 0.39.0:
-
-    $ pod install
+    $ Make
 
 You can then open the workspace file `Wayfindr Demo.xcworkspace`
 
