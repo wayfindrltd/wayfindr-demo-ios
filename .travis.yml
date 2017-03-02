@@ -1,0 +1,7 @@
+language: objective-c
+osx_image: xcode8.2
+
+install:
+  - make
+script:
+  - set -o pipefail && xcodebuild test -workspace Wayfindr\ Demo.xcworkspace -scheme Wayfindr\ Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
