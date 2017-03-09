@@ -100,7 +100,7 @@ struct WAYGraph: CustomStringConvertible {
         guard let count = xmlDocument.root[rootNodeName].all?.count, count > 0 else {
             throw WAYError.invalidGraph
         }
-        // TODO: @AL check defaultAccuracy is a double
+
         guard let defaultAccuracyNode = xmlDocument.root["key"].all(withAttributes: ["id" : "accuracy"])?.first,
             let value = defaultAccuracyNode["default"].first?.value, let defaultAccuracy = Double(value) else {
             
@@ -267,6 +267,39 @@ struct WAYGraph: CustomStringConvertible {
         }
         
         return route
+    }
+    
+    
+    // MARK: - Static functions
+    
+    /**
+     Check if the beacon is within range of the node using either accuracy or rssi. Otherwise return false.
+     
+     - parameter beacon: Nearest beacon in route.
+     - parameter node: The node connected to the beacon.
+     - parameter isUsingRssi: Set to true if you are using rssi. False will use accuracy 
+     
+     - returns: true if the beacon is within range of the nodes accuracy or rssi. Otherwise return false.
+    */
+    static func beacon(beacon: WAYBeacon, isWithinRangeOf node: WAYGraphNode, isUsingRssi: Bool) -> Bool {
+        
+        if isUsingRssi {
+            
+            guard let beaconRssi = beacon.rssi else {
+                
+                return false
+            }
+            
+            return beaconRssi > node.rssi
+        } else {
+            
+            guard let beaconAccuracy = beacon.accuracy else {
+                
+                return false
+            }
+            
+            return beaconAccuracy < node.accuracy
+        }
     }
     
 }

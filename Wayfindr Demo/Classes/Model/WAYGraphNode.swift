@@ -44,10 +44,16 @@ struct WAYGraphNodeType: OptionSet, CustomStringConvertible {
     static let Stairs = WAYGraphNodeType(rawValue: 1 << 8)
     static let Platform = WAYGraphNodeType(rawValue: 1 << 9)
     static let TicketBarrier = WAYGraphNodeType(rawValue: 1 << 10)
+    static let TicketMachine = WAYGraphNodeType(rawValue: 1 << 11)
+    static let ATM = WAYGraphNodeType(rawValue: 1 << 12)
+    static let TaxiRank = WAYGraphNodeType(rawValue: 1 << 13)
+    static let Shop = WAYGraphNodeType(rawValue: 1 << 14)
+    static let StreetCrossing = WAYGraphNodeType(rawValue: 1 << 15)
+    static let BusStop = WAYGraphNodeType(rawValue: 1 << 16)
 
     /// Plain text description of the current state of the option set.
     var description: String {
-        let strings = ["None", "Entrance", "Exit", "Lift", "Escalator", "MensToilet", "WomensToilet", "Stairs", "Platform", "TicketBarrier"]
+        let strings = ["None", "Entrance", "Exit", "Lift", "Escalator", "MensToilet", "WomensToilet", "Stairs", "Platform", "TicketBarrier", "TicketMachine", "ATM", "TaxiRank", "Shop", "StreetCrossing", "BusStop"]
         var members = [String]()
         
         for (flag, string) in strings.enumerated() where contains(WAYGraphNodeType(rawValue: 1 << (UInt(flag) + 1))) {
@@ -64,7 +70,7 @@ struct WAYGraphNodeType: OptionSet, CustomStringConvertible {
         return result
     }
     
-    static let allValues: WAYGraphNodeType = [.None, .Entrance, .Exit, .Lift, .Escalator, .MensToilet, .WomensToilet, .Stairs]
+    static let allValues: WAYGraphNodeType = [.None, .Entrance, .Exit, .Lift, .Escalator, .MensToilet, .WomensToilet, .Stairs, .Platform, .TicketBarrier]
     
 }
 
@@ -88,6 +94,9 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
     let nodeType: WAYGraphNodeType
     /// The minimum CLBeacon accuracy level required to activate the node.
     let accuracy: Double
+    /// The minimum CLBeacon rssi level required to activate the node.
+    let rssi: Int
+    
     
     /**
      *  Attributes for the `node` GraphML element.
@@ -102,13 +111,14 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
      Keys for the data in the `node` GraphML element.
      */
     enum WAYGraphNodeKeys: String {
-        case Major      = "major"
-        case Minor      = "minor"
-        case Name       = "name"
-        case NodeType   = "waypoint_type"
-        case Accuracy   = "accuracy"
+        case Major                  = "major"
+        case Minor                  = "minor"
+        case Name                   = "name"
+        case NodeType               = "waypoint_type"
+        case Accuracy               = "accuracy"
+        case Rssi                   = "rssi"
         
-        static let allValues = [Major, Minor, Name, NodeType, Accuracy]
+        static let allValues = [Major, Minor, Name, NodeType, Accuracy, Rssi]
     }
     
     /// Plain text description of the node.
@@ -143,6 +153,7 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
         var tempName: String?
         var tempNodeType = WAYGraphNodeType.None
         var tempAccuracy: Double?
+        var tempRssi: Int?
         
         // Retrieve the ID
         guard let myID = xmlElement.attributes[WAYGraphNodeAttributes.identifier] else {
@@ -176,7 +187,11 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
                             }
                         }
                     case .Accuracy:
+
                         tempAccuracy = dataItem.double
+                    case .Rssi:
+                        
+                        tempRssi = dataItem.int
                     }
             }
             
@@ -196,6 +211,7 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
         name = myName
         nodeType = tempNodeType
         accuracy = tempAccuracy ?? defaultAccuracy
+        rssi = tempRssi ?? -1000
     }
     
     fileprivate static func stringToNodeType(_ value: String) -> WAYGraphNodeType? {
@@ -220,8 +236,41 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
             return .Platform
         case "TicketBarrier":
             return .TicketBarrier
+        case "TicketMachine":
+            return .TicketMachine
+        case "ATM":
+            return .ATM
+        case "TaxiRank":
+            return .TaxiRank
+        case "Shop":
+            return .Shop
+        case "StreetCrossing":
+            return .StreetCrossing
+        case "BusStop":
+            return .BusStop
         default:
             return nil
+        }
+    }
+    
+    func isNext(in route: [WAYGraphEdge], from fromNode: WAYGraphNode) -> Bool {
+        
+        guard let fromIndex = route.index(where: { $0.sourceID == fromNode.identifier }) else {
+            
+            return false
+        }
+        
+        let toIndex = fromIndex+1
+        
+        if route.indices.contains(toIndex) {
+            
+            return self.identifier == route[toIndex].sourceID
+            
+        } else {
+            
+            let nextToLastEdge = route[fromIndex]
+            
+            return self.identifier == route.last?.targetID && fromNode.identifier == nextToLastEdge.sourceID
         }
     }
     

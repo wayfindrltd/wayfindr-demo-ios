@@ -8,6 +8,7 @@ target 'Wayfindr Demo' do
   pod 'SwiftGraph', '~> 1.2.0'
   pod 'SwiftyJSON', '~> 3.1.4'
   pod 'SVProgressHUD', '~> 2.1.2'
+  pod 'BlueCatsSDK', :git => 'https://github.com/bluecats/bluecats-ios-sdk.git'
 end
 
 target 'Wayfindr DemoTests' do
@@ -15,6 +16,7 @@ target 'Wayfindr DemoTests' do
   pod 'SwiftyJSON', '~> 3.1.4'
   pod 'SwiftGraph', '~> 1.2.0'
   pod 'OHHTTPStubs', '~> 4.6'
+  pod 'BlueCatsSDK', :git => 'https://github.com/bluecats/bluecats-ios-sdk.git'
 end
 
 post_install do | installer |

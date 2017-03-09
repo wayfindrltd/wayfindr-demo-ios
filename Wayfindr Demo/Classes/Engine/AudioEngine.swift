@@ -33,7 +33,7 @@ final class AudioEngine: NSObject {
     
     // MARK: - Properties
     
-    fileprivate let audioSession = AVAudioSession()
+    fileprivate let audioSession = AVAudioSession.sharedInstance()
     
     /// Font to use for displaying instructions.
     fileprivate let instructionFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
@@ -164,8 +164,12 @@ final class AudioEngine: NSObject {
         
         // Save instruction for later
         currentInstruction = instruction
+        
+        if WAYConstants.WAYSettings.audioFlashEnabled {
+            
+            showInstructionOverlay(delay: 0)
+        }
     }
-    
     
     // MARK: - Timer
     
@@ -180,6 +184,22 @@ final class AudioEngine: NSObject {
         playInstruction(myUpcomingInstruction)
     }
     
+    private func showInstructionOverlay(delay: TimeInterval) {
+        
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = UIColor.red
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            
+            UIApplication.shared.keyWindow?.addSubview(view)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay + 1.0) {
+            
+            view.removeFromSuperview()
+        }
+    }
 }
 
 

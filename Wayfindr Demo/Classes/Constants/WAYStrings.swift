@@ -158,17 +158,14 @@ struct WAYStrings {
         static let Calculating      = NSLocalizedString("Calculating Route", comment: "")
         static let Repeat           = NSLocalizedString("Repeat", comment: "")
         static let UnableToRoute    = NSLocalizedString("Unable to Find Route", comment: "")
+        static let FirstInstructionPrefix = NSLocalizedString("For your destination", comment: "")
+        static let FirstInstructionPrefixFormat = NSLocalizedString("%@:\n", comment: "")
     }
     
     struct DirectionsPreview {
         static let BeginRoute       = NSLocalizedString("Begin Route", comment: "")
         static let SkipWord         = NSLocalizedString("Skip", comment: "")
         static let Title            = NSLocalizedString("Preview", comment: "")
-    }
-    
-    struct ExitSearch {
-        static let ExitSearch           = NSLocalizedString("Exit Search", comment: "")
-        static let SearchPlaceholder    = NSLocalizedString("Search exits", comment: "")
     }
     
     struct RouteCalculation {
@@ -180,14 +177,26 @@ struct WAYStrings {
         static let Yes                  = NSLocalizedString("Yes", comment: "")
     }
     
-    struct DestinationSearch {
-        static let DestinationSearch        = NSLocalizedString("Destination Search", comment: "")
-        static let SearchPlaceholder    = NSLocalizedString("Search destinations", comment: "")
-    }
-    
     struct UserActionSelection {
-        static let CatchTrain       = NSLocalizedString("Catch Train", comment: "")
-        static let ExitVenue      = NSLocalizedString("Exit This Venue", comment: "")
+        static let SelectDestination 		= NSLocalizedString("Select a destination point below", comment: "")
+        static let TrainPlatforms           = NSLocalizedString("Train platforms", comment: "")
+        static let StationExits             = NSLocalizedString("Station exits", comment: "")
+        static let StationFacilities        = NSLocalizedString("Station facilities", comment: "")
+    }
+
+    struct DestinationSearch {
+        static let TrainPlatformSearch          = NSLocalizedString("Train Platform Search", comment: "")
+        static let SearchPlatformPlaceholder    = NSLocalizedString("Search platforms", comment: "")
+    }
+
+    struct ExitSearch {
+        static let ExitSearch           = NSLocalizedString("Station Exit Search", comment: "")
+        static let SearchPlaceholder    = NSLocalizedString("Search exits", comment: "")
+    }
+
+    struct StationFacilitySearch {
+        static let StationFacilitySearch = NSLocalizedString("Station Facility Search", comment: "")
+        static let SearchPlaceholder     = NSLocalizedString("Search facilities", comment: "")
     }
     
     struct WarningView {

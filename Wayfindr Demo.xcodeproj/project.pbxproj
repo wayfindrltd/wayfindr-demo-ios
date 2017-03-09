@@ -115,7 +115,14 @@
 		00FF76851BF9D38B007215B4 /* ActiveRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FF76841BF9D38B007215B4 /* ActiveRouteView.swift */; };
 		435C640F885CD28B00169299 /* Pods_Wayfindr_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */; };
 		69455B6DA7D34EE81D28296C /* Pods_Wayfindr_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D58745AAAF741C9E71F5E9C /* Pods_Wayfindr_DemoTests.framework */; };
+		77F23A271E702372007EAF9C /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F23A261E702372007EAF9C /* Stopwatch.swift */; };
+		7E2026641D38685C00476EB2 /* BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2026621D38685C00476EB2 /* BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift */; };
+		7E2026651D38685C00476EB2 /* BlueCatsIBeaconInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2026631D38685C00476EB2 /* BlueCatsIBeaconInterface.swift */; };
+		7E20266A1D38BC8500476EB2 /* WAYTransportDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2026691D38BC8500476EB2 /* WAYTransportDestination.swift */; };
 		7EB62E311CBD2B2200E16472 /* triPing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EB62E301CBD2B2200E16472 /* triPing.mp3 */; };
+		810881C51D40667E00BD2CB0 /* WAYFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810881C41D40667E00BD2CB0 /* WAYFacility.swift */; };
+		810881C71D406CD000BD2CB0 /* FacilitySearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810881C61D406CD000BD2CB0 /* FacilitySearchTableViewController.swift */; };
+		8128EAB11D44600700828252 /* UserActionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128EAB01D44600700828252 /* UserActionTableHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,7 +251,14 @@
 		29E4C7B92ECD8ECE8015317A /* Pods-Wayfindr Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo.release.xcconfig"; sourceTree = "<group>"; };
 		3D58745AAAF741C9E71F5E9C /* Pods_Wayfindr_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56393D20E05B9D6AC56358B5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77F23A261E702372007EAF9C /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		7E2026621D38685C00476EB2 /* BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift"; path = "Wayfindr Demo/Classes/Interface/Beacon/BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		7E2026631D38685C00476EB2 /* BlueCatsIBeaconInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlueCatsIBeaconInterface.swift; path = "Wayfindr Demo/Classes/Interface/Beacon/BlueCatsIBeaconInterface.swift"; sourceTree = SOURCE_ROOT; };
+		7E2026691D38BC8500476EB2 /* WAYTransportDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAYTransportDestination.swift; sourceTree = "<group>"; };
 		7EB62E301CBD2B2200E16472 /* triPing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = triPing.mp3; sourceTree = "<group>"; };
+		810881C41D40667E00BD2CB0 /* WAYFacility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAYFacility.swift; sourceTree = "<group>"; };
+		810881C61D406CD000BD2CB0 /* FacilitySearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilitySearchTableViewController.swift; sourceTree = "<group>"; };
+		8128EAB01D44600700828252 /* UserActionTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionTableHeaderView.swift; sourceTree = "<group>"; };
 		941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D414CA3DEDD7EF543468350E /* Pods-Wayfindr Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -434,6 +448,8 @@
 				00BDEC871C21ACD000FDFB6E /* BeaconInterfaceAPIError.swift */,
 				00687E4D1C1AAD160050E86E /* BeaconInterfaceDelegate.swift */,
 				008DE33B1C294F100025F4A6 /* BeaconInterfaceState.swift */,
+				7E2026621D38685C00476EB2 /* BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift */,
+				7E2026631D38685C00476EB2 /* BlueCatsIBeaconInterface.swift */,
 			);
 			path = Beacon;
 			sourceTree = "<group>";
@@ -489,6 +505,7 @@
 				00736BC91BF4AF53004A07FF /* ExitSearchTableViewController.swift */,
 				00D778AF1BFC5E590007258F /* RouteCalculationViewController.swift */,
 				00AB4A8C1BF3741B0030EA38 /* DestinationSearchTableViewController.swift */,
+				810881C61D406CD000BD2CB0 /* FacilitySearchTableViewController.swift */,
 				006EA51D1BF3609C00BE1B37 /* UserActionTableViewController.swift */,
 			);
 			path = User;
@@ -510,6 +527,7 @@
 				00FF76841BF9D38B007215B4 /* ActiveRouteView.swift */,
 				00736BC51BF49975004A07FF /* DirectionsPreviewView.swift */,
 				00D778B11BFC5E850007258F /* RouteCalculationView.swift */,
+				8128EAB01D44600700828252 /* UserActionTableHeaderView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -629,6 +647,7 @@
 		00DAE70C1BF2102A003C679E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				77F23A251E70233D007EAF9C /* Stopwatch */,
 				7E13B9FC1CBE4CF400934E16 /* Example Implementation */,
 				00570E081C0D818C0006F757 /* Interface */,
 				00570E111C0D85190006F757 /* WAYBeacon.swift */,
@@ -641,7 +660,9 @@
 				00DAE7161BF211F9003C679E /* WAYGraphNode.swift */,
 				00DAE7171BF211F9003C679E /* WAYInstructionSet.swift */,
 				00C2CAFD1BF384B600BF15AF /* WAYPlatform.swift */,
+				810881C41D40667E00BD2CB0 /* WAYFacility.swift */,
 				00C2CAFF1BF3855600BF15AF /* WAYVenue.swift */,
+				7E2026691D38BC8500476EB2 /* WAYTransportDestination.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -738,6 +759,14 @@
 				29E4C7B92ECD8ECE8015317A /* Pods-Wayfindr Demo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		77F23A251E70233D007EAF9C /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				77F23A261E702372007EAF9C /* Stopwatch.swift */,
+			);
+			name = Stopwatch;
 			sourceTree = "<group>";
 		};
 		7E13B9FC1CBE4CF400934E16 /* Example Implementation */ = {
@@ -976,6 +1005,7 @@
 				00570E0E1C0D820D0006F757 /* WAYStrings.swift in Sources */,
 				003B66081BF5D03E00551B3A /* BaseViewController.swift in Sources */,
 				00C2CAFE1BF384B600BF15AF /* WAYPlatform.swift in Sources */,
+				77F23A271E702372007EAF9C /* Stopwatch.swift in Sources */,
 				006EA51B1BF3609600BE1B37 /* MaintainerActionSelectionTableView.swift in Sources */,
 				00C2CB001BF3855600BF15AF /* WAYVenue.swift in Sources */,
 				00570E121C0D85190006F757 /* WAYBeacon.swift in Sources */,
@@ -995,6 +1025,7 @@
 				00D778B21BFC5E850007258F /* RouteCalculationView.swift in Sources */,
 				009805A01C0C3368009F1981 /* SwitchTableViewCell.swift in Sources */,
 				00FE28161C2022CE003B9162 /* BeaconsInRangeSearchTableViewController.swift in Sources */,
+				8128EAB11D44600700828252 /* UserActionTableHeaderView.swift in Sources */,
 				00C7E4C41C197A5D00E6B7A4 /* LabeledSwitch.swift in Sources */,
 				00EC11C61C27E39700619EEE /* MissingKeyRoutesTableViewController.swift in Sources */,
 				006EA5201BF3717600BE1B37 /* UITabBar+SizeAdjustment.swift in Sources */,
@@ -1003,6 +1034,7 @@
 				00AB4A8D1BF3741B0030EA38 /* DestinationSearchTableViewController.swift in Sources */,
 				00D778B41BFC9D620007258F /* SwiftGraph+Additions.swift in Sources */,
 				002BFF1B1C1EE5CF006B98F9 /* AudioEngine.swift in Sources */,
+				7E2026641D38685C00476EB2 /* BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift in Sources */,
 				00C441851C45111900C4F7E5 /* DemoVenueInterface.swift in Sources */,
 				006EA51E1BF3609C00BE1B37 /* UserActionTableViewController.swift in Sources */,
 				009805A21C0C3762009F1981 /* WAYDeveloperSettings.swift in Sources */,
@@ -1018,12 +1050,15 @@
 				00736BC81BF4AC2F004A07FF /* WAYExit.swift in Sources */,
 				00C2A84E1BFB2ACC00DBB75B /* BorderedButton.swift in Sources */,
 				00687E521C1AAD4C0050E86E /* VenueInterface.swift in Sources */,
+				810881C71D406CD000BD2CB0 /* FacilitySearchTableViewController.swift in Sources */,
 				00736BE61BF4C590004A07FF /* UIView+Borders.swift in Sources */,
 				00EC11C51C27E39700619EEE /* KeyRoutePathsTableViewController.swift in Sources */,
+				7E20266A1D38BC8500476EB2 /* WAYTransportDestination.swift in Sources */,
 				00FE28181C202879003B9162 /* BeaconsInRangeModeViewController.swift in Sources */,
 				00FF76831BF9D371007215B4 /* ActiveRouteViewController.swift in Sources */,
 				00EC11CD1C27E44A00619EEE /* DeveloperActionSelectionTableViewController.swift in Sources */,
 				00EC11C41C27E39700619EEE /* KeyRoutePathsDetailViewController.swift in Sources */,
+				7E2026651D38685C00476EB2 /* BlueCatsIBeaconInterface.swift in Sources */,
 				00736BCA1BF4AF53004A07FF /* ExitSearchTableViewController.swift in Sources */,
 				006EA5101BF3608E00BE1B37 /* ModeSelectionTabBarController.swift in Sources */,
 				006EA5021BF3393700BE1B37 /* UIImage+AssetIdentifier.swift in Sources */,
@@ -1037,6 +1072,7 @@
 				00570E0D1C0D820D0006F757 /* WAYConstants.swift in Sources */,
 				00FE281A1C2028B0003B9162 /* BeaconsInRangeModeView.swift in Sources */,
 				00CE72381C184F230007AF28 /* SubtitledDetailTableViewCell.swift in Sources */,
+				810881C51D40667E00BD2CB0 /* WAYFacility.swift in Sources */,
 				00EC11CB1C27E40500619EEE /* KeyRoutePathsDetailView.swift in Sources */,
 				00EC11C31C27E39700619EEE /* GraphValidationViewController.swift in Sources */,
 				00FF76851BF9D38B007215B4 /* ActiveRouteView.swift in Sources */,

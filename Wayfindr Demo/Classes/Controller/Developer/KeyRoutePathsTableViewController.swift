@@ -57,7 +57,10 @@ struct KeyRouteData {
 
 /// Table view for displaying information about available key routes (i.e. those between platforms and exits).
 final class KeyRoutePathsTableViewController: UITableViewController {
-    
+
+    typealias KeyRoutesFrom = (name: String, routes: [KeyRoutesDestination])
+    typealias KeyRoutesDestination = (name: String, routes: [KeyRouteData])
+
     
     // MARK: - Properties
     
@@ -68,10 +71,18 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     fileprivate let venue: WAYVenue
     
     /// Whether the controller is still computing missing routes.
-    fileprivate var parsingData = true
+
+    fileprivate var parsingData = true {
+        didSet {
+            updateProgress()
+        }
+    }
+    
+    /// Table segmented control to filter the key routes
+    private var segmentedControl = UISegmentedControl()
     
     /// Array of all the currently available routes.
-    fileprivate var keyRoutes = [KeyRouteData]()
+    fileprivate var keyRoutes = [KeyRoutesFrom]()
     
     
     // MARK: - Intiailizers / Deinitializers
@@ -92,12 +103,94 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        updateProgress()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SVProgressHUD.dismiss()
+        parsingData = false
+    }
+
+
+    // MARK: - Private helper methods
+
+    private func updateProgress() {
+        if parsingData {
+            SVProgressHUD.show()
+        } else {
+            SVProgressHUD.dismiss()
+        }
+    }
+
+
+    @objc private func reloadTable() {
+        tableView.reloadData()
+    }
+
+
+    private func reloadSegmentControl() {
+        segmentedControl.removeAllSegments()
+
+        for keyRouteFrom in keyRoutes {
+            segmentedControl.insertSegment(withTitle: keyRouteFrom.name, at: segmentedControl.numberOfSegments, animated: false)
+        }
+
+        segmentedControl.selectedSegmentIndex = 0
+    }
+
+
+    // MARK: - Setup
+
+    private func setup() {
+        setupSegmentedControl()
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
+
         title = WAYStrings.KeyRoutePaths.KeyPaths
-        
+
+        setupRoutes()
+    }
+
+    private func setupSegmentedControl() {
+        let segmentedControlView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        segmentedControlView.addSubview(segmentedControl)
+
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.tintColor = WAYConstants.WAYColors.Developer
+        segmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 9)], for: .normal)
+        segmentedControl.addTarget(self, action: #selector(reloadTable), for: .valueChanged)
+
+        let top = segmentedControl.topAnchor.constraint(equalTo: segmentedControlView.topAnchor)
+        top.isActive = true
+        top.constant = 5
+
+        let bottom = segmentedControl.bottomAnchor.constraint(equalTo: segmentedControlView.bottomAnchor)
+        bottom.isActive = true
+        bottom.constant = -5
+
+        let leading = segmentedControl.leadingAnchor.constraint(equalTo: segmentedControlView.leadingAnchor)
+        leading.isActive = true
+        leading.constant = 5
+
+        let trailing = segmentedControl.trailingAnchor.constraint(equalTo: segmentedControlView.trailingAnchor)
+        trailing.isActive = true
+        trailing.constant = -5
+
+        tableView.tableHeaderView = segmentedControlView
+    }
+
+    private func setupRoutes() {
+        parsingData = true
         SVProgressHUD.show()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
             self?.determineKeyRoutes()
@@ -105,13 +198,10 @@ final class KeyRoutePathsTableViewController: UITableViewController {
             
             DispatchQueue.main.async(execute: {
                 SVProgressHUD.dismiss()
+                self?.reloadSegmentControl()
                 self?.tableView.reloadData()
             })
         })
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        SVProgressHUD.dismiss()
     }
     
     
@@ -120,93 +210,85 @@ final class KeyRoutePathsTableViewController: UITableViewController {
     /**
      Calculates all the missing key routes (those between platforms and exits) and adds them to the  `missingRoutes` array.
      */
-    fileprivate func determineKeyRoutes() {
+
+    private func determineKeyRoutes() {
+        keyRoutes.append(determineKeyRoutesFrom(destinations: venue.platforms, withName: "Platform"))
+        keyRoutes.append(determineKeyRoutesFrom(destinations: venue.exits, withName: "Entrance"))
+        keyRoutes.append(determineKeyRoutesFrom(destinations: venue.stationFacilities, withName: "Station Facility"))
+    }
+
+    private func determineKeyRoutesFrom<T: WAYDestination>(destinations: [T], withName name: String) -> KeyRoutesFrom {
+        var keyRoutesDestinations = [KeyRoutesDestination]()
+
+        var toPlatformRoutes = KeyRoutesDestination(name: "Platform", routes: [KeyRouteData]())
+        var toExitRoutes = KeyRoutesDestination(name: "Exit", routes: [KeyRouteData]())
+        var toStationFacilityRoutes = KeyRoutesDestination(name: "Station Facility", routes: [KeyRouteData]())
+
+
+        for destination in destinations {
+            toPlatformRoutes.routes.append(contentsOf: determineKeyRoutesFrom(destination: destination, withName: name, toDestinations: venue.platforms, withName: toPlatformRoutes.name))
+            toExitRoutes.routes.append(contentsOf: determineKeyRoutesFrom(destination: destination, withName: name, toDestinations: venue.exits, withName: toExitRoutes.name))
+            toStationFacilityRoutes.routes.append(contentsOf: determineKeyRoutesFrom(destination: destination, withName: name, toDestinations: venue.stationFacilities, withName: toStationFacilityRoutes.name))
+        }
+
+        keyRoutesDestinations.append(toPlatformRoutes)
+        keyRoutesDestinations.append(toExitRoutes)
+        keyRoutesDestinations.append(toStationFacilityRoutes)
+
+        return KeyRoutesFrom(name: name, routes: keyRoutesDestinations)
+    }
+
+    private func determineKeyRoutesFrom<T: WAYDestination, W: WAYDestination>(destination: T, withName fromName: String, toDestinations destinations: [W], withName toName: String) -> [KeyRouteData] {
+
         let venueGraph = venue.destinationGraph
-        
-        // Routes starting at a platform
-        for startPlatform in venue.platforms {
-            let startNode = startPlatform.exitNode
-            
-            for platform in venue.platforms {
-                if startPlatform.name == platform.name { continue }
-                
-                let destinationNode = platform.entranceNode
-                
-                if venueGraph.canRoute(startNode, toNode: destinationNode) {
-                    if let route = venue.destinationGraph.shortestRoute(startNode, toNode: destinationNode) {
-                        let routeName = "Platform \(startPlatform.name) to Platform \(platform.name)"
-                        
-                        let keyRoute = KeyRouteData(name: routeName, route: route)
-                        keyRoutes.append(keyRoute)
-                    }
+        let startNode = destination.exitNode
+
+        var routes = [KeyRouteData]()
+
+        for toDestination in destinations {
+            if destination.name == toDestination.name { continue }
+
+            let destinationNode = toDestination.entranceNode
+
+            if venueGraph.canRoute(startNode, toNode: destinationNode) {
+                if let route = venue.destinationGraph.shortestRoute(startNode, toNode: destinationNode) {
+                    let routeName = "\(fromName) \(destination.name) to \(toName) \(toDestination.name)"
+
+                    let keyRoute = KeyRouteData(name: routeName, route: route)
+                    routes.append(keyRoute)
                 }
-            } // Next platform
-            
-            for exit in venue.exits {
-                let destinationNode = exit.entranceNode
-                
-                if venueGraph.canRoute(startNode, toNode: destinationNode) {
-                    if let route = venue.destinationGraph.shortestRoute(startNode, toNode: destinationNode) {
-                        let routeName = "Platform \(startPlatform.name) to Exit \(exit.name)"
-                        
-                        let keyRoute = KeyRouteData(name: routeName, route: route)
-                        keyRoutes.append(keyRoute)
-                    }
-                }
-            } // Next exit
-            
-        } // Next startPlatform
-        
-        // Routes starting at an exit
-        for startExit in venue.exits {
-            let startNode = startExit.exitNode
-            
-            for platform in venue.platforms {
-                let destinationNode = platform.entranceNode
-                
-                if venueGraph.canRoute(startNode, toNode: destinationNode) {
-                    if let route = venue.destinationGraph.shortestRoute(startNode, toNode: destinationNode) {
-                        let routeName = "Entrance \(startExit.name) to Platform \(platform.name)"
-                        
-                        let keyRoute = KeyRouteData(name: routeName, route: route)
-                        keyRoutes.append(keyRoute)
-                    }
-                }
-            } // Next platform
-            
-            for exit in venue.exits {
-                if startExit.name == exit.name { continue }
-                
-                let destinationNode = exit.entranceNode
-                
-                if venueGraph.canRoute(startNode, toNode: destinationNode) {
-                    if let route = venue.destinationGraph.shortestRoute(startNode, toNode: destinationNode) {
-                        let routeName = "Entrance \(startExit.name) to Exit \(exit.name)"
-                        
-                        let keyRoute = KeyRouteData(name: routeName, route: route)
-                        keyRoutes.append(keyRoute)
-                    }
-                }
-            } // Next exit
-            
-        } // Next startExit
+            }
+        }
+
+        return routes
     }
     
     
     // MARK: - UITableViewDatasource
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return parsingData ? 0 : 1
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        let routes = parsingData ? [] : keyRoutes[segmentedControl.selectedSegmentIndex].routes
+
+        return routes.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return keyRoutes.count
+        
+        guard segmentedControl.selectedSegmentIndex != -1 else {
+            return 0
+        }
+        let routes = keyRoutes[segmentedControl.selectedSegmentIndex].routes[section].routes
+
+        return routes.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        
-        let routeData = keyRoutes[indexPath.row]
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath as IndexPath)
+
+        let routes = keyRoutes[segmentedControl.selectedSegmentIndex].routes
+        let routeData = routes[indexPath.section].routes[indexPath.row]
+
         
         cell.textLabel?.text = routeData.name + " (\(routeData.travelTime)s)"
         cell.textLabel?.numberOfLines = 0
@@ -216,12 +298,20 @@ final class KeyRoutePathsTableViewController: UITableViewController {
         
         return cell
     }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let from = keyRoutes[segmentedControl.selectedSegmentIndex]
+        let routes = from.routes[section]
+
+        return "from \(from.name) to \(routes.name)"
+    }
     
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let routeData = keyRoutes[indexPath.row]
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let routes = keyRoutes[segmentedControl.selectedSegmentIndex].routes
+        let routeData = routes[indexPath.section].routes[indexPath.row]
         
         let viewController = KeyRoutePathsDetailViewController(routeData: routeData)
         

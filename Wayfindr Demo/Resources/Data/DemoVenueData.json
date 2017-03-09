@@ -1,35 +1,38 @@
 {
-	"venue": {
-		"name": "ExampleVenue",
-		"platforms": [{
-			"name": "1",
-			"entrance_beacon_major": 1,
-			"entrance_beacon_minor": 5,
-			"exit_beacon_major": 1,
-			"exit_beacon_minor": 5,
-			"destinations": ["Destination Name A"]
-		}, {
-			"name": "2",
-			"entrance_beacon_major": 1,
-			"entrance_beacon_minor": 8,
-			"exit_beacon_major": 1,
-			"exit_beacon_minor": 8,
-			"destinations": ["Destination Name B"]
-		}],
-		"exits": [{
-			"name": "High Street",
-			"entrance_beacon_major": 1,
-			"entrance_beacon_minor": 1,
-			"exit_beacon_major": 1,
-			"exit_beacon_minor": 1,
-			"mode": "Lift"
-		}, {
-			"name": "East Avenue",
-			"entrance_beacon_major": 1,
-			"entrance_beacon_minor": 6,
-			"exit_beacon_major": 1,
-			"exit_beacon_minor": 6,
-			"mode": "Escalator"
-		}]
-	}
+    "venue": {
+        "name": "Example venue",
+        "platforms": [{
+                      "name": "Platform",
+                      "entrance_beacon_major": 4,
+                      "entrance_beacon_minor": 9800,
+                      "exit_beacon_major": 4,
+                      "exit_beacon_minor": 9800,
+                      "destinations": ["Platform"]
+                      }],
+        "exits": [{
+                  "name": "1",
+                  "entrance_beacon_major": 4,
+                  "entrance_beacon_minor": 6866,
+                  "exit_beacon_major": 4,
+                  "exit_beacon_minor": 6866,
+                  "mode": "Main"
+                  }],
+        "station_facilities": [
+                               {
+                               "name": "Seating",
+                               "entrance_beacon_major": 4,
+                               "entrance_beacon_minor": 6631,
+                               "exit_beacon_major": 4,
+                               "exit_beacon_minor": 6631
+                               },
+                               {
+                               "name": "Information point",
+                               "entrance_beacon_major": 4,
+                               "entrance_beacon_minor": 6619,
+                               "exit_beacon_major": 4,
+                               "exit_beacon_minor": 6619
+                               }
+        ]
+    }
 }
+

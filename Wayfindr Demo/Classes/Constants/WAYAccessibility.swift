@@ -81,8 +81,10 @@ struct WAYAccessibilityIdentifier {
     }
     
     struct UserActionSelection {
-        static let CatchTrainCell   = "CatchTrain_Cell"
-        static let ExitVenueCell  = "ExitVenue_Cell"
+        static let SelectDestinationLabel = "SelectDestination_Label"
+        static let TrainPlatformsCell     = "TrainPlatforms_Cell"
+        static let StationExitsCell       = "StationExits_Cell"
+        static let StationFacilitiesCell  = "StationFacilities_Cell"
     }
     
 }

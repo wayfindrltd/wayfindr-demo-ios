@@ -35,7 +35,10 @@ enum WAYError: Error, Equatable, CustomStringConvertible {
     case invalidGraphNode
     case invalidInstructionSet
     case invalidPlatform
+    case invalidFacility
+    case invalidStationFacility
     case invalidVenue
+
     
     var description: String {
         switch self {
@@ -53,6 +56,10 @@ enum WAYError: Error, Equatable, CustomStringConvertible {
             return "Invalid Instruction Set"
         case .invalidPlatform:
             return "Invalid Platform"
+        case .invalidFacility:
+            return "Invalid Facility"
+        case .invalidStationFacility:
+            return "Invalid Station Facility"
         case .invalidVenue:
             return "Invalid Venue"
         }

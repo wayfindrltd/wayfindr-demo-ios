@@ -63,7 +63,6 @@ struct WAYBeacon: Equatable {
     /// Relative indicator of transmission power level.
     let txPower: String?
     
-    
     // MARK: - Initializers
     
     /**

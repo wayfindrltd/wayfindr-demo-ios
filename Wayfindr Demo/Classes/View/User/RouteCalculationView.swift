@@ -46,6 +46,8 @@ final class RouteCalculationView: BaseView {
             optionsStackView.isHidden = calculating
             
             calculating ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil)
         }
     }
     
@@ -54,8 +56,8 @@ final class RouteCalculationView: BaseView {
     
     override func setup() {
         super.setup()
-        
-        
+
+
         // Calculating
         
         setupStackView(calculatingStackView)
@@ -81,9 +83,11 @@ final class RouteCalculationView: BaseView {
         
         instructionsLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         instructionsLabel.text = WAYStrings.RouteCalculation.InstructionsQuestion
+        instructionsLabel.accessibilityTraits = UIAccessibilityTraitStaticText
         instructionsLabel.textAlignment = .center
         instructionsLabel.isEditable = false
         instructionsLabel.isSelectable = false
+
         optionsStackView.addArrangedSubview(instructionsLabel)
         
         yesButton.setTitle(WAYStrings.RouteCalculation.Yes, for: UIControlState())

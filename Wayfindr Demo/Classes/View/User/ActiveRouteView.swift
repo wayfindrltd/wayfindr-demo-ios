@@ -27,14 +27,14 @@ import UIKit
 
 
 /// View displaying the currently active route to the user.
-final class ActiveRouteView: BaseView {
+class ActiveRouteView: BaseView {
     
     
     // MARK: - Properties
     
     let textView = UITextView()
     let repeatButton = BorderedButton()
-    
+    let timeLabel = UILabel()
     
     // MARK: - Setup
     
@@ -51,6 +51,10 @@ final class ActiveRouteView: BaseView {
         repeatButton.setTitle(WAYStrings.ActiveRoute.Repeat, for: UIControlState())
         repeatButton.isEnabled = false
         addSubview(repeatButton)
+        
+        timeLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        timeLabel.textAlignment = .center
+        addSubview(timeLabel)
     }
     
     
@@ -62,6 +66,7 @@ final class ActiveRouteView: BaseView {
         // Turn off autoresizing masks
         textView.translatesAutoresizingMaskIntoConstraints = false
         repeatButton.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Setup view dictionary
         let views = ["text" : textView, "button" : repeatButton]
@@ -73,6 +78,14 @@ final class ActiveRouteView: BaseView {
         // Horizontal Constraints
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[text]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[button]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        
+        // Time label constraints
+        let timeLabelConstraints = [
+            NSLayoutConstraint(item: timeLabel, attribute: .centerX, relatedBy: .equal, toItem: repeatButton, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: repeatButton, attribute: .top, multiplier: 1.0, constant: -10.0),
+        ]
+        
+        addConstraints(timeLabelConstraints)
     }
     
 }

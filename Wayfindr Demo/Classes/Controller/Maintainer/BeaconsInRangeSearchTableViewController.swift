@@ -35,7 +35,9 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
     // MARK: - Properties
     
     /// Interface for interacting with beacons.
-    fileprivate let interface: BeaconInterface
+
+    fileprivate var interface: BeaconInterface
+
     
     /// List of beacons to choose from.
     fileprivate var beacons = [WAYBeacon]()
@@ -83,6 +85,8 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        interface.delegate = self
         
         SVProgressHUD.show()
         
@@ -94,7 +98,7 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
                 self.reloadItems()
             } else {
                 self.displayError(title: "", message: WAYStrings.ErrorMessages.UnableBeacons)
-                print(error)
+                print(error ?? WAYStrings.ErrorMessages.UnableBeacons)
             }
             
             self.tableView.reloadData()
@@ -132,4 +136,16 @@ final class BeaconsInRangeSearchTableViewController: BaseSearchTableViewControll
         items = beacons.map { $0.identifier.description }
     }
     
+}
+
+
+extension BeaconsInRangeSearchTableViewController: BeaconInterfaceDelegate {
+
+    func beaconInterface(_ beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon]) {
+        self.beacons = beacons.sorted { $0.minor < $1.minor }
+        self.reloadItems()
+
+        self.tableView.reloadData()
+        SVProgressHUD.dismiss()
+    }
 }

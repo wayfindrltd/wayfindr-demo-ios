@@ -38,7 +38,7 @@ extension UIView {
      
      - returns: Border views that have been added as subviews.
      */
-    func addBorder(edges: UIRectEdge, colour: UIColor = UIColor.white, thickness: CGFloat = 1) -> [UIView] {
+    @discardableResult func addBorder(edges: UIRectEdge, colour: UIColor = UIColor.white, thickness: CGFloat = 1) -> [UIView] {
         
         var borders = [UIView]()
         

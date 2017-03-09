@@ -27,7 +27,7 @@ import UIKit
 
 
 /// Table view for selecting the destination. Destinations are searchable.
-final class DestinationSearchTableViewController: BaseSearchTableViewController {
+final class DestinationSearchTableViewController<T: WAYTransportDestination>: BaseSearchTableViewController {
     
     
     // MARK: - Properties
@@ -37,20 +37,32 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     /// Model representation of entire venue.
     fileprivate let venue: WAYVenue
     /// Engine for speech playback.
-    fileprivate let speechEngine: AudioEngine
-    
+
+    private let speechEngine: AudioEngine
+
+    /// List of transport destinations
+    private let transportDestinations: [T]
     /// List of destination venues to choose from.
-    fileprivate var destinations = [String]()
+    private var destinations = [String]()
+
+
+    // Strings
+    private let searchPlaceholder: String
+
     
     
     // MARK: - Intiailizers / Deinitializers
     
-    init(interface: BeaconInterface, venue: WAYVenue, speechEngine: AudioEngine) {
+    init(interface: BeaconInterface, venue: WAYVenue, transportDestinations: [T], speechEngine: AudioEngine, pageTitle: String, searchPlaceholder: String) {
         self.interface = interface
         self.venue = venue
+        self.transportDestinations = transportDestinations
         self.speechEngine = speechEngine
+        self.searchPlaceholder = searchPlaceholder
         
         super.init(style: .plain)
+
+        title = pageTitle
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -67,10 +79,8 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
         
         items = destinations
         
-        searchController?.searchBar.placeholder = WAYStrings.DestinationSearch.SearchPlaceholder
+        searchController?.searchBar.placeholder = searchPlaceholder
         searchController?.searchBar.accessibilityIdentifier = WAYAccessibilityIdentifier.DestinationSearch.DestinationSearchBar
-        
-        title = WAYStrings.DestinationSearch.DestinationSearch
     }
     
     
@@ -79,8 +89,8 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedDestination = itemForIndexPath(tableView, indexPath: indexPath)
         
-        if let selectedPlatform = platformForDestination(selectedDestination) {
-            let directionsPreview = RouteCalculationViewController(interface: interface, venue: venue, destination: selectedPlatform.entranceNode, speechEngine: speechEngine)
+        if let selectedTransportDestination = transportDestinationForDestination(destination: selectedDestination) {
+            let directionsPreview = RouteCalculationViewController(interface: interface, venue: venue, destination: selectedTransportDestination.entranceNode, speechEngine: speechEngine)
             
             navigationController?.pushViewController(directionsPreview, animated: true)
         }
@@ -97,30 +107,30 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     fileprivate func setupDestinations() {
         var destinationSet = Set<String>()
         
-        let platforms: [WAYPlatform]
-        if WAYConstants.WAYSettings.showOnlyPlatformsThatRouteToAllExits {
-            var routablePlatforms = [WAYPlatform]()
-            
-            platformSearch: for platform in venue.platforms {
+        let transportDestinations: [T]
+        if WAYConstants.WAYSettings.showOnlyTransportDestinationsThatRouteToAllExits {
+            var routableTransportDestinations = [T]()
+
+            search: for transportDestination in self.transportDestinations {
                 
                 for exit in venue.exits {
-                    if !venue.destinationGraph.canRoute(platform.exitNode, toNode: exit.entranceNode) ||
-                       !venue.destinationGraph.canRoute(exit.exitNode, toNode: platform.entranceNode) {
-                        continue platformSearch
+                    if !venue.destinationGraph.canRoute(transportDestination.exitNode, toNode: exit.entranceNode) ||
+                       !venue.destinationGraph.canRoute(exit.exitNode, toNode: transportDestination.entranceNode) {
+                        continue search
                     }
                 } // Next exit
                 
-                routablePlatforms.append(platform)
+                routableTransportDestinations.append(transportDestination)
                 
-            } // Next platform
+            } // Next transport destination
             
-            platforms = routablePlatforms
+            transportDestinations = routableTransportDestinations
         } else {
-            platforms = venue.platforms
+            transportDestinations = self.transportDestinations
         }
         
-        for platform in platforms {
-            for destination in platform.destinations {
+        for transportDestination in transportDestinations {
+            for destination in transportDestination.destinations {
                 destinationSet.insert(destination)
             }
         }
@@ -129,18 +139,20 @@ final class DestinationSearchTableViewController: BaseSearchTableViewController 
     }
     
     /**
-     Fetches the platform to use to get to the desired `destination`.
+     Fetches the transport destination to use to get to the desired `destination`.
      
      - parameter destination: Desired destination venue.
      
-     - returns: The `WAYPlatform` representation of the platform to use to get to `destination`, if such a platform exists. Otherwise returns `nil`.
+     - returns: The `WAYTransportDestination` representation of the transport destination to use to get to `destination`, if such a transport destination exists. Otherwise returns `nil`.
      */
-    fileprivate func platformForDestination(_ destination: String) -> WAYPlatform? {
-        guard let platformIndex = venue.platforms.index(where: {$0.destinations.contains(destination)}) else {
+
+    private func transportDestinationForDestination(destination: String) -> T? {
+        guard let index = transportDestinations.index(where: {$0.destinations.contains(destination)}) else {
+
             return nil
         }
-        
-        return venue.platforms[platformIndex]
+
+        return transportDestinations[index]
     }
     
 }

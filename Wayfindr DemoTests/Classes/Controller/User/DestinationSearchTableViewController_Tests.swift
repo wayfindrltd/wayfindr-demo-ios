@@ -33,7 +33,7 @@ class DestinationSearchTableViewController_Tests : XCTestCase {
     
     // MARK: - Properties
     
-    var viewController: DestinationSearchTableViewController!
+    var viewController: DestinationSearchTableViewController<WAYPlatform>!
     
     var mockInterface = MockBeaconInterface()
     let speechEngine = AudioEngine()
@@ -49,7 +49,7 @@ class DestinationSearchTableViewController_Tests : XCTestCase {
             return
         }
         
-        viewController = DestinationSearchTableViewController(interface: mockInterface, venue: venue, speechEngine: speechEngine)
+        viewController = DestinationSearchTableViewController(interface: mockInterface, venue: venue, transportDestinations: [], speechEngine: speechEngine, pageTitle: "", searchPlaceholder: "")
         
         UIApplication.shared.keyWindow!.rootViewController = viewController
         

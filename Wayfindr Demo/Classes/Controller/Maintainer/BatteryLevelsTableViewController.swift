@@ -73,10 +73,19 @@ final class BatteryLevelsTableViewController: UITableViewController {
     fileprivate let reuseIdentifier = "BeaconCell"
     
     /// Interface for interacting with beacons.
-    fileprivate let interface: BeaconInterface
+
+    private var interface: BeaconInterface
     
     /// Whether the controller is still fetching beacon information.
-    fileprivate var fetchingData = true
+    fileprivate var fetchingData = true {
+        didSet {
+            if fetchingData {
+                SVProgressHUD.show()
+            } else {
+                SVProgressHUD.dismiss()
+            }
+        }
+    }
     
     /// Beacon data to display in table. Each beacon is represented by a cell.
     fileprivate var beacons = [WAYBeacon]()
@@ -124,6 +133,8 @@ final class BatteryLevelsTableViewController: UITableViewController {
         
         fetchingData = true
         tableView.reloadData()
+
+        interface.delegate = self
         
         SVProgressHUD.show()
         
@@ -137,7 +148,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
                 self.sortBeacons(filterMode)
             } else {
                 self.displayError(title: "", message: WAYStrings.ErrorMessages.UnableBeacons)
-                print(error)
+                print(error ?? WAYStrings.ErrorMessages.UnableBeacons)
             }
             
             self.tableView.reloadData()
@@ -148,7 +159,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        SVProgressHUD.dismiss()
+        fetchingData = false
     }
     
     
@@ -230,4 +241,18 @@ final class BatteryLevelsTableViewController: UITableViewController {
         }
     }
     
+}
+
+
+extension BatteryLevelsTableViewController: BeaconInterfaceDelegate {
+
+    func beaconInterface(_ beaconInterface: BeaconInterface, didChangeBeacons beacons: [WAYBeacon]) {
+        self.fetchingData = false
+        self.beacons = beacons
+
+        let filterMode = BatteryLevelFilters.allValues[self.headerView.segmentControl.selectedSegmentIndex]
+        self.sortBeacons(filterMode)
+
+        self.tableView.reloadData()
+    }
 }

@@ -1,5 +1,5 @@
 ![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
-[![Build Status](https://travis-ci.org/wayfindrltd/wayfindr-demo-ios.svg?branch=master)
+![Build Status](https://travis-ci.org/wayfindrltd/wayfindr-demo-ios.svg?branch=master)
 
 # wayfindr-demo-ios
 A repo for the Wayfindr demonstration iOS app
@@ -61,7 +61,7 @@ The root controller for the app is `ModeSelectionTabViewController`. The root co
 
 The `BeaconInterface` is the go-between for the app and the beacons. To use a particular manufacturer's beacons, write a driver that implements the `BeaconInterface` protocol and calls the `BeaconInterfaceDelegate` as appropriate.
 
-In general, the *User* mode of the app (displayed as *Wayfindr*) requires `WAYBeacon` objects to be provided with the `accuracy` measurement. This is used to determine the nearest beacon. All other optional beacon information is not used at this point.
+In general, the *User* mode of the app (displayed as *Wayfindr*) requires `WAYBeacon` objects to be provided with the `accuracy` measurement. This is used to determine the nearest beacon. All other optional beacon information except for `rssi` is not used at this point. RSSI (Recieved Signal Strength Indicator) can also be used to determine the nearest beacon.
 
 The *Maintainer* mode of the app uses addional beacon information. That being said, it is intelligent about coalescing data when it sees the same beacon in a short amount of time.
 

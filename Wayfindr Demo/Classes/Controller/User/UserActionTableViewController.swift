@@ -40,11 +40,14 @@ final class UserActionTableViewController: UITableViewController {
     fileprivate let reuseIdentifier = "ActionCell"
     
     /// Actions that can be taken in User Mode. Each action is displayed as a cell in the table.
-    fileprivate enum Actions: Int {
+
+    private enum Actions: Int {
         case goToPlatform
         case exitVenue
+        case goToStationFacility
         
-        static let allValues = [goToPlatform, exitVenue]
+        static let allValues = [goToPlatform, exitVenue, goToStationFacility]
+
     }
     
     /// Interface for gathering information about the venue
@@ -68,6 +71,13 @@ final class UserActionTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+
+        // Add table header view with instructions
+        let tableHeaderView = UserActionTableHeaderView()
+        tableHeaderView.text = WAYStrings.UserActionSelection.SelectDestination.uppercased()
+        tableHeaderView.accessibilityIdentifier = WAYAccessibilityIdentifier.UserActionSelection.SelectDestinationLabel
+        tableView.tableHeaderView = tableHeaderView
+
         
         title = "Wayfindr"
         
@@ -178,7 +188,7 @@ final class UserActionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
-    
+
     
     // MARK: - UITableViewDelegate
     
@@ -188,12 +198,16 @@ final class UserActionTableViewController: UITableViewController {
             let accessibilityID: String
             
             switch selectedAction {
+
             case .goToPlatform:
-                text = WAYStrings.UserActionSelection.CatchTrain
-                accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.CatchTrainCell
+                text = WAYStrings.UserActionSelection.TrainPlatforms
+                accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.TrainPlatformsCell
             case .exitVenue:
-                text = WAYStrings.UserActionSelection.ExitVenue
-                accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.ExitVenueCell
+                text = WAYStrings.UserActionSelection.StationExits
+                accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.StationExitsCell
+            case .goToStationFacility:
+                text = WAYStrings.UserActionSelection.StationFacilities
+                accessibilityID = WAYAccessibilityIdentifier.UserActionSelection.StationFacilitiesCell
             }
             
             cell.textLabel?.text = text
@@ -211,20 +225,27 @@ final class UserActionTableViewController: UITableViewController {
             let myVenue = venue,
             let myInterface = interface, myInterface.interfaceState == BeaconInterfaceState.operating {
             
-            let newViewController: UIViewController
-            
+            var newViewController: UIViewController?
+
             switch selectedAction {
+
             case .goToPlatform:
-                let searchViewController = DestinationSearchTableViewController(interface: myInterface, venue: myVenue, speechEngine: speechEngine)
+                let searchViewController = DestinationSearchTableViewController(interface: myInterface, venue: myVenue, transportDestinations: myVenue.platforms, speechEngine: speechEngine, pageTitle: WAYStrings.DestinationSearch.TrainPlatformSearch, searchPlaceholder: WAYStrings.DestinationSearch.SearchPlatformPlaceholder)
                 
                 newViewController = searchViewController
             case .exitVenue:
                 let searchViewController = ExitSearchTableViewController(interface: myInterface, venue: myVenue, speechEngine: speechEngine)
                 
                 newViewController = searchViewController
+            case .goToStationFacility:
+                let searchViewController = FacilitySearchTableViewController(interface: myInterface, venue: myVenue, speechEngine: speechEngine, facilities: myVenue.stationFacilities, pageTitle: WAYStrings.StationFacilitySearch.StationFacilitySearch, searchPlaceholder: WAYStrings.StationFacilitySearch.SearchPlaceholder)
+
+                newViewController = searchViewController
             }
-            
-            navigationController?.pushViewController(newViewController, animated: true)
+
+            if let newViewController = newViewController {
+                navigationController?.pushViewController(newViewController, animated: true)
+            }
             
         } else {
             tableView.deselectRow(at: indexPath, animated: true)

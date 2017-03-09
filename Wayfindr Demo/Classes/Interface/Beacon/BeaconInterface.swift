@@ -55,9 +55,10 @@ protocol BeaconInterface {
     var interfaceState: BeaconInterfaceState { get }
     /// Delegate to get updates on the `state` of the `BeaconInterface`.
     weak var stateDelegate: BeaconInterfaceStateDelegate? { get set }
-    
-    
+
+
     // MARK: - GET
     
     func getBeacons(completionHandler: ((Bool, [WAYBeacon]?, BeaconInterfaceAPIError?) -> Void)?)
+
 }

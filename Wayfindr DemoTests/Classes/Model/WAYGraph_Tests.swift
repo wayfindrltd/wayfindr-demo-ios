@@ -185,5 +185,102 @@ class WAYGraph_Tests: XCTestCase {
         XCTAssertTrue(testGraph.canRoute(node1, toNode: node2))
         XCTAssertFalse(testGraph.canRoute(node2, toNode: node1))
     }
-
+    
+    
+    // MARK: - Accuracy between nodes and beacons
+    
+    func testBeaconIsWithinRangeOfNodeUsingRssi() {
+        
+        // Given
+        
+        let mockBeacon = WAYBeacon(major: 1, minor: 2, UUIDString: "123", accuracy: 4.0, advertisingInterval: "100", batteryLevel: "", lastUpdated: Date(), rssi: -96, txPower: "")
+        
+        guard let mockNode = testNode else {
+            
+            XCTFail("Error: Could not create node")
+            return
+        }
+        
+        // Test
+        
+        let isInRange = WAYGraph.beacon(beacon: mockBeacon, isWithinRangeOf: mockNode, isUsingRssi: true)
+        
+        XCTAssertTrue(isInRange, "Beacon should be in range of the node")
+    }
+    
+    func testBeaconIsNotWithinRangeOfNodeUsingRssi() {
+        
+        // Given
+        
+        let mockBeacon = WAYBeacon(major: 1, minor: 2, UUIDString: "123", accuracy: 4.0, advertisingInterval: "100", batteryLevel: "", lastUpdated: Date(), rssi: -98, txPower: "")
+        
+        guard let mockNode = testNode else {
+            
+            XCTFail("Error: Could not create node")
+            return
+        }
+        
+        // Test
+        
+        let isInRange = WAYGraph.beacon(beacon: mockBeacon, isWithinRangeOf: mockNode, isUsingRssi: true)
+        
+        XCTAssertFalse(isInRange, "Beacon should not be in range of the node")
+    }
+    
+    func testBeaconIsWithinRangeOfNodeUsingAccuracy() {
+        
+        // Given
+        
+        let mockBeacon = WAYBeacon(major: 1, minor: 2, UUIDString: "123", accuracy: 2.0, advertisingInterval: "100", batteryLevel: "", lastUpdated: Date(), rssi: -96, txPower: "")
+        
+        guard let mockNode = testNode else {
+            
+            XCTFail("Error: Could not create node")
+            return
+        }
+        
+        // Test
+        
+        let isInRange = WAYGraph.beacon(beacon: mockBeacon, isWithinRangeOf: mockNode, isUsingRssi: false)
+        
+        XCTAssertTrue(isInRange, "Beacon should be in range of the node")
+    }
+    
+    func testBeaconIsNotWithinRangeOfNodeUsingAccuracy() {
+        
+        // Given
+        
+        let mockBeacon = WAYBeacon(major: 1, minor: 2, UUIDString: "123", accuracy: 4.0, advertisingInterval: "100", batteryLevel: "", lastUpdated: Date(), rssi: -98, txPower: "")
+        
+        guard let mockNode = testNode else {
+            
+            XCTFail("Error: Could not create node")
+            return
+        }
+        
+        // Test
+        
+        let isInRange = WAYGraph.beacon(beacon: mockBeacon, isWithinRangeOf: mockNode, isUsingRssi: false)
+        
+        XCTAssertFalse(isInRange, "Beacon should not be in range of the node")
+    }
+    
+    var testNode: WAYGraphNode? {
+        
+        let xmlElement = AEXMLElement(name: "node")
+        xmlElement.name = "node"
+        xmlElement.attributes["id"] = "1"
+        xmlElement.addChild(name: "data", value: "1", attributes: ["key" : "major"])
+        xmlElement.addChild(name: "data", value: "2", attributes: ["key" : "minor"])
+        xmlElement.addChild(name: "data", value: "node", attributes: ["key" : "name"])
+        xmlElement.addChild(name: "data", value: "testType", attributes: ["key" : "waypoint_type"])
+        xmlElement.addChild(name: "data", value: "3.0", attributes: ["key" : "accuracy"])
+        xmlElement.addChild(name: "data", value: "-97", attributes: ["key" : "rssi"])
+        
+        let testNode = try? WAYGraphNode(xmlElement: xmlElement, defaultAccuracy: 3.0)
+        
+        return testNode
+    }
+    
+    
 }

@@ -36,6 +36,7 @@
                   "exit_beacon_minor": 2,
                   "mode": "Lift"
                   }
-                  ]
+                  ],
+        "station_facilities": []
     }
 }

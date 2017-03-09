@@ -29,7 +29,7 @@ import Foundation
 /**
  *  Represents a transportation platform.
  */
-struct WAYPlatform: WAYDestination {
+struct WAYPlatform: WAYTransportDestination {
     
     
     // MARK: - Properties

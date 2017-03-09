@@ -44,7 +44,7 @@ final class ModeSelectionTabViewController: UITabBarController {
     
     fileprivate func setupTabs() {
         // Setup Modes
-        
+
         let userMode = setupUserMode()
         let maintainerMode = setupMaintainerMode()
         let developerMode = setupDeveloperMode()
