@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "2Dp-2G-ltC"; */
+"2Dp-2G-ltC.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Button1"; ObjectID = "OYn-ef-IJx"; */
+"OYn-ef-IJx.normalTitle" = "Button1";
+
+/* Class = "UIButton"; normalTitle = "Button2"; ObjectID = "q84-r8-sgF"; */
+"q84-r8-sgF.normalTitle" = "Button2";
+
+/* Class = "UIButton"; normalTitle = "Button3"; ObjectID = "tX5-eZ-BIe"; */
+"tX5-eZ-BIe.normalTitle" = "Button3";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yTQ-bT-5DF"; */
+"yTQ-bT-5DF.text" = "Label";

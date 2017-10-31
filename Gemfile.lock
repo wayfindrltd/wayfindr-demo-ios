@@ -52,6 +52,7 @@ GEM
     nanaimo (0.2.3)
     nap (1.1.0)
     netrc (0.7.8)
+    rouge (1.11.1)
     ruby-macho (0.2.6)
     thread_safe (0.3.6)
     tzinfo (1.2.2)
@@ -62,12 +63,15 @@ GEM
       claide (>= 1.0.1, < 2.0)
       colored (~> 1.2)
       nanaimo (~> 0.2.3)
+    xcpretty (0.2.4)
+      rouge (~> 1.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cocoapods (= 1.2.0)
+  xcpretty (= 0.2.4)
 
 BUNDLED WITH
-   1.14.5
+   1.15.4

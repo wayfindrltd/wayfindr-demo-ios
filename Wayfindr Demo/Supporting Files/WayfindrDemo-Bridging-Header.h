@@ -58,3 +58,6 @@
 #import "BCTriggeredEvent.h"
 #import "BCZone.h"
 #import "BCZoneMonitor.h"
+#import "ITBeepconsManager.h"
+#import "ITBeepconsLocator.h"
+#import "ITFoundedBeepcon.h"

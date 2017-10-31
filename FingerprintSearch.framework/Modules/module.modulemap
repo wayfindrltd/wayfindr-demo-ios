@@ -1,0 +1,10 @@
+framework module FingerprintSearch {
+  umbrella header "FingerprintSearch.h"
+
+  export *
+  module * { export * }
+}
+
+module FingerprintSearch.Swift {
+    header "FingerprintSearch-Swift.h"
+}

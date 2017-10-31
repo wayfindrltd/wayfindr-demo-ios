@@ -5,6 +5,7 @@ target 'Wayfindr Demo' do
   pod 'AEXML', '~> 4.0.2'
   pod 'Alamofire', '~> 4.3.0'
   pod 'Moya', '~> 8.0.1'
+  pod 'FMDB'
   pod 'SwiftGraph', '~> 1.2.0'
   pod 'SwiftyJSON', '~> 3.1.4'
   pod 'SVProgressHUD', '~> 2.1.2'

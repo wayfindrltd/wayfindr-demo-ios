@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  GuiadoLasArenas
+
+  Created by Technosite on 5/9/17.
+  Copyright © 2017 Wayfindr.org Limited. All rights reserved.
+*/
+
+//InternalGPSViewController
+"info" = "Not Available Yet";
+
+//MainVC
+"button1" = "Internal GPS"
+"button2" = "Beacon Constellation /Load from file";
+"button3" = "Fingerprinting /Load from file";
+"title" = "Location Engine";

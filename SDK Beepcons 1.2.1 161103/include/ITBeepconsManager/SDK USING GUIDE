@@ -1,0 +1,57 @@
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+*
+*       LIBITBEEPCONSANAGER.A USING GUIDE
+*
+*       @discussion         PREREQUISITES AND INSTALLATION GUIDE
+*                           THIS SOFTWARE CAN BE USED ONLY UNDER NDA DISCLOSURE AGREEMENT
+*                           THIS SDK ENCAPSULATES ALL THE FUNCTIONS THAT CAN BE PERFORMED WITH A BEEPCON ACROSS THE IOS PLATFORM
+*                           SOME KNOWLEDGE OF THE IOS CORELOCATION AND COREBLUETOOTH FRAMEWORKS IS RECOMMENDED
+*       @copyright          Ilunion Tecnología y Accesibilidad
+*       @author             Andrés Ursueguía
+*
+*       @updated            2016-02-29
+*
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+
+
+//*****************************************************************************************************************************************************************
+// 0. CLIENT APP REQUIREMENTS
+//*****************************************************************************************************************************************************************
+
+    Declare BACKGROUND CAPABILITIES : (APP TARGET/CAPABILITIES/BACKGROUND MODES)
+
+        - USES AUDIO AND AIRPLAY (in Case you want to pay sounds in background).
+        - USES LOCATION UPDATES (Not to declare this backgroud capability will crash the APP on ITBeepconsLocator instantiation)
+
+    The ClientAppName-info.plist needs to declare the NSLocationAlwaysUsageDescription key with a description string of why the app needs to use locations in background.
+    (>=IOS8) This is needed to use the ITBeepconsLocator in background from IOS8.
+
+    Implement the PROTOCOLS declared in ITBeepconsLocator and ITBeepconsManager as needed to get the feedback of the SDK.
+
+
+//*****************************************************************************************************************************************************************
+// 1. TO INCLUDE THE SDK
+//*****************************************************************************************************************************************************************
+
+    (Information from document "Using Static Libraries in iOS", found at apple. Refer to it for more information).
+
+    Select your application project to go to the project editor, then select your application target to go to the target editor. Select the build phases tab. Disclose the “Link Binary with Libraries” phase and click the plus button in that phase. Choose your static library and add it to the phase. Your application will now link against your library.
+
+    Select the Build Settings tab in your application target editor. Find the “Other Linker Flags” build setting. Add the flag -ObjC to this build setting’s value if it is not already present. This flag will tell the linker to link all Objective-C classes and categories from static libraries into your application, even if the linker can’t tell that they are used. This is needed because Objective-C is a dynamic language and the linker can’t always tell which classes and categories are used by your application code.
+
+    Your library’s headers are automatically included in your application’s header search path, as they are inside the built product directory’s include directory. Since your library puts its headers in a further directory named after its PRODUCT_NAME build setting, you need to include that directory in your include or import statements when importing that library’s headers. In your application’s source code you should import your library’s headers like this:
+
+            #import "ITBeepconsManager/ITBeepconsManager.h"
+            #import "ITBeepconsManager/ITBeepconsLocator.h"
+            #import "ITBeepconsManager/ITFoundedBeepcon.h"
+
+
+
+
+
+
+

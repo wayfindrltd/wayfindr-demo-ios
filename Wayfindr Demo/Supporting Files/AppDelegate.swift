@@ -25,19 +25,21 @@
 
 import UIKit
 import CoreLocation
-
+import UserNotifications
 import AEXML
 import SwiftyJSON
 import SVProgressHUD
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ITBeepconsManagerDelegate {
 
     
     // MARK: - Properties
     
     var window: UIWindow?
+    let locationManager = CLLocationManager()
+    var beepconsManager: ITBeepconsManager?
     
     
     // MARK: - UIApplicationDelegate
@@ -53,15 +55,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         setupTheme()
+        locationManager.delegate = self
         
-        loadMainView()
+        if beepconsManager == nil {
+            beepconsManager = ITBeepconsManager(delegate: self)
+        }
+        
+        // Request permission to send notifications
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options:[.alert, .sound]) { (granted, error) in }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
+        //loadMainView()
         
         return true
     }
     
-    
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "Notificacion_" + "\\^([1-9][0-9]{0,2}|1000)$"), object: self)
+    }
+	
+	func applicationDidBecomeActive(_ application: UIApplication) {
+		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+		NotificationCenter.default.post(name: Notification.Name(rawValue: "Notificacion_" + "\\^([1-9][0-9]{0,2}|1000)$"), object: self)
+	}
+	
     // MARK: - Setup
-    
+	
     fileprivate func setupTheme() {
         UINavigationBar.appearance().barStyle = .black
         UINavigationBar.appearance().tintColor = WAYConstants.WAYColors.NavigationText
@@ -87,3 +111,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
+
+// MARK: CLLocationManagerDelegate
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        guard region is CLBeaconRegion else { return }
+        
+        if #available(iOS 10.0, *) {
+            let content = UNMutableNotificationContent()
+            content.title = "Wayfindr"
+            content.body = "You are entering a region with beacons"
+            content.sound = .default()
+            let request = UNNotificationRequest(identifier: "Wayfindr", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        guard region is CLBeaconRegion else { return }
+        
+        if #available(iOS 10.0, *) {
+            let content = UNMutableNotificationContent()
+            content.title = "Wayfindr"
+            content.body = "You are entering a region with beacons"
+            content.sound = .default()
+            let request = UNNotificationRequest(identifier: "Wayfindr", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        guard region is CLBeaconRegion else { return }
+        
+        if #available(iOS 10.0, *) {
+            let content = UNMutableNotificationContent()
+            content.title = "Wayfindr"
+            content.body = "Are you forgetting something?"
+            content.sound = .default()
+            let request = UNNotificationRequest(identifier: "Wayfindr", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+}
+

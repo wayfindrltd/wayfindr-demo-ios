@@ -1,0 +1,3 @@
+0|Start
+1|Distance
+2|Near

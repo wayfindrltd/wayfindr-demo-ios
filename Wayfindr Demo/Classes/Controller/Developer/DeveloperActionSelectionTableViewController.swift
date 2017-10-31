@@ -75,6 +75,9 @@ final class DeveloperActionSelectionTableView: UITableViewController {
         let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .plain, target: nil, action: nil)
         backButton.accessibilityIdentifier = WAYAccessibilityIdentifier.DeveloperActionSelection.BackBarButtonItem
         navigationItem.backBarButtonItem = backButton
+		
+		let rightButton = UIBarButtonItem(title: WAYStrings.CommonStrings.MainMenu, style: .plain, target: self, action: #selector(backToMain(sender:)))
+		navigationItem.rightBarButtonItem = rightButton
         
         fetchData()
     }
@@ -87,6 +90,13 @@ final class DeveloperActionSelectionTableView: UITableViewController {
     
     
     // MARK: - Setup
+	
+	/**
+	Go back to Main Menu
+	*/
+	func backToMain(sender: UIBarButtonItem) {
+		dismiss(animated: true, completion: nil)
+	}
     
     /**
     Sets up the `BeaconInterface`.

@@ -35,13 +35,13 @@ final class ModeSelectionTabViewController: UITabBarController {
         super.viewDidLoad()
         
         tabBar.isTranslucent = false
-        
+		
         setupTabs()
     }
     
     
     // MARK: - Setup
-    
+	
     fileprivate func setupTabs() {
         // Setup Modes
 
@@ -61,7 +61,8 @@ final class ModeSelectionTabViewController: UITabBarController {
         userNavigationController.navigationBar.barTintColor = WAYConstants.WAYColors.WayfindrMainColor
         userNavigationController.navigationBar.tintColor = WAYConstants.WAYColors.NavigationText
         userNavigationController.navigationBar.isTranslucent = false
-        
+		
+		
         let userTabBarItem = UITabBarItem(title: WAYStrings.ModeSelection.User, image: UIImage(assetIdentifier: .User), tag: 1)
         userTabBarItem.accessibilityIdentifier = WAYAccessibilityIdentifier.ModeSelection.UserTabBarItem
         userNavigationController.tabBarItem = userTabBarItem

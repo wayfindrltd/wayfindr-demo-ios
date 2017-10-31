@@ -45,6 +45,7 @@ struct WAYStrings {
         static let Done         = NSLocalizedString("Done", comment: "")
         static let Error        = NSLocalizedString("Error", comment: "")
         static let Maintainer   = NSLocalizedString("Maintainer", comment: "")
+		static let MainMenu		= NSLocalizedString("Main Menu", comment: "")
         static let Major        = NSLocalizedString("Major", comment: "")
         static let Minor        = NSLocalizedString("Minor", comment: "")
         static let PrivateWord  = NSLocalizedString("Private", comment: "")

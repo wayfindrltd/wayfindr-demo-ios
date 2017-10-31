@@ -123,6 +123,30 @@
 		810881C51D40667E00BD2CB0 /* WAYFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810881C41D40667E00BD2CB0 /* WAYFacility.swift */; };
 		810881C71D406CD000BD2CB0 /* FacilitySearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810881C61D406CD000BD2CB0 /* FacilitySearchTableViewController.swift */; };
 		8128EAB11D44600700828252 /* UserActionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128EAB01D44600700828252 /* UserActionTableHeaderView.swift */; };
+		8319FF801F5FD779004054EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8319FF821F5FD779004054EA /* Main.storyboard */; };
+		8329EA101F5EE8C3006D16AF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329EA0E1F5EE8C3006D16AF /* Strings.swift */; };
+		8329EA131F5EE8D7006D16AF /* InternalGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329EA121F5EE8D7006D16AF /* InternalGPSViewController.swift */; };
+		8329EA171F5EE9C8006D16AF /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329EA161F5EE9C8006D16AF /* MainVC.swift */; };
+		8332DB831F73D7C2009B5FF0 /* libITBeepconsManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8332DB821F73D7C2009B5FF0 /* libITBeepconsManager.a */; };
+		833BBB501F6138EF0026F811 /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833BBB4F1F6138EF0026F811 /* SettingsDetailViewController.swift */; };
+		834499701F6680E10016810B /* OrquestratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8344996F1F6680E10016810B /* OrquestratorViewController.swift */; };
+		834E07E91F6FA3A9009B2F3E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E07E81F6FA3A9009B2F3E /* Router.swift */; };
+		834E07EB1F6FD4B5009B2F3E /* Orquestrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E07EA1F6FD4B5009B2F3E /* Orquestrator.swift */; };
+		8358E3211F67DE5D00083E9B /* DBStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8358E3201F67DE5D00083E9B /* DBStructs.swift */; };
+		835ED08B1F71356C0067C87B /* InstructionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835ED08A1F71356C0067C87B /* InstructionGenerator.swift */; };
+		837543EF1F66D2CB006862AE /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837543EE1F66D2CB006862AE /* DBManager.swift */; };
+		83BEA9691F6AA0700050A677 /* InstructionsType.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA9681F6AA0700050A677 /* InstructionsType.txt */; };
+		83BEA96B1F6ACB880050A677 /* Fingerprints.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA96A1F6ACB880050A677 /* Fingerprints.txt */; };
+		83BEA96F1F6AD6480050A677 /* Beacons.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA96E1F6AD6480050A677 /* Beacons.txt */; };
+		83EFF78A1F6035D000ABB007 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF7891F6035D000ABB007 /* SettingsTableViewController.swift */; };
+		83FA3BD81F7A33AC0037708E /* Routes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83FA3BD71F7A33AC0037708E /* Routes.txt */; };
+		90C1685A1FA886F800BC6F30 /* FingerprintSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C168591FA886F800BC6F30 /* FingerprintSearch.framework */; };
+		90C1685B1FA886FF00BC6F30 /* FingerprintSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C168591FA886F800BC6F30 /* FingerprintSearch.framework */; };
+		90C1685C1FA886FF00BC6F30 /* FingerprintSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90C168591FA886F800BC6F30 /* FingerprintSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90EC440A1F861428005F8397 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC44091F861428005F8397 /* MessageUI.framework */; };
+		90EC440C1F86322A005F8397 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC440B1F86322A005F8397 /* Log.swift */; };
+		90FDE4831F7D1C1600E46E42 /* Links.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90FDE4821F7D1C1600E46E42 /* Links.txt */; };
+		90FDE4851F7D1C2E00E46E42 /* Nodes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90FDE4841F7D1C2E00E46E42 /* Nodes.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +158,29 @@
 			remoteInfo = "Wayfindr Demo";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		83DFD4DC1F794D4D004FEBD4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90C168541FA8685600BC6F30 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				90C1685C1FA886FF00BC6F30 /* FingerprintSearch.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000438341C1576B600514477 /* String+URLEscape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URLEscape.swift"; sourceTree = "<group>"; };
@@ -259,6 +306,33 @@
 		810881C41D40667E00BD2CB0 /* WAYFacility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAYFacility.swift; sourceTree = "<group>"; };
 		810881C61D406CD000BD2CB0 /* FacilitySearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilitySearchTableViewController.swift; sourceTree = "<group>"; };
 		8128EAB01D44600700828252 /* UserActionTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionTableHeaderView.swift; sourceTree = "<group>"; };
+		8319FF811F5FD779004054EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8319FF841F5FD77E004054EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		8329EA0E1F5EE8C3006D16AF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Strings.swift; path = "Guiado Las Arenas/Constants/Strings.swift"; sourceTree = "<group>"; };
+		8329EA121F5EE8D7006D16AF /* InternalGPSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternalGPSViewController.swift; path = "Guiado Las Arenas/Views/InternalGPSViewController.swift"; sourceTree = "<group>"; };
+		8329EA161F5EE9C8006D16AF /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainVC.swift; path = "Guiado Las Arenas/Views/MainVC.swift"; sourceTree = "<group>"; };
+		8332DB7F1F73D76A009B5FF0 /* ITBeepconsLocator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITBeepconsLocator.h; sourceTree = "<group>"; };
+		8332DB801F73D76A009B5FF0 /* ITBeepconsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITBeepconsManager.h; sourceTree = "<group>"; };
+		8332DB811F73D76A009B5FF0 /* ITFoundedBeepcon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITFoundedBeepcon.h; sourceTree = "<group>"; };
+		8332DB821F73D7C2009B5FF0 /* libITBeepconsManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libITBeepconsManager.a; sourceTree = "<group>"; };
+		833BBB4F1F6138EF0026F811 /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsDetailViewController.swift; path = "Guiado Las Arenas/Views/SettingsDetailViewController.swift"; sourceTree = "<group>"; };
+		8344996F1F6680E10016810B /* OrquestratorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrquestratorViewController.swift; path = "Guiado Las Arenas/Views/OrquestratorViewController.swift"; sourceTree = "<group>"; };
+		834E07E81F6FA3A9009B2F3E /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Router.swift; path = "Guiado Las Arenas/Controllers/Router.swift"; sourceTree = "<group>"; };
+		834E07EA1F6FD4B5009B2F3E /* Orquestrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Orquestrator.swift; path = "Guiado Las Arenas/Controllers/Orquestrator.swift"; sourceTree = "<group>"; };
+		8358E3201F67DE5D00083E9B /* DBStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBStructs.swift; path = "Guiado Las Arenas/Model/DBStructs.swift"; sourceTree = "<group>"; };
+		835ED08A1F71356C0067C87B /* InstructionGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstructionGenerator.swift; path = "Guiado Las Arenas/Controllers/InstructionGenerator.swift"; sourceTree = "<group>"; };
+		837543EE1F66D2CB006862AE /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBManager.swift; path = "Guiado Las Arenas/Model/DBManager.swift"; sourceTree = "<group>"; };
+		83BEA9681F6AA0700050A677 /* InstructionsType.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InstructionsType.txt; sourceTree = "<group>"; };
+		83BEA96A1F6ACB880050A677 /* Fingerprints.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fingerprints.txt; sourceTree = "<group>"; };
+		83BEA96E1F6AD6480050A677 /* Beacons.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Beacons.txt; sourceTree = "<group>"; };
+		83DFD4DE1F794D4D004FEBD4 /* liblibreriaLasArenas.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibreriaLasArenas.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83EFF7891F6035D000ABB007 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = "Guiado Las Arenas/Views/SettingsTableViewController.swift"; sourceTree = "<group>"; };
+		83FA3BD71F7A33AC0037708E /* Routes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Routes.txt; sourceTree = "<group>"; };
+		90C168591FA886F800BC6F30 /* FingerprintSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FingerprintSearch.framework; sourceTree = "<group>"; };
+		90EC44091F861428005F8397 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		90EC440B1F86322A005F8397 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = "Guiado Las Arenas/Controllers/Log.swift"; sourceTree = "<group>"; };
+		90FDE4821F7D1C1600E46E42 /* Links.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Links.txt; sourceTree = "<group>"; };
+		90FDE4841F7D1C2E00E46E42 /* Nodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nodes.txt; sourceTree = "<group>"; };
 		941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D414CA3DEDD7EF543468350E /* Pods-Wayfindr Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -269,7 +343,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90EC440A1F861428005F8397 /* MessageUI.framework in Frameworks */,
+				90C1685A1FA886F800BC6F30 /* FingerprintSearch.framework in Frameworks */,
 				435C640F885CD28B00169299 /* Pods_Wayfindr_Demo.framework in Frameworks */,
+				90C1685B1FA886FF00BC6F30 /* FingerprintSearch.framework in Frameworks */,
+				8332DB831F73D7C2009B5FF0 /* libITBeepconsManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +356,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				69455B6DA7D34EE81D28296C /* Pods_Wayfindr_DemoTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DFD4DB1F794D4D004FEBD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +627,8 @@
 		00BF3D3C1BF20ED40075533D = {
 			isa = PBXGroup;
 			children = (
+				8329EA0D1F5EE8AE006D16AF /* GuiadoLasArenas */,
+				8332DB7E1F73D6D4009B5FF0 /* SDKIncludes */,
 				00BF3D471BF20ED40075533D /* Wayfindr Demo */,
 				00BF3D5C1BF20ED40075533D /* Wayfindr DemoTests */,
 				0044392E1BF22BCA00031373 /* Common Tests */,
@@ -556,6 +643,7 @@
 			children = (
 				00BF3D451BF20ED40075533D /* Wayfindr Demo.app */,
 				00BF3D591BF20ED40075533D /* Wayfindr Demo.xctest */,
+				83DFD4DE1F794D4D004FEBD4 /* liblibreriaLasArenas.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -781,11 +869,82 @@
 		80C22D04DB8DA3B66964392E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90C168591FA886F800BC6F30 /* FingerprintSearch.framework */,
+				90EC44091F861428005F8397 /* MessageUI.framework */,
+				8332DB821F73D7C2009B5FF0 /* libITBeepconsManager.a */,
 				56393D20E05B9D6AC56358B5 /* Pods.framework */,
 				3D58745AAAF741C9E71F5E9C /* Pods_Wayfindr_DemoTests.framework */,
 				941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8329EA0D1F5EE8AE006D16AF /* GuiadoLasArenas */ = {
+			isa = PBXGroup;
+			children = (
+				8329EA191F5EED38006D16AF /* Constants */,
+				834E07E71F6FA383009B2F3E /* Controllers */,
+				837543ED1F66D250006862AE /* Model */,
+				8329EA181F5EED19006D16AF /* View */,
+				8319FF821F5FD779004054EA /* Main.storyboard */,
+				83BEA96E1F6AD6480050A677 /* Beacons.txt */,
+				83BEA9681F6AA0700050A677 /* InstructionsType.txt */,
+				83BEA96A1F6ACB880050A677 /* Fingerprints.txt */,
+				90FDE4821F7D1C1600E46E42 /* Links.txt */,
+				90FDE4841F7D1C2E00E46E42 /* Nodes.txt */,
+				83FA3BD71F7A33AC0037708E /* Routes.txt */,
+			);
+			name = GuiadoLasArenas;
+			sourceTree = "<group>";
+		};
+		8329EA181F5EED19006D16AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8329EA121F5EE8D7006D16AF /* InternalGPSViewController.swift */,
+				8329EA161F5EE9C8006D16AF /* MainVC.swift */,
+				8344996F1F6680E10016810B /* OrquestratorViewController.swift */,
+				833BBB4F1F6138EF0026F811 /* SettingsDetailViewController.swift */,
+				83EFF7891F6035D000ABB007 /* SettingsTableViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8329EA191F5EED38006D16AF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8329EA0E1F5EE8C3006D16AF /* Strings.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		8332DB7E1F73D6D4009B5FF0 /* SDKIncludes */ = {
+			isa = PBXGroup;
+			children = (
+				8332DB7F1F73D76A009B5FF0 /* ITBeepconsLocator.h */,
+				8332DB801F73D76A009B5FF0 /* ITBeepconsManager.h */,
+				8332DB811F73D76A009B5FF0 /* ITFoundedBeepcon.h */,
+			);
+			name = SDKIncludes;
+			sourceTree = "<group>";
+		};
+		834E07E71F6FA383009B2F3E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				835ED08A1F71356C0067C87B /* InstructionGenerator.swift */,
+				90EC440B1F86322A005F8397 /* Log.swift */,
+				834E07EA1F6FD4B5009B2F3E /* Orquestrator.swift */,
+				834E07E81F6FA3A9009B2F3E /* Router.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		837543ED1F66D250006862AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				837543EE1F66D2CB006862AE /* DBManager.swift */,
+				8358E3201F67DE5D00083E9B /* DBStructs.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -801,6 +960,7 @@
 				00BF3D431BF20ED40075533D /* Resources */,
 				52DF9563CB2D8764128A188B /* [CP] Embed Pods Frameworks */,
 				F6E1C600174F2F509982ACE8 /* [CP] Copy Pods Resources */,
+				90C168541FA8685600BC6F30 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -832,6 +992,23 @@
 			productReference = 00BF3D591BF20ED40075533D /* Wayfindr Demo.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		83DFD4DD1F794D4D004FEBD4 /* libreriaLasArenas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83DFD4E41F794D4E004FEBD4 /* Build configuration list for PBXNativeTarget "libreriaLasArenas" */;
+			buildPhases = (
+				83DFD4DA1F794D4D004FEBD4 /* Sources */,
+				83DFD4DB1F794D4D004FEBD4 /* Frameworks */,
+				83DFD4DC1F794D4D004FEBD4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libreriaLasArenas;
+			productName = libreriaLasArenas;
+			productReference = 83DFD4DE1F794D4D004FEBD4 /* liblibreriaLasArenas.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -845,12 +1022,22 @@
 				TargetAttributes = {
 					00BF3D441BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = H9ZRYYJ3S8;
 						LastSwiftMigration = 0820;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					00BF3D581BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
 						LastSwiftMigration = 0820;
 						TestTargetID = 00BF3D441BF20ED40075533D;
+					};
+					83DFD4DD1F794D4D004FEBD4 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -869,6 +1056,7 @@
 			targets = (
 				00BF3D441BF20ED40075533D /* Wayfindr Demo */,
 				00BF3D581BF20ED40075533D /* Wayfindr DemoTests */,
+				83DFD4DD1F794D4D004FEBD4 /* libreriaLasArenas */,
 			);
 		};
 /* End PBXProject section */
@@ -878,14 +1066,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90FDE4851F7D1C2E00E46E42 /* Nodes.txt in Resources */,
 				00DAE70F1BF210CE003C679E /* Assets.xcassets in Resources */,
 				004439251BF218D700031373 /* dualPing.mp3 in Resources */,
 				001024AE1C0C9DFB00E6F7E9 /* LaunchScreen.storyboard in Resources */,
 				00044A221BFCA6EC00190A1D /* Settings.bundle in Resources */,
 				00C441891C4511D100C4F7E5 /* DemoVenueData.json in Resources */,
+				83FA3BD81F7A33AC0037708E /* Routes.txt in Resources */,
 				002919CE1C2826A100D2BDD5 /* beaconsconfig.plist in Resources */,
+				90FDE4831F7D1C1600E46E42 /* Links.txt in Resources */,
+				8319FF801F5FD779004054EA /* Main.storyboard in Resources */,
 				7EB62E311CBD2B2200E16472 /* triPing.mp3 in Resources */,
+				83BEA96F1F6AD6480050A677 /* Beacons.txt in Resources */,
+				83BEA96B1F6ACB880050A677 /* Fingerprints.txt in Resources */,
 				00C441881C4511D100C4F7E5 /* DemoGraphData.graphml in Resources */,
+				83BEA9691F6AA0700050A677 /* InstructionsType.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,13 +1102,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wayfindr Demo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4D6BCAD703CC439F623110C4 /* [CP] Check Pods Manifest.lock */ = {
@@ -922,13 +1120,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wayfindr DemoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		52DF9563CB2D8764128A188B /* [CP] Embed Pods Frameworks */ = {
@@ -937,9 +1138,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGraph/SwiftGraph.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGraph.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -967,9 +1185,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGraph/SwiftGraph.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGraph.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -978,7 +1205,7 @@
 		};
 		F6E1C600174F2F509982ACE8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -999,6 +1226,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				00570E0C1C0D820D0006F757 /* WAYAccessibility.swift in Sources */,
+				834E07E91F6FA3A9009B2F3E /* Router.swift in Sources */,
+				835ED08B1F71356C0067C87B /* InstructionGenerator.swift in Sources */,
 				00DAE7181BF211F9003C679E /* WAYGraph.swift in Sources */,
 				00DAE7121BF210E4003C679E /* AppDelegate.swift in Sources */,
 				00CE723A1C1862850007AF28 /* BatteryLevelsHeaderView.swift in Sources */,
@@ -1010,23 +1239,28 @@
 				00C2CB001BF3855600BF15AF /* WAYVenue.swift in Sources */,
 				00570E121C0D85190006F757 /* WAYBeacon.swift in Sources */,
 				002919D11C28272000D2BDD5 /* DemoBeaconInterface.swift in Sources */,
+				8329EA171F5EE9C8006D16AF /* MainVC.swift in Sources */,
 				0088436B1C0C66CA00B1363C /* BannerView.swift in Sources */,
 				003B660A1BF5D07A00551B3A /* KeyValueLabel.swift in Sources */,
 				00EC11C21C27E39700619EEE /* DeveloperOptionsTableViewController.swift in Sources */,
 				00BDEC8A1C21B29A00FDFB6E /* VenueInterfaceAPIError.swift in Sources */,
+				834E07EB1F6FD4B5009B2F3E /* Orquestrator.swift in Sources */,
 				00D4F9E91C181BF700DE7B70 /* BatteryLevelsTableViewController.swift in Sources */,
 				00A0A4261C0F0B83000DDFB3 /* UIViewController+ErrorMessages.swift in Sources */,
 				0034B1551BFB506A0055F57A /* BaseSearchResultsTableViewController.swift in Sources */,
 				00DAE71A1BF211F9003C679E /* WAYGraphNode.swift in Sources */,
 				000438351C1576B600514477 /* String+URLEscape.swift in Sources */,
 				00F318051C3EC20E004DE903 /* DataExportViewController.swift in Sources */,
+				83EFF78A1F6035D000ABB007 /* SettingsTableViewController.swift in Sources */,
 				0063328D1C11DCD600EE2ED5 /* LabeledSlider.swift in Sources */,
+				833BBB501F6138EF0026F811 /* SettingsDetailViewController.swift in Sources */,
 				003B66071BF5D03E00551B3A /* BaseSearchTableViewController.swift in Sources */,
 				00D778B21BFC5E850007258F /* RouteCalculationView.swift in Sources */,
 				009805A01C0C3368009F1981 /* SwitchTableViewCell.swift in Sources */,
 				00FE28161C2022CE003B9162 /* BeaconsInRangeSearchTableViewController.swift in Sources */,
 				8128EAB11D44600700828252 /* UserActionTableHeaderView.swift in Sources */,
 				00C7E4C41C197A5D00E6B7A4 /* LabeledSwitch.swift in Sources */,
+				834499701F6680E10016810B /* OrquestratorViewController.swift in Sources */,
 				00EC11C61C27E39700619EEE /* MissingKeyRoutesTableViewController.swift in Sources */,
 				006EA5201BF3717600BE1B37 /* UITabBar+SizeAdjustment.swift in Sources */,
 				00687E4E1C1AAD160050E86E /* BeaconIdentifier.swift in Sources */,
@@ -1035,6 +1269,7 @@
 				00D778B41BFC9D620007258F /* SwiftGraph+Additions.swift in Sources */,
 				002BFF1B1C1EE5CF006B98F9 /* AudioEngine.swift in Sources */,
 				7E2026641D38685C00476EB2 /* BlueCatsIBeaconInterface-BCMicroLocationManagerDelegate.swift in Sources */,
+				8329EA101F5EE8C3006D16AF /* Strings.swift in Sources */,
 				00C441851C45111900C4F7E5 /* DemoVenueInterface.swift in Sources */,
 				006EA51E1BF3609C00BE1B37 /* UserActionTableViewController.swift in Sources */,
 				009805A21C0C3762009F1981 /* WAYDeveloperSettings.swift in Sources */,
@@ -1058,6 +1293,8 @@
 				00FF76831BF9D371007215B4 /* ActiveRouteViewController.swift in Sources */,
 				00EC11CD1C27E44A00619EEE /* DeveloperActionSelectionTableViewController.swift in Sources */,
 				00EC11C41C27E39700619EEE /* KeyRoutePathsDetailViewController.swift in Sources */,
+				8358E3211F67DE5D00083E9B /* DBStructs.swift in Sources */,
+				8329EA131F5EE8D7006D16AF /* InternalGPSViewController.swift in Sources */,
 				7E2026651D38685C00476EB2 /* BlueCatsIBeaconInterface.swift in Sources */,
 				00736BCA1BF4AF53004A07FF /* ExitSearchTableViewController.swift in Sources */,
 				006EA5101BF3608E00BE1B37 /* ModeSelectionTabBarController.swift in Sources */,
@@ -1074,7 +1311,9 @@
 				00CE72381C184F230007AF28 /* SubtitledDetailTableViewCell.swift in Sources */,
 				810881C51D40667E00BD2CB0 /* WAYFacility.swift in Sources */,
 				00EC11CB1C27E40500619EEE /* KeyRoutePathsDetailView.swift in Sources */,
+				837543EF1F66D2CB006862AE /* DBManager.swift in Sources */,
 				00EC11C31C27E39700619EEE /* GraphValidationViewController.swift in Sources */,
+				90EC440C1F86322A005F8397 /* Log.swift in Sources */,
 				00FF76851BF9D38B007215B4 /* ActiveRouteView.swift in Sources */,
 				00DAE7191BF211F9003C679E /* WAYGraphEdge.swift in Sources */,
 				00F604721BF47EFC002431D5 /* DirectionsPreviewViewController.swift in Sources */,
@@ -1112,6 +1351,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83DFD4DA1F794D4D004FEBD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1121,6 +1367,18 @@
 			targetProxy = 00BF3D5A1BF20ED40075533D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8319FF821F5FD779004054EA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8319FF811F5FD779004054EA /* Base */,
+				8319FF841F5FD77E004054EA /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00BF3D6B1BF20ED40075533D /* Debug */ = {
@@ -1219,11 +1477,22 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = H9ZRYYJ3S8;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "${inherited}";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK\\ Beepcons\\ 1.2.1\\ 161103",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AlgoritmoC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo2";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1239,11 +1508,22 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = H9ZRYYJ3S8;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "${inherited}";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK\\ Beepcons\\ 1.2.1\\ 161103",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AlgoritmoC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo2";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1282,6 +1562,32 @@
 			};
 			name = Release;
 		};
+		83DFD4E51F794D4E004FEBD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		83DFD4E61F794D4E004FEBD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1308,6 +1614,15 @@
 			buildConfigurations = (
 				00BF3D711BF20ED40075533D /* Debug */,
 				00BF3D721BF20ED40075533D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83DFD4E41F794D4E004FEBD4 /* Build configuration list for PBXNativeTarget "libreriaLasArenas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83DFD4E51F794D4E004FEBD4 /* Debug */,
+				83DFD4E61F794D4E004FEBD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

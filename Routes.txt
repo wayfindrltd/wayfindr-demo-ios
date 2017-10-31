@@ -1,0 +1,57 @@
+1|Morado|1|2|3|1|START: Bienvenido a Las Arenas, se encuentra en la entrada que da a la calle Llança. Continúe recto.|Gire la siguiente a la izquierda|
+1|Morado|2|3|4|2|Gire a la izquierda||
+1|Morado|3|4|20|3|Continúe recto|Siga recto pasando las tiendas|
+1|Morado|4|20|6|4|Siga recto pasando la entrada de las tiendas|Gire la siguiente a la izquierda, pasando la entrada de la tienda.|
+1|Morado|5|6|5|5|Gire a la izquierda y péguese a la pared de su izquierda||
+1|Morado|6|5|8|6|Gire a la derecha, manteniendo los puestos comerciales a su derecha||
+1|Morado|7|8|7|7|Gire a la derecha, manteniendo los puestos comerciales a su derecha.  Hay un panel indicativo a mitad de camino||
+1|Morado|8|7|9|8|Gire a la izquierda y continúe pegado a su izquierda|Se está aproximando a Nespresso.  La entrada de la tienda se encontrará a su izquierda.|
+1|Morado|9|9|9|9|Ha llegado a Nespresso.  La entrada de la tienda se encuentra a su izquierda.||
+2|Rojo|10|9|7|1|Salga de la tienda y gire a la derecha, manteniéndose pegado a su izquierda.|Gire la siguiente a su izquierda y continúe pegado a su izquierda|
+2|Rojo|11|7|10|2|Gire a la izquierda||
+2|Rojo|12|10|21|3|Gire a la izquierda y continúe recto.  Manténgase pegado a su derecha||
+2|Rojo|13|21|23|4|Continúe recto.  Manténgase pegado a su derecha||
+2|Rojo|14|23|12|5|Continúe recto.  Manténgase pegado a su derecha||
+2|Rojo|15|12|14|6|Continúe recto.  Manténgase pegado a su derecha. La cafetería Amorino quedará a su izquierda||
+2|Rojo|16|14|15|7|Gire a la izquierda y continúe pegado a su derecha, pasando la entrada de las tiendas|Tome la siguiente a la derecha, pasando la entrada de las tiendas.|
+2|Rojo|17|15|16|8|Gire a la derecha y continúe pegado a la derecha. La entrada de la tienda se encontrará a su derecha||
+2|Rojo|18|16|16|9|Ha llegado a Lush. La entrada de la tienda se encuentra a su derecha||
+3|Naranja|19|16|30|1|Continúe recto|Continúe recto|
+3|Naranja|20|30|17|2||Gire la siguiente a la izquierda, pasando la entrada de la tienda.|
+3|Naranja|21|17|18|3|Gire a la izquierda, avance 3 metros y gire a la derecha. Continúe recto, dejando las escaleras a su derecha, y gire a la derecha.||
+3|Naranja|22|18|2|4|||
+3|Naranja|23|2|3|5|Gire a la derecha||
+3|Naranja|24|3|4|6|Gire a la izquierda||
+3|Naranja|25|4|20|7|Continúe recto|Continúe recto|
+3|Naranja|26|20|20|8|Ha llegado a Las Casas.  La entrada de la tienda se encuentra a su izquierda||
+4|Verde_0|27|20|6|1|Continúe recto||
+4|Verde_0|28|6|11|2|Gire a la derecha|Continúe recto|
+4|Verde_0|29|11|10|3|Gire a la izquierda||
+4|Verde_0|30|10|21|4|Continúe recto.  Manténgase pegado a la barandilla de su derecha||
+4|Verde_0|31|21|23|5|Avance, manteniéndose a su derecha y pasando los ascensores que también quedarán a su derecha||
+4|Verde_0|32|23|231|6|Gire a la izquierda y continúe recto. De frente está la puerta de salida manual que se abre con una barra horizontal. A 3 metros a la izquierda de ésta se encuentra la puerta automática||
+4|Verde_0|33|231|235|7|||
+4|Verde_0|34|235|232|8|||
+4|Verde_0|35|232|24|9|||
+4|Verde_0|36|24|24|10|Has llegado a la salida. La puerta se encuentra delante||
+5|Verde_1|37|20|6|1|Continúe recto||
+5|Verde_1|38|6|11|2|Gire a la derecha|Continúe recto|
+5|Verde_1|39|11|10|3|Gire a la izquierda||
+5|Verde_1|40|10|21|4|Continúe recto.  Mantenga la barandilla a su derecha||
+5|Verde_1|41|21|23|5|Avance, manteniéndose a su derecha y pasando los ascensores que también quedarán a su derecha||
+5|Verde_1|42|23|231|6|Gire a la izquierda||
+5|Verde_1|43|231|235|7|Continúe recto||
+5|Verde_1|44|235|232|8|||
+5|Verde_1|45|232|24|9|||
+5|Verde_1|46|24|24|10|Has llegado a la salida. De frente está la puerta de salida manual que se abre con una barra horizontal. A 3 metros a la izquierda de ésta se encuentra la puerta automática||
+6|Verde_2|47|20|6|1|Continúe recto||
+6|Verde_2|48|6|11|2|Gire a la derecha|Continúe recto|
+6|Verde_2|49|11|10|3|Gire a la izquierda||
+6|Verde_2|50|10|21|4|Continúe recto.  Mantenga la barandilla a su derecha||
+6|Verde_2|51|21|23|5|Avance, manteniéndose a su derecha y pasando los ascensores que también quedarán a su derecha||
+6|Verde_2|52|23|231|6|Gire a la izquierda y continúe recto||
+6|Verde_2|53|231|235|7|||
+6|Verde_2|54|235|232|8|Continúe recto||
+6|Verde_2|55|232|24|9|||
+6|Verde_2|56|24|24|10|Has llegado a la salida. De frente está la puerta de salida manual que se abre con una barra horizontal. A 3 metros a la izquierda de ésta se encuentra la puerta automática||
+

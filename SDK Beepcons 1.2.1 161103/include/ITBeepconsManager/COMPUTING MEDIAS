@@ -1,0 +1,222 @@
+REVISION 1.0 16-10-2015 Initial DOC
+
+----------------------------------------------------------------------------------------------------------
+COMPUTING MEDIAS
+----------------------------------------------------------------------------------------------------------
+
+From SDK V1.1.5 a new feature of self computing medias (ITBEEPCONSMANAGER) has been introduced into the SDK.
+
+From the programmer point of view this mainly means thatt two new functions are added :
+
+A function to call from the client APP :
+
+- (BOOL) StartScanningForPeripherals:(BOOL)Report WithMeanReportsEach:(NSInteger)DecOfSeconds RemoveOutliners:(BOOL)remove pseudodistancePropagationPathLossExponent:(double) PathLossExponent;
+
+and a protocol function to answer the client APP :
+
+- (void) ITBeepconsManagerReportingComputedMediaForBeepcon:(id)thismanager WithId:(NSUUID *)identifier WithMedia:(NSInteger)media WithNumberofSamples:(NSUInteger)numofsamples WithDesviation:(double)sigma WithMaxRssi:(NSInteger)maxrssi WithMinRssi:(NSInteger)minrssi WithPseudoDistanceAtMedia:(double)pseudodistance WithPseudoDistanceDevError:(double)pseudodistancedeverror OutlinersRemoved:(NSInteger)numoutliners;
+
+
+----------------------------------------------------------------------------------------------------------
+WHY IS THIS INTRODUCED ?
+----------------------------------------------------------------------------------------------------------
+
+This will help the programmer to center on its own use case, without the need to do complex computing algorithms with the raw data that the SDK is delivering to the client app.
+
+----------------------------------------------------------------------------------------------------------
+THE MAIN CONCEPT
+----------------------------------------------------------------------------------------------------------
+
+In a few words, you have now a new function to START SCANNING for BEEPCONS, where you can tell the SDK to report you computed media (among others) from the reports received from surrounding BEEPCONS each certain
+periods of time. If you want this feature, call this function to start scanning. (The previous version of StartScanningForPeripherals is maintained, and you must call it if you do not want to recieve
+this computed media).
+
+So, simply call StartScanningForPeripherals:WithMeanReportsEach:RemoveOutliners:pseudodistancePropagationPathLossExponent:
+
+and the SDK will answer you with
+
+- (void) ITBeepconsManagerReportingComputedMediaForBeepcon:(id)thismanager WithId:(NSUUID *)identifier WithMedia:(NSInteger)media WithNumberofSamples:(NSUInteger)numofsamples WithDesviation:(double)sigma WithMaxRssi:(NSInteger)maxrssi WithMinRssi:(NSInteger)minrssi WithPseudoDistanceAtMedia:(double)pseudodistance WithPseudoDistanceDevError:(double)pseudodistancedeverror OutlinersRemoved:(NSInteger)numoutliners;
+
+That said, it´s not trivial how to use this new feature without a basic knowledge of what you are doing ....
+
+----------------------------------------------------------------------------------------------------------
+CONCEPTS
+----------------------------------------------------------------------------------------------------------
+
+TXRATE, is the rate that the BEEPCONS are sending reports to the air. (In the SDK can be 0..9, but this is not the reports per second, its only a level, that means 0 low rate, 9 high rate).
+TXPOWER, is the power that the BEEPCONS are injecting at the antena. (As in previous case the SDK allows 0..5 , but this is not really the power in dBm).
+dB1m, is the measured power when you are 1 meter away from the BEEPCON, and needs to be calibrated into each BEEPCON once deployed in its final place.
+
+Wich TXRATE and wich TXPOWER is the best depends on each use case.
+
+For example, if it is a must battery life, Low Rates and Low power are best suited...
+If you are going with Indoor Location use cases, you will want to use HighRates and High Power to compute as much data as possible. (And possibly use wall adapter BEEPCONS version when possible).
+
+All that means that if you are using the SDK for a particular use case, you need to perform a minimal analysis of it, and find the best parameters that suit your solution.
+
+
+----------------------------------------------------------------------------------------------------------
+THE START SCANNING FUNCTION
+----------------------------------------------------------------------------------------------------------
+
+Lets look the new Start Scanning function :
+
+- (BOOL) StartScanningForPeripherals:(BOOL)Report WithMeanReportsEach:(NSInteger)DecOfSeconds RemoveOutliners:(BOOL)remove pseudodistancePropagationPathLossExponent:(double) PathLossExponent;
+
+As expected, this function will start scanning for BEEPCONS exactly in the same way of its previous (and available) version.
+
+
+PARAMETER 1.
+
+(BOOL)Report
+
+As with the previous version, will indicate the SDK to send a report each time a BEEPCON sends a packet. You will receive exactly the same information than in previous version.
+This reports are the RAW data without being processed by the SDK, so all the explanations contained in the .h about this is valid.
+
+If you are going to make your own algorithms from scratch, you can use this data, to get the unmodified real data. Only be aware again of your use case. Some BEEPCONS can be programmend  to broadcast
+up to 30 packets per second so if you have , for example, 20 BEEPCONS on range, you will receive 20*30=600 reports per second... Depending of your computational load on each report the APP can simply freeze.
+
+For heavy computational algorithms its a good practice to split the task and : StoreReportsToMemoryDuringATime - StopStoringReports (a simple boolean can do the job) - ProcessReports - Go To Step 1.
+
+(This is exactly the pattern the SDK follows with its new feature)
+
+This has the cost of loosing some reports while you are processing them, but it really dont matters if you loose say for example 20 reports of 600...
+
+
+PARAMETER 2.
+
+WithMeanReportsEach:(NSInteger)DecOfSeconds
+
+With this parameter you tell the SDK the period of time you want to get computed data in 0.1 secs steps.
+
+For example, a value of 30 means each 30*0.1 seconds = 3 seconds.
+The lowest value is 5 (corresponding to 0.5 seconds).
+
+What is the optimal value depends of many factors that the use case developer must know.
+
+That said, you cannot isolate this parameter from other use case parameters.
+
+I mean, if you for example have setup your BEEPCONS to broadcast a packet each 2 seconds, trying to get a statystical analysis each 0.5 seconds has no sense.
+
+Think that the internal algorithms are based on statistical processes, and making statistical analysis , of for example, a single sample has no sense and gill give you unexpected results...
+
+So, be sure that you are receiving some samples to compute them properly...say for example 5 or more...
+
+Limits : the SDK limits the amount of samples it will store on memory on each period of time for memory safety issues and process stability.
+You can find a #define RSSIRAWDATA_SAMPLES_LIMIT on the .h
+This means exactly, "I´m not going to store more than RSSIRAWDATA_SAMPLES_LIMIT to make the analysis".
+If you set the period to 10 seconds, and you receive RSSIRAWDATA_SAMPLES_LIMIT samples on the first second, 9 seconds will be not stored nor analyzed...
+We have decided (trusting in you) to place this limit in the .h so you can play with it, but manage it with caution. The default is 50 samples each period.
+
+
+PARAMETER 3.
+
+RemoveOutliners:(BOOL)remove
+
+In some cases it can be useful to make a pre filter of the received samples, to discard those that are probably "bad samples" and will affect the algorithms.
+That is exactly what this BOOLEAN says to the SDK analysis engine.
+
+But..how it works...
+
+Again you need to know what you are doing...and look at a new #define :
+
+#define N_SIGMA_OUTLIERS_THRESHOLD
+
+This parameters is directly related to this task.
+
+It means "Remove from the list all RSSI´s that are outside the (N_SIGMA_OUTLIERS_THRESHOLD * SIGMA) threshold".
+
+Example :
+
+Imagine a series of RSSI : -60,-60,-61,-80
+
+Compute its media = -65,25
+Compute its standard deviation (or sigma) = SQRT(SUM_FOR_EACH_SAMPLE(SQR(SAMPLE-MEAN))/(NUM OF SAMPLES-1))= 9.59
+Establish the thresholds for , for example N_SIGMA_OUTLIERS_THRESHOLD = 1 :
+                            MIN : -65.25 - 1*9.59 = -74,84
+                            MAX : -65.25 + 1*9.59 = -55,66
+
+So all that means, "All values outside the -74,84 to -55,6 are going to be discarded for the analysis". It seems logical that the -80 value its not going to help in the analysis and better be discarded.
+
+Don´t think on this pre filter as the solution of all your problems .... Try to enable it, disable it and compare results....under your real scenario.
+
+I mean that sometimes will help and others disturb...this is the reson that you can enable or disable it.
+
+
+PARAMETER 4.
+
+pseudodistancePropagationPathLossExponent:(double) PathLossExponent
+
+The SDK will compute a pseudodistance to the beacon based on the received RSSI´s and the Calibrated dBm at 1 meter that it also transmits in the packets.
+(That of course means that you have calibrated your BEEPCONS once deployed in real places...).
+
+The formula is the free air propagation model
+
+RECEIVED_RSSI = POWER_AT_1_METER - 10 * PathLossExponent * LOG (DISTANCE)
+
+PathLoss exponent is 2.0 for free air, but changes depending on the final place BEEPCONS are deployed...
+
+That means that if you don´t have your Site PathLossExponent for each beacon the distance calculations will be erroneous...
+
+It is not the objective of this document to go into Electromagnetic Waves Propagation Theory...
+
+If you decide to touch this parameter it is supossed you know what you are doing...
+
+If not, simply make it 2.0
+
+And take into account that only short distances (up to for example 3- 4 meters will have some , and not much, confidence....).
+Bluetooth Low Energy cannot at this moment give good accuracies when talking in distance terms.
+I know its a little bit disappointing to receive a parameter that is not accurate, but we have decided to give it to you, and who can say if in the future we will have better results...
+
+Why this is not accurate ?
+
+PathLossExponent is only the tip of the iceberg...
+Also different phone models give diffrent results on RSSI..
+Waves are not perfectly omnidirectional so approaching from one side is not the same than approaching from other.
+In a closed room , multipath propagation (think it as Echoes)  creates erroneous RSSI readings...
+And there are more..
+
+----------------------------------------------------------------------------------------------------------
+THE ANALYSIS RESULT
+----------------------------------------------------------------------------------------------------------
+
+
+You will get your SDK analysis via a delegate call to :
+
+- (void) ITBeepconsManagerReportingComputedMediaForBeepcon:(id)thismanager WithId:(NSUUID *)identifier WithMedia:(NSInteger)media WithNumberofSamples:(NSUInteger)numofsamples WithDesviation:(double)sigma WithMaxRssi:(NSInteger)maxrssi WithMinRssi:(NSInteger)minrssi WithPseudoDistanceAtMedia:(double)pseudodistance WithPseudoDistanceDevError:(double)pseudodistancedeverror OutlinersRemoved:(NSInteger)numoutliners;
+
+Lets look to its parameters :
+
+WithId:(NSUUID *)identifier : The Id that allows you to identify the BEEPCON (as in previous versions)
+
+WithMedia:(NSInteger)media : the media of the RSSI samples used to compute this slot of time (dBm) (Arithmetic media)
+
+WithNumberofSamples:(NSUInteger)numofsamples : The number of samples used to compute all the data.
+
+WithDesviation:(double)sigma : The standard deviation in dBm of the computed samples.
+
+WithMaxRssi:(NSInteger)maxrssi : The max RSSI received on this samples.
+
+WithMinRssi:(NSInteger)minrssi : The min RSSI received on this samples.
+
+WithPseudoDistanceAtMedia:(double)pseudodistance : The meters from the BEEPCON...PSEUDO MEANS THAT YOU CAN NOT EXPECT ACCURACY, AND SOMETIMES YOU WILL GET STRANGE RESULTS
+                                                   If you receive a -1, means that no Pseudodistance was computed this time.
+
+WithPseudoDistanceDevError:(double)pseudodistancedeverror : this is a PSEUDOERROR expected on PseudoDistance, based on the sigma desviation.
+
+OutlinersRemoved:(NSInteger)numoutliners : if you enabled the ouliners remove engine, this will indicate how many samples where removed from the initial raw list of RSSI.
+
+
+----------------------------------------------------------------------------------------------------------
+FINAL CONCLUSIONS
+----------------------------------------------------------------------------------------------------------
+
+The SDK wants to help you with some statystical analysis but it is not going better than state of the art for this technology.
+We want to share with you the results of this analysis and give you some degree of freedom to parametrice how this engine works.
+But remember, you need to understand what you are doing before expecting good results...
+
+
+
+
+
+
