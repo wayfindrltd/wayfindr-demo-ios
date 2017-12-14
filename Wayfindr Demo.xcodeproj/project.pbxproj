@@ -140,9 +140,9 @@
 		83BEA96F1F6AD6480050A677 /* Beacons.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA96E1F6AD6480050A677 /* Beacons.txt */; };
 		83EFF78A1F6035D000ABB007 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF7891F6035D000ABB007 /* SettingsTableViewController.swift */; };
 		83FA3BD81F7A33AC0037708E /* Routes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83FA3BD71F7A33AC0037708E /* Routes.txt */; };
-		90C1685A1FA886F800BC6F30 /* FingerprintSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C168591FA886F800BC6F30 /* FingerprintSearch.framework */; };
-		90C1685B1FA886FF00BC6F30 /* FingerprintSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C168591FA886F800BC6F30 /* FingerprintSearch.framework */; };
-		90C1685C1FA886FF00BC6F30 /* FingerprintSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90C168591FA886F800BC6F30 /* FingerprintSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9005A1F91FE02F5F001CD500 /* FingerprintSearchiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9005A1F81FE02F5F001CD500 /* FingerprintSearchiOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9005A1FA1FE02FD2001CD500 /* FingerprintSearchiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9005A1F81FE02F5F001CD500 /* FingerprintSearchiOS.framework */; };
+		9005A1FB1FE02FD2001CD500 /* FingerprintSearchiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9005A1F81FE02F5F001CD500 /* FingerprintSearchiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90EC440A1F861428005F8397 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EC44091F861428005F8397 /* MessageUI.framework */; };
 		90EC440C1F86322A005F8397 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EC440B1F86322A005F8397 /* Log.swift */; };
 		90FDE4831F7D1C1600E46E42 /* Links.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90FDE4821F7D1C1600E46E42 /* Links.txt */; };
@@ -175,7 +175,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90C1685C1FA886FF00BC6F30 /* FingerprintSearch.framework in Embed Frameworks */,
+				9005A1FB1FE02FD2001CD500 /* FingerprintSearchiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,7 +328,7 @@
 		83DFD4DE1F794D4D004FEBD4 /* liblibreriaLasArenas.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibreriaLasArenas.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EFF7891F6035D000ABB007 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = "Guiado Las Arenas/Views/SettingsTableViewController.swift"; sourceTree = "<group>"; };
 		83FA3BD71F7A33AC0037708E /* Routes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Routes.txt; sourceTree = "<group>"; };
-		90C168591FA886F800BC6F30 /* FingerprintSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FingerprintSearch.framework; sourceTree = "<group>"; };
+		9005A1F81FE02F5F001CD500 /* FingerprintSearchiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FingerprintSearchiOS.framework; sourceTree = "<group>"; };
 		90EC44091F861428005F8397 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		90EC440B1F86322A005F8397 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = "Guiado Las Arenas/Controllers/Log.swift"; sourceTree = "<group>"; };
 		90FDE4821F7D1C1600E46E42 /* Links.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Links.txt; sourceTree = "<group>"; };
@@ -344,10 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EC440A1F861428005F8397 /* MessageUI.framework in Frameworks */,
-				90C1685A1FA886F800BC6F30 /* FingerprintSearch.framework in Frameworks */,
 				435C640F885CD28B00169299 /* Pods_Wayfindr_Demo.framework in Frameworks */,
-				90C1685B1FA886FF00BC6F30 /* FingerprintSearch.framework in Frameworks */,
+				9005A1FA1FE02FD2001CD500 /* FingerprintSearchiOS.framework in Frameworks */,
 				8332DB831F73D7C2009B5FF0 /* libITBeepconsManager.a in Frameworks */,
+				9005A1F91FE02F5F001CD500 /* FingerprintSearchiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,7 +869,7 @@
 		80C22D04DB8DA3B66964392E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				90C168591FA886F800BC6F30 /* FingerprintSearch.framework */,
+				9005A1F81FE02F5F001CD500 /* FingerprintSearchiOS.framework */,
 				90EC44091F861428005F8397 /* MessageUI.framework */,
 				8332DB821F73D7C2009B5FF0 /* libITBeepconsManager.a */,
 				56393D20E05B9D6AC56358B5 /* Pods.framework */,
@@ -1022,7 +1022,7 @@
 				TargetAttributes = {
 					00BF3D441BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = H9ZRYYJ3S8;
+						DevelopmentTeam = Q4ZHQU5S5K;
 						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1477,7 +1477,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = H9ZRYYJ3S8;
+				DEVELOPMENT_TEAM = Q4ZHQU5S5K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"${inherited}",
@@ -1508,7 +1508,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = H9ZRYYJ3S8;
+				DEVELOPMENT_TEAM = Q4ZHQU5S5K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"${inherited}",

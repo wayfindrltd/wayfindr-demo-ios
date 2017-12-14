@@ -11,8 +11,7 @@ import Foundation
 import UserNotifications
 import CoreLocation
 import MessageUI
-import FingerprintSearch
-
+import FingerprintSearchiOS
 
 @available(iOS 10.0, *)
 class OrquestratorViewController: UIViewController, ITBeepconsLocatorDelegate, ITBeepconsManagerDelegate, UNUserNotificationCenterDelegate, MFMailComposeViewControllerDelegate {
