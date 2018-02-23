@@ -164,9 +164,7 @@ final class AudioEngine: NSObject {
         
         // Save instruction for later
         currentInstruction = instruction
-        
-        if WAYConstants.WAYSettings.audioFlashEnabled {
-            
+        if WAYDeveloperSettings.sharedInstance.audioFlashEnabled {
             showInstructionOverlay(delay: 0)
         }
     }

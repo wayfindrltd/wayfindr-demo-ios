@@ -36,8 +36,17 @@ struct DemoVenueInterface: VenueInterface {
         
         if let configFilePath = Bundle.main.path(forResource: DemoFileInformation.ConfigFile, ofType: "plist"),
             let configDictionary = NSDictionary(contentsOfFile: configFilePath) as? [String : AnyObject],
-            let apiKey = configDictionary["apikey"] as? String {
-                interface = DemoBeaconInterface(apiKey: apiKey)
+            let defaultsdk = configDictionary["defaultsdk"] as? String {
+                switch defaultsdk
+                {
+                case  "Bluecats":
+                    let apiKey = configDictionary["bcapikeyrsbc"] as? String
+                    interface = BlueCatsIBeaconInterface(apiKey: apiKey!)
+                default:
+                    let apiKey = configDictionary["apikey"] as? String
+                    interface = DemoBeaconInterface(apiKey: apiKey!)
+                }
+            
         } else {
             completionHandler(false, nil, BeaconInterfaceError.failedInitialization(localizedDescription: WAYStrings.ErrorMessages.UnknownError))
             return

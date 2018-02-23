@@ -97,17 +97,7 @@ final class BlueCatsIBeaconInterface: NSObject, BeaconInterface {
             }
             
             if !BlueCatsSDK.isLocationAuthorized() {
-                BlueCatsSDK.requestAlwaysLocationAuthorization()
-            }
-            
-            guard BlueCatsSDK.isNetworkReachable() else {
-                completionHandler?(false, .failedInitialization(localizedDescription: WAYStrings.ErrorMessages.NoInternet))
-                return
-            }
-            
-            guard BlueCatsSDK.isBluetoothEnabled() else {
-                completionHandler?(false, .failedInitialization(localizedDescription: WAYStrings.ErrorMessages.UnableMonitor))
-                return
+                BlueCatsSDK.requestWhenInUseLocationAuthorization()
             }
             
             completionHandler?(true, nil)

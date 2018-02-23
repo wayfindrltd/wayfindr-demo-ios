@@ -135,7 +135,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
         
         nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(ActiveRouteViewController.nextButtonPressed(_:)))
         
-        if WAYConstants.WAYSettings.stopwatchEnabled {
+        if WAYDeveloperSettings.sharedInstance.stopwatchEnabled {
             stopwatch = Stopwatch()
             stopwatch?.delegate = self
         }
@@ -207,7 +207,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
             }
             
             
-            if WAYConstants.WAYSettings.strictRouting {
+            if WAYDeveloperSettings.sharedInstance.strictRouting {
                 // Check if the next beacon is next in the route before we continue
                 
                 if toNode.isNext(in: originalRoute, from: fromNode) {

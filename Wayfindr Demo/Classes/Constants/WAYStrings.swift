@@ -129,6 +129,9 @@ struct WAYStrings {
     struct DeveloperOptions {
         static let ShowForceNextButton  = NSLocalizedString("Show Force Next Beacon Button", comment: "")
         static let ShowRepeatButton     = NSLocalizedString("Show Repeat Button with Voiceover", comment: "")
+        static let StopwatchEnabled   = NSLocalizedString("Show Stopwatch", comment: "")
+        static let AudioFlashEnabled    = NSLocalizedString("Audio Flash Enabled", comment: "")
+        static let StrictRouting        = NSLocalizedString("Strict Routing", comment: "")
     }
     
     struct KeyRoutePaths {
@@ -178,24 +181,24 @@ struct WAYStrings {
     }
     
     struct UserActionSelection {
-        static let SelectDestination 		= NSLocalizedString("Select a destination point below", comment: "")
-        static let TrainPlatforms           = NSLocalizedString("Train platforms", comment: "")
-        static let StationExits             = NSLocalizedString("Station exits", comment: "")
-        static let StationFacilities        = NSLocalizedString("Station facilities", comment: "")
+        static let SelectDestination        = NSLocalizedString("Select a destination point below", comment: "")
+        static let TrainPlatforms           = NSLocalizedString("Destinations", comment: "")
+        static let StationExits             = NSLocalizedString("Exits", comment: "")
+        static let StationFacilities        = NSLocalizedString("Facilities", comment: "")
     }
 
     struct DestinationSearch {
-        static let TrainPlatformSearch          = NSLocalizedString("Train Platform Search", comment: "")
+        static let TrainPlatformSearch          = NSLocalizedString("Destination Search", comment: "")
         static let SearchPlatformPlaceholder    = NSLocalizedString("Search platforms", comment: "")
     }
-
+    
     struct ExitSearch {
-        static let ExitSearch           = NSLocalizedString("Station Exit Search", comment: "")
+        static let ExitSearch           = NSLocalizedString("Exit Search", comment: "")
         static let SearchPlaceholder    = NSLocalizedString("Search exits", comment: "")
     }
-
+    
     struct StationFacilitySearch {
-        static let StationFacilitySearch = NSLocalizedString("Station Facility Search", comment: "")
+        static let StationFacilitySearch = NSLocalizedString("Facility Search", comment: "")
         static let SearchPlaceholder     = NSLocalizedString("Search facilities", comment: "")
     }
     

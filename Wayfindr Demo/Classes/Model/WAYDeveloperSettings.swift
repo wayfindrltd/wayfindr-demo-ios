@@ -7,19 +7,19 @@
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights 
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is furnished
 //  to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in all 
+//  The above copyright notice and this permission notice shall be included in all
 //  copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-//  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
-//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
-//  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+//  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 //  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
@@ -35,11 +35,14 @@ struct WAYDeveloperSettings {
     // MARK: - Types
     
     /**
-    *  `NSUserDefaults` keys for developer settings.
-    */
+     *  `NSUserDefaults` keys for developer settings.
+     */
     fileprivate struct WAYDeveloperSettingsKeys {
         static let ShowForceNextButton  = "Developer_ShowForceNextButton"
         static let ShowRepeatButton     = "Developer_ShowRepeatButton"
+        static let StopwatchEnabled     = "Developer_UseSystemVoiceover"
+        static let AudioFlashEnabled    = "Developer_AudioFlashEnabled"
+        static let StrictRouting        = "Developer_StrictRouting"
     }
     
     
@@ -64,6 +67,23 @@ struct WAYDeveloperSettings {
         }
     }
     
+    var stopwatchEnabled: Bool {
+        didSet {
+            saveSettings()
+        }
+    }
+    
+    var audioFlashEnabled: Bool {
+        didSet {
+            saveSettings()
+        }
+    }
+    
+    var strictRouting: Bool {
+        didSet {
+            saveSettings()
+        }
+    }
     
     // MARK: - Initializers
     
@@ -72,19 +92,25 @@ struct WAYDeveloperSettings {
         
         showForceNextButton = defaults.bool(forKey: WAYDeveloperSettingsKeys.ShowForceNextButton)
         showRepeatButton = defaults.bool(forKey: WAYDeveloperSettingsKeys.ShowRepeatButton)
+        stopwatchEnabled = defaults.bool(forKey: WAYDeveloperSettingsKeys.StopwatchEnabled)
+        audioFlashEnabled = defaults.bool(forKey: WAYDeveloperSettingsKeys.AudioFlashEnabled)
+        strictRouting = defaults.bool(forKey: WAYDeveloperSettingsKeys.StrictRouting)
     }
     
     
     // MARK: - Save Changes
     
     /**
-    Save the settings into `NSUserDefaults`.
-    */
+     Save the settings into `NSUserDefaults`.
+     */
     fileprivate func saveSettings() {
         let defaults = UserDefaults.standard
         
         defaults.set(showForceNextButton, forKey: WAYDeveloperSettingsKeys.ShowForceNextButton)
         defaults.set(showRepeatButton, forKey: WAYDeveloperSettingsKeys.ShowRepeatButton)
+        defaults.set(stopwatchEnabled,forKey: WAYDeveloperSettingsKeys.StopwatchEnabled)
+        defaults.set(audioFlashEnabled,forKey: WAYDeveloperSettingsKeys.AudioFlashEnabled)
+        defaults.set(strictRouting, forKey: WAYDeveloperSettingsKeys.StrictRouting)
         defaults.synchronize()
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: WAYDeveloperSettings.DeveloperSettingsChangedNotification), object: nil)
@@ -92,15 +118,19 @@ struct WAYDeveloperSettings {
     
     
     // MARK: - Convenience
-
+    
     /**
-    Register the default `WAYDeveloperSettings` settings.
-    */
+     Register the default `WAYDeveloperSettings` settings.
+     */
     static func registerSettings() {
         let defaults = UserDefaults.standard
         
         defaults.register(defaults: [WAYDeveloperSettingsKeys.ShowForceNextButton : false])
         defaults.register(defaults: [WAYDeveloperSettingsKeys.ShowRepeatButton : true])
+        defaults.register(defaults: [WAYDeveloperSettingsKeys.StopwatchEnabled : true])
+        defaults.register(defaults: [WAYDeveloperSettingsKeys.AudioFlashEnabled : true])
+        defaults.register(defaults: [WAYDeveloperSettingsKeys.StrictRouting : true])
     }
-
+    
 }
+

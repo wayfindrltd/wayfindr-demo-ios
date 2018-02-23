@@ -2,7 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>apikey</key>
-	<string>YOUR_API_KEY</string>
+	<key>defaultsdk</key>
+	<string>Bluecats</string>
+	<key>bcapikeyrsbc</key>
+	<string>1ec7f672-ce7f-487e-9afd-8b07e6f11141</string>
+	<key>bcapikeyvenue2</key>
+	<string>56c41a75-9c4c-46c4-a47e-ca2d04f2ca19</string>
 </dict>
 </plist>

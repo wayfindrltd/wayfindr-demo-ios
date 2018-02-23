@@ -72,15 +72,6 @@ struct WAYConstants {
         
         /// Set this to false if you want to use accuracy
         static let locateNearestBeaconUsingRssi = true
-        
-        /// Set this to true if you want a strict route where you have go through all beacons in order
-        static let strictRouting = false
-        
-        /// Show or hide a stopwatch on the underlying view in the ActiveRouteViewController
-        static let stopwatchEnabled = true
-        
-        /// Show or hide a red view that covers the screen on every audio instruction
-        static let audioFlashEnabled = true
     }
     
     struct WAYSizes {

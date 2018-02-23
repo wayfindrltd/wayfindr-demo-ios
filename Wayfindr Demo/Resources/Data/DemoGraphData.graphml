@@ -32,189 +32,67 @@
     
     
     <!-- GRAPH -->
-    <graph id="Chatswood" edgedefault="directed">
+    <graph id="RSBC" edgedefault="directed">
         
         
         <!-- NODES -->
         
+        
         <node id="1">
             <data key="major">4</data>
             <data key="minor">9800</data>
-            <data key="name">NODE 1</data>
+            <data key="name">BC-01</data>
             <data key="waypoint_type">Platform,Stairs</data>
             <data key="accuracy">4.0</data>
             <data key="rssi">-90</data>
         </node>
-        
         <node id="2">
             <data key="major">4</data>
             <data key="minor">10192</data>
-            <data key="name">NODE 2</data>
+            <data key="name">BC-02</data>
             <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">5.0</data>
-            <data key="rssi">-92</data>
+            <data key="accuracy">4.0</data>
+            <data key="rssi">-90</data>
         </node>
-        
         <node id="3">
             <data key="major">4</data>
             <data key="minor">10053</data>
-            <data key="name">NODE 3</data>
+            <data key="name">ID-03</data>
             <data key="waypoint_type">Platform,Stairs</data>
             <data key="accuracy">4.0</data>
-            <data key="rssi">-92</data>
-        </node>
-        
-        <node id="4">
-            <data key="major">4</data>
-            <data key="minor">9809</data>
-            <data key="name">NODE 4</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">5.0</data>
-            <data key="rssi">-95</data>
-        </node>
-        
-        <node id="5">
-            <data key="major">4</data>
-            <data key="minor">9984</data>
-            <data key="name">NODE 5</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">4.0</data>
-            <data key="rssi">-89</data>
-        </node>
-        
-        <node id="6">
-            <data key="major">4</data>
-            <data key="minor">10113</data>
-            <data key="name">NODE 6</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">6.0</data>
-            <data key="rssi">-92</data>
-        </node>
-        
-        <node id="7">
-            <data key="major">4</data>
-            <data key="minor">10130</data>
-            <data key="name">NODE 7</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">5.0</data>
-            <data key="rssi">-89</data>
-        </node>
-        
-        <node id="17">
-            <data key="major">4</data>
-            <data key="minor">6619</data>
-            <data key="name">NODE 17</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">3.0</data>
-            <data key="rssi">-92</data>
-        </node>
-        
-        <node id="18">
-            <data key="major">4</data>
-            <data key="minor">6866</data>
-            <data key="name">NODE 18</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">5.0</data>
             <data key="rssi">-90</data>
         </node>
         
-        <node id="19">
-            <data key="major">4</data>
-            <data key="minor">6631</data>
-            <data key="name">NODE 19</data>
-            <data key="waypoint_type">Platform,Stairs</data>
-            <data key="accuracy">4.0</data>
-            <data key="rssi">-87</data>
-        </node>
+        <!-- EDGES -->
         
-               <!-- EDGES -->
-        <edge id="18to3" source="18" target="3">
-            <data key="travel_time">12.0</data>
-            <data key="beginning">Move forward</data>
-            <data key="middle">Turn right, keep to the left of the barrier and move forwards</data>
+        <edge id="1to2" source="1" target="2">
+            <data key="travel_time">10</data>
+            <data key="beginning">This is 1 starting</data>
+            <data key="middle">In between 1 and 2.</data>
+            <data key="ending">Detected 2</data>
             <data key="language">en-GB</data>
         </edge>
-        
-        <edge id="18to6" source="18" target="6">
-            <data key="travel_time">13.0</data>
-            <data key="beginning">Move forward and turn right</data>
-            <data key="middle">Keep to the right of the barrier and move forwards</data>
-            <data key="ending">Turn right</data>
+        <edge id="2to3" source="2" target="3">
+            <data key="travel_time">10</data>
+            <data key="beginning">This is 2 starting</data>
+            <data key="middle">In between 2 and 3.</data>
+            <data key="ending">Detected 3</data>
             <data key="language">en-GB</data>
         </edge>
-        
-        <edge id="3to4" source="3" target="4">
-            <data key="travel_time">4.0</data>
-            <data key="middle">Turn left</data>
+        <edge id="2to1" source="2" target="1">
+            <data key="travel_time">10</data>
+            <data key="beginning">This is 2 starting</data>
+            <data key="middle">In between 2 and 1.</data>
+            <data key="ending">Detected 1</data>
             <data key="language">en-GB</data>
         </edge>
-        <edge id="4to5" source="4" target="5">
-            <data key="travel_time">10.0</data>
-            <data key="beginning">Turn left - move towards the ticket barrier</data>
+        <edge id="3to2" source="3" target="2">
+            <data key="travel_time">10</data>
+            <data key="beginning">This is 3 starting</data>
+            <data key="middle">In between 3 and 2.</data>
+            <data key="ending">Detected 2</data>
             <data key="language">en-GB</data>
         </edge>
-        
-        <edge id="5to19" source="5" target="19">
-            <data key="travel_time">8.0</data>
-            <data key="beginning">You are approaching the ticket barrier. The wide gate is on your right</data>
-            <data key="middle">Seating area is straight ahead</data>
-            <data key="ending">You have arrived at the seating area</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        
-        <edge id="17to7" source="17" target="7">
-            <data key="travel_time">10.0</data>
-            <data key="beginning">Move forwards</data>
-            <data key="language">en-GB</data>
-        </edge>
-    
-        <edge id="7to5" source="7" target="5">
-            <data key="travel_time">2.0</data>
-            <data key="beginning">Turn right</data>
-            <data key="middle">You are approaching the ticket barrier, the wide gate is on your left</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        <edge id="5to6" source="5" target="6">
-            <data key="travel_time">8.0</data>
-            <data key="middle">Turn right and move forward towards the stairs, keep left</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        <edge id="6to1" source="6" target="1">
-            <data key="travel_time">1.0</data>
-            <data key="beginning">Take the stairs down to the platform. There are 5 steps</data>
-            <data key="ending">You have arrived at the platform.</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        <edge id="1to6" source="1" target="6">
-            <data key="travel_time">2.0</data>
-            <data key="beginning">Move forwards, take the stairs up to the ticket hall. There are 5 steps</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        <edge id="6to2" source="6" target="2">
-            <data key="travel_time">6.0</data>
-            <data key="beginning">Turn left, move forwards and keep to the left of the barrier</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        <edge id="2to18" source="2" target="18">
-            <data key="travel_time">10.0</data>
-            <data key="beginning">Turn left to the exit</data>
-            <data key="ending">You have arrived at the exit</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
-        <edge id="7to17" source="7" target="17">
-            <data key="travel_time">10.0</data>
-            <data key="beginning">Turn to 10 'o clock and move forwards to the information point</data>
-            <data key="ending"> You have arrived at the information point</data>
-            <data key="language">en-GB</data>
-        </edge>
-        
     </graph>
-    
 </graphml>
+

@@ -1,38 +1,32 @@
 {
     "venue": {
-        "name": "Example venue",
+        "name": "RSBC London",
         "platforms": [{
-                      "name": "Platform",
+                      "name": "No 3",
                       "entrance_beacon_major": 4,
-                      "entrance_beacon_minor": 9800,
+                      "entrance_beacon_minor": 10053,
                       "exit_beacon_major": 4,
-                      "exit_beacon_minor": 9800,
-                      "destinations": ["Platform"]
+                      "exit_beacon_minor": 10053,
+                      "destinations": ["No 3"]
                       }],
         "exits": [{
-                  "name": "1",
+                  "name": "No 1",
                   "entrance_beacon_major": 4,
-                  "entrance_beacon_minor": 6866,
+                  "entrance_beacon_minor": 9800,
                   "exit_beacon_major": 4,
-                  "exit_beacon_minor": 6866,
-                  "mode": "Main"
-                  }],
+                  "exit_beacon_minor": 9800,
+                  "mode": "No 1"
+                  }]
+        ,
         "station_facilities": [
                                {
-                               "name": "Seating",
+                               "name": "No 2",
                                "entrance_beacon_major": 4,
-                               "entrance_beacon_minor": 6631,
+                               "entrance_beacon_minor": 10192,
                                "exit_beacon_major": 4,
-                               "exit_beacon_minor": 6631
-                               },
-                               {
-                               "name": "Information point",
-                               "entrance_beacon_major": 4,
-                               "entrance_beacon_minor": 6619,
-                               "exit_beacon_major": 4,
-                               "exit_beacon_minor": 6619
+                               "exit_beacon_minor": 10192
                                }
-        ]
+                               ]
+        
     }
 }
-
