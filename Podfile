@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '11.2'
 use_frameworks!
 
 target 'Wayfindr Demo' do

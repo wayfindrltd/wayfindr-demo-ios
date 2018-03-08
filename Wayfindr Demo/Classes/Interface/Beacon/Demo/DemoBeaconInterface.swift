@@ -32,14 +32,9 @@ final class DemoBeaconInterface: NSObject, BeaconInterface {
         }
     }
     
-    /// API Key used by Beacon manufacturer
-    fileprivate let apiKey: String
-    
-    
     // MARK: - Initializers
     
-    init(apiKey: String, monitorBeacons: Bool = true) {
-        self.apiKey = apiKey
+    init(monitorBeacons: Bool = true) {
         
         super.init()
 

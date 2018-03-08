@@ -3,10 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>defaultsdk</key>
-	<string>Bluecats</string>
+	<string>iBeacon</string>
 	<key>bcapikeyrsbc</key>
 	<string>1ec7f672-ce7f-487e-9afd-8b07e6f11141</string>
 	<key>bcapikeyvenue2</key>
 	<string>56c41a75-9c4c-46c4-a47e-ca2d04f2ca19</string>
+	<key>regionid</key>
+	<string>61687109-905F-4436-91F8-E602F514C96D</string>
+	<key>regionname</key>
+	<string>bluecats</string>
 </dict>
 </plist>
