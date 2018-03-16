@@ -89,14 +89,14 @@ An example of how to put these data files into use can be found in the class `De
 
 Any mentions of "platforms" or "exits" found in the code are legacy from Wayfindr's previous trials in [Mainline Rail and Metro Stations](http://www.wayfindr.net/open-standard/guidelines/venue-types/mainline-rail-and-metro-stations/).
 
-Information about the beacons parameters (e.g.major, minor, accuracy etc.) can be found in the [Wayfindr Open Standard](http://wayfindr.staging.wpengine.com/open-standard/wayfinding-technologies/bluetooth-low-energy-beacons/).
+Information about the beacons parameters (e.g.major, minor, accuracy etc.) can be found in the [Wayfindr Open Standard](http://wayfindr.net/open-standard/wayfinding-technologies/bluetooth-low-energy-beacons/).
 
 ## Team
 
 If you want to get in touch, you can reach us [here](mailto:hello@wayfindr.net).
 
-* UX Design: [Georgios Maninis](mailto:georgios@wayfindr.net)
-* Project Management: [Umesh Pandya](mailto:ume@wayfindr.net)
+* UX Design: Georgios Maninis
+* Project Management: [Yannis Psomadakis](mailto:yannis@wayfindr.net)
 
 
 ## License
