@@ -21,7 +21,7 @@ To learn more, visit the [Wayfindr website](http://www.wayfindr.net).
 ## Dependencies
 
 * [Xcode 9.2](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12)
-* [CocoaPods 1.2.0](https://www.cocoapods.org)
+* [CocoaPods 1.4.0](https://www.cocoapods.org)
 
 ## Usage
 
