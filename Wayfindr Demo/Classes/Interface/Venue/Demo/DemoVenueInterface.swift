@@ -43,8 +43,8 @@ struct DemoVenueInterface: VenueInterface {
                     let apiKey = configDictionary["bcapikeyrsbc"] as? String
                     interface = BlueCatsIBeaconInterface(apiKey: apiKey!)
                 case "iBeacon":
-                    let regionID = configDictionary["regionid"] as? String
-                    let regionName = configDictionary["regionname"] as? String
+                    let regionID = configDictionary["demoregionid"] as? String
+                    let regionName = configDictionary["demoregionname"] as? String
                     interface = IOSIBeaconInterface(regionID: regionID!, regionName: regionName!)
                 default:
                     interface = DemoBeaconInterface()

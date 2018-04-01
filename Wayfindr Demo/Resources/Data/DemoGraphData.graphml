@@ -39,28 +39,28 @@
         
         
         <node id="1">
-            <data key="major">4</data>
-            <data key="minor">9800</data>
-            <data key="name">BC-01</data>
+            <data key="major">1</data>
+            <data key="minor">1</data>
+            <data key="name">DEMO-01</data>
             <data key="waypoint_type">Platform,Stairs</data>
             <data key="accuracy">4.0</data>
-            <data key="rssi">-90</data>
+            <data key="rssi">-66</data>
         </node>
         <node id="2">
-            <data key="major">4</data>
-            <data key="minor">10192</data>
-            <data key="name">BC-02</data>
+            <data key="major">1</data>
+            <data key="minor">2</data>
+            <data key="name">DEMO-02</data>
             <data key="waypoint_type">Platform,Stairs</data>
             <data key="accuracy">4.0</data>
-            <data key="rssi">-90</data>
+            <data key="rssi">-66</data>
         </node>
         <node id="3">
-            <data key="major">4</data>
-            <data key="minor">10053</data>
-            <data key="name">ID-03</data>
+            <data key="major">1</data>
+            <data key="minor">3</data>
+            <data key="name">DEMO-03</data>
             <data key="waypoint_type">Platform,Stairs</data>
             <data key="accuracy">4.0</data>
-            <data key="rssi">-90</data>
+            <data key="rssi">-66</data>
         </node>
         
         <!-- EDGES -->

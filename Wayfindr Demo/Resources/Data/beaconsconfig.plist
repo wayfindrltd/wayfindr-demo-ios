@@ -12,5 +12,9 @@
 	<string>61687109-905F-4436-91F8-E602F514C96D</string>
 	<key>regionname</key>
 	<string>bluecats</string>
+	<key>demoregionid</key>
+	<string>00000000-0000-0000-0000-000000000001</string>
+	<key>demoregionname</key>
+	<string>demo</string>
 </dict>
 </plist>

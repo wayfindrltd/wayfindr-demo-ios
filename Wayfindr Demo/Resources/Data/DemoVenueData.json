@@ -1,30 +1,30 @@
 {
     "venue": {
-        "name": "RSBC London",
+        "name": "Demo Venue",
         "platforms": [{
                       "name": "No 3",
-                      "entrance_beacon_major": 4,
-                      "entrance_beacon_minor": 10053,
-                      "exit_beacon_major": 4,
-                      "exit_beacon_minor": 10053,
+                      "entrance_beacon_major": 1,
+                      "entrance_beacon_minor": 3,
+                      "exit_beacon_major": 1,
+                      "exit_beacon_minor": 3,
                       "destinations": ["No 3"]
                       }],
         "exits": [{
                   "name": "No 1",
-                  "entrance_beacon_major": 4,
-                  "entrance_beacon_minor": 9800,
-                  "exit_beacon_major": 4,
-                  "exit_beacon_minor": 9800,
+                  "entrance_beacon_major": 1,
+                  "entrance_beacon_minor": 1,
+                  "exit_beacon_major": 1,
+                  "exit_beacon_minor": 1,
                   "mode": "No 1"
                   }]
         ,
         "station_facilities": [
                                {
                                "name": "No 2",
-                               "entrance_beacon_major": 4,
-                               "entrance_beacon_minor": 10192,
-                               "exit_beacon_major": 4,
-                               "exit_beacon_minor": 10192
+                               "entrance_beacon_major": 1,
+                               "entrance_beacon_minor": 2,
+                               "exit_beacon_major": 1,
+                               "exit_beacon_minor": 2
                                }
                                ]
         
