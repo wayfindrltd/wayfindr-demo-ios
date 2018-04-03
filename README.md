@@ -20,7 +20,7 @@ To learn more, visit the [Wayfindr website](http://www.wayfindr.net).
 
 ## Dependencies
 
-* [Xcode 9.2](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12)
+* [Xcode 9.3](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12)
 * [CocoaPods 1.4.0](https://www.cocoapods.org)
 
 ## Usage
@@ -90,6 +90,8 @@ An example of how to put these data files into use can be found in the class `De
 Any mentions of "platforms" or "exits" found in the code are legacy from Wayfindr's previous trials in [Mainline Rail and Metro Stations](http://www.wayfindr.net/open-standard/guidelines/venue-types/mainline-rail-and-metro-stations/).
 
 Information about the beacons parameters (e.g.major, minor, accuracy etc.) can be found in the [Wayfindr Open Standard](http://wayfindr.net/open-standard/wayfinding-technologies/bluetooth-low-energy-beacons/).
+
+The sample data file uses three beacon identifiers which can be tested without presence of physical beacons by using any iBeacon simulator app.  To operate a working demo, use the iBeacon simulator app with UUID `00000000-0000-0000-0000-000000000001`, major set to 1 and three minors 1,2 and 3.  To install and use the demo app, you will need an Apple development license.  Wayfindr has tested the demo app on an iPhone 6s.
 
 ## Team
 
