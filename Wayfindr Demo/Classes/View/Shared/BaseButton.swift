@@ -69,7 +69,7 @@ class BaseButton: UIButton {
     // Abstract method. Subclasses should override this method to setup their subviews
     func setup() {
         
-        self.setTitleColor(WAYConstants.WAYColors.WayfindrMainColor, for: UIControlState())
+        self.setTitleColor(WAYConstants.WAYColors.WayfindrMainColor, for: UIControl.State())
         self.adjustsImageWhenHighlighted = false
     }
     

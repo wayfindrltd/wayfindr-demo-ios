@@ -155,11 +155,7 @@ extension WAYBeacon {
         self.major = beacon.major.intValue
         self.minor = beacon.minor.intValue
         
-        if beacon.rssi != nil {
         self.rssi = beacon.rssi
-        } else {
-            self.rssi = nil
-        }
         
         self.shortID = nil // Not used by BlueCats
         

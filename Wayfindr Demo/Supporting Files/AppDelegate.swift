@@ -42,14 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - UIApplicationDelegate
     
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         WAYDeveloperSettings.registerSettings()
         
         return true
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         setupTheme()
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barStyle = .black
         UINavigationBar.appearance().tintColor = WAYConstants.WAYColors.NavigationText
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)], for: UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)], for: UIControl.State())
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -5.0)
         
         UITabBar.appearance().tintColor = WAYConstants.WAYColors.WayfindrMainColor

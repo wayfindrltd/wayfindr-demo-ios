@@ -41,7 +41,7 @@ final class DirectionsPreviewView: BaseStackView {
         
         stackView.distribution = .fill
         
-        beginRouteButton.setTitle(WAYStrings.DirectionsPreview.BeginRoute, for: UIControlState())
+        beginRouteButton.setTitle(WAYStrings.DirectionsPreview.BeginRoute, for: UIControl.State())
         stackView.addArrangedSubview(beginRouteButton)
     }
     

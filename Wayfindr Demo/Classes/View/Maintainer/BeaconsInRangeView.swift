@@ -52,7 +52,7 @@ final class BeaconsInRangeView: BaseView {
         headerView.addBorder(edges: [.bottom], colour: WAYConstants.WAYColors.Border, thickness: 3.0)
         
         locatingLabel.text = WAYStrings.BeaconsInRange.NoBeacons
-        locatingLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        locatingLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title1)
         locatingLabel.textAlignment = .center
         locatingLabel.textColor = WAYConstants.WAYColors.Maintainer
         locatingLabel.lineBreakMode = .byWordWrapping
@@ -83,15 +83,15 @@ final class BeaconsInRangeView: BaseView {
         let views = ["locatingLabel" : locatingLabel, "scrollView" : scrollView, "headerView" : headerView, "bodyView" : bodyView]
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[locatingLabel]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[scrollView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[headerView][bodyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[locatingLabel]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[scrollView]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[headerView][bodyView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[locatingLabel]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[scrollView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[headerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bodyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[locatingLabel]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[scrollView]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: WAYConstants.WAYLayout.metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[headerView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bodyView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
         
         addConstraint(NSLayoutConstraint(item: headerView.titleLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: -4.0 * WAYConstants.WAYLayout.HalfMargin))
     }
@@ -120,9 +120,9 @@ final class BeaconsInRangeHeaderView: BaseStackView {
     override func setup() {
         super.setup()
         
-        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2)
-        bodyLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title1)
+        subtitleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title2)
+        bodyLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         
         titleLabel.text = WAYStrings.CommonStrings.Beacon.uppercased()
         subtitleLabel.text = WAYStrings.CommonStrings.Minor
@@ -182,7 +182,7 @@ final class BeaconsInRangeBodyView: BaseStackView {
         majorLabel.keyLabel.textColor = keyLabelColor
         minorLabel.keyLabel.textColor = keyLabelColor
         
-        uuidLabel.valueLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
+        uuidLabel.valueLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.footnote)
         
         stackView.addArrangedSubview(txPowerLabel)
         stackView.addArrangedSubview(rssiLabel)

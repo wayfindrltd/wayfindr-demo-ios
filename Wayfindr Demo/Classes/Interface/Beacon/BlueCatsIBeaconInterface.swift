@@ -123,7 +123,7 @@ extension WAYBeacon {
         }
         
         if beacon.lastKnownBatteryLevel != nil {
-            self.batteryLevel = "\(beacon.lastKnownBatteryLevel)"
+            self.batteryLevel = "\(String(describing: beacon.lastKnownBatteryLevel))"
         } else {
             self.batteryLevel = nil
         }

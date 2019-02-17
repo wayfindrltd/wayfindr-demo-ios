@@ -803,7 +803,6 @@
 				00BF3D421BF20ED40075533D /* Frameworks */,
 				00BF3D431BF20ED40075533D /* Resources */,
 				52DF9563CB2D8764128A188B /* [CP] Embed Pods Frameworks */,
-				F6E1C600174F2F509982ACE8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -823,7 +822,6 @@
 				00BF3D561BF20ED40075533D /* Frameworks */,
 				00BF3D571BF20ED40075533D /* Resources */,
 				DEEF593662B7114F9F3B1F08 /* [CP] Embed Pods Frameworks */,
-				994BE85DDFF991E562D734FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -843,16 +841,17 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Wayfindr.org Limited";
 				TargetAttributes = {
 					00BF3D441BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = KWKSQ65EXJ;
+						DevelopmentTeam = E7J65AP6DQ;
 						LastSwiftMigration = 0820;
 					};
 					00BF3D581BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = E7J65AP6DQ;
 						LastSwiftMigration = 0820;
 						TestTargetID = 00BF3D441BF20ED40075533D;
 					};
@@ -971,21 +970,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		994BE85DDFF991E562D734FB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DEEF593662B7114F9F3B1F08 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1008,21 +992,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6E1C600174F2F509982ACE8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1166,14 +1135,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1213,14 +1190,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1255,7 +1240,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = KWKSQ65EXJ;
+				DEVELOPMENT_TEAM = E7J65AP6DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
@@ -1265,7 +1250,7 @@
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1278,7 +1263,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = KWKSQ65EXJ;
+				DEVELOPMENT_TEAM = E7J65AP6DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
@@ -1287,7 +1272,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo1";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1297,13 +1282,14 @@
 			baseConfigurationReference = 248E758C55471CF5B34BBA8E /* Pods-Wayfindr DemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = E7J65AP6DQ;
 				INFOPLIST_FILE = "Wayfindr DemoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfinder.Wayfindr-DemoTests";
 				PRODUCT_MODULE_NAME = Wayfindr_DemoTests;
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wayfindr Demo.app/Wayfindr Demo";
 			};
 			name = Debug;
@@ -1313,13 +1299,14 @@
 			baseConfigurationReference = C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = E7J65AP6DQ;
 				INFOPLIST_FILE = "Wayfindr DemoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfinder.Wayfindr-DemoTests";
 				PRODUCT_MODULE_NAME = Wayfindr_DemoTests;
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wayfindr Demo.app/Wayfindr Demo";
 			};
 			name = Release;

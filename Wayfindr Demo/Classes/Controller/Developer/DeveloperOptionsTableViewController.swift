@@ -56,9 +56,9 @@ final class DeveloperOptionsTableViewController: UITableViewController {
         super.init(style: .grouped)
     }
     
-    override init(style: UITableViewStyle) {
-        super.init(style: .grouped)
-    }
+//    override init(style: UITableView.Style) {
+//        super.init(style: .grouped)
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -72,7 +72,7 @@ final class DeveloperOptionsTableViewController: UITableViewController {
         
         tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         title = WAYStrings.CommonStrings.DeveloperOptions
     }
@@ -132,7 +132,7 @@ final class DeveloperOptionsTableViewController: UITableViewController {
      
      - parameter sender: `UISwitch` that changed value.
      */
-    func switchValueChanged(_ sender: UISwitch) {
+    @objc func switchValueChanged(_ sender: UISwitch) {
         if let selectedOption = DeveloperOptions(rawValue: sender.tag) {
             switch selectedOption {
             case .showForceNext:
