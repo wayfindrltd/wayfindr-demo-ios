@@ -116,7 +116,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: UIAccessibility.voiceOverStatusDidChangeNotification.rawValue), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: WAYDeveloperSettings.DeveloperSettingsChangedNotification), object: nil)
         
         stopwatch?.stop()
@@ -130,7 +130,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
 
         title = WAYStrings.ActiveRoute.ActiveRoute
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ActiveRouteViewController.voiceOverStatusChanged), name: NSNotification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ActiveRouteViewController.voiceOverStatusChanged), name: NSNotification.Name(rawValue: UIAccessibility.voiceOverStatusDidChangeNotification.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ActiveRouteViewController.developerSettingsChanged), name: NSNotification.Name(rawValue: WAYDeveloperSettings.DeveloperSettingsChangedNotification), object: nil)
         
         nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(ActiveRouteViewController.nextButtonPressed(_:)))
@@ -162,7 +162,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
         if firstAppearance {
             firstAppearance = false
 
-            if UIAccessibilityIsVoiceOverRunning() {
+            if UIAccessibility.isVoiceOverRunning {
                 beginRouteWithDelay(delay: 2)
             } else {
                 beginRoute()
@@ -457,7 +457,7 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     
     // MARK: - Button Actions
     
-    func nextButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func nextButtonPressed(_ sender: UIBarButtonItem) {
         playNextInstruction()
     }
     
@@ -466,12 +466,12 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     
     - parameter sender: Button calling the action.
     */
-    func repeatButtonPressed(_ sender: UIButton) {
+    @objc func repeatButtonPressed(_ sender: UIButton) {
         guard let myInstruction = speechEngine.currentInstruction else {
             return
         }
 
-        if UIAccessibilityIsVoiceOverRunning() {
+        if UIAccessibility.isVoiceOverRunning {
             speechEngine.playInstruction(myInstruction, delayInterval: 1)
         } else {
             speechEngine.playInstruction(myInstruction)
@@ -484,16 +484,16 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
     /**
     Display `repeatButton` only when VoiceOver is turned off. Otherwise it is redundant.
     */
-    func voiceOverStatusChanged() {
+    @objc func voiceOverStatusChanged() {
         if !WAYDeveloperSettings.sharedInstance.showRepeatButton {
-            underlyingView.repeatButton.isHidden = UIAccessibilityIsVoiceOverRunning()
+            underlyingView.repeatButton.isHidden = UIAccessibility.isVoiceOverRunning
         }
     }
     
     
     // MARK: - Developer Settings
     
-    func developerSettingsChanged() {
+    @objc func developerSettingsChanged() {
         voiceOverStatusChanged()
         
         let rightButton: UIBarButtonItem? = WAYDeveloperSettings.sharedInstance.showForceNextButton ? nextButton : nil

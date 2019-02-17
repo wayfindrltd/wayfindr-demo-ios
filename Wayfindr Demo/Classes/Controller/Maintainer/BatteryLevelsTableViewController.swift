@@ -119,7 +119,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
         
         tableView.register(SubtitledDetailTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = WAYConstants.WAYSizes.EstimatedCellHeight
         
@@ -214,7 +214,7 @@ final class BatteryLevelsTableViewController: UITableViewController {
     
     - parameter sender: `UISegmentedControl` whose value was changed.
     */
-    func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         let filterMode = BatteryLevelFilters.allValues[sender.selectedSegmentIndex]
         
         sortBeacons(filterMode)

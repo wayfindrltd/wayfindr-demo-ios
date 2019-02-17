@@ -58,7 +58,7 @@ class BaseSearchTableViewController: UITableViewController, UISearchBarDelegate,
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         let backButton = UIBarButtonItem(title: WAYStrings.CommonStrings.Back, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton

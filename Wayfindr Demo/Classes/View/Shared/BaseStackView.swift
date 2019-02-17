@@ -41,10 +41,10 @@ class BaseStackView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[stackView]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

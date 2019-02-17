@@ -33,21 +33,21 @@ final class RouteCalculationView: BaseView {
     
     let calculatingStackView    = UIStackView()
     let calculatingLabel        = UILabel()
-    let activityIndicator       = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let activityIndicator       = UIActivityIndicatorView(style: .whiteLarge)
     
     let optionsStackView    = UIStackView()
     let instructionsLabel   = UITextView()
     let yesButton           = BorderedButton()
     let skipButton          = BorderedButton()
     
-    dynamic var calculating = true {
+    @objc dynamic var calculating = true {
         didSet {
             calculatingStackView.isHidden = !calculating
             optionsStackView.isHidden = calculating
             
             calculating ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
 
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil)
+            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: nil)
         }
     }
     
@@ -67,7 +67,7 @@ final class RouteCalculationView: BaseView {
         activityIndicator.color = WAYConstants.WAYColors.WayfindrMainColor
         calculatingStackView.addArrangedSubview(activityIndicator)
         
-        calculatingLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        calculatingLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         calculatingLabel.text = WAYStrings.RouteCalculation.CalculatingRoute
         calculatingLabel.textAlignment = .center
         calculatingLabel.numberOfLines = 0
@@ -81,19 +81,19 @@ final class RouteCalculationView: BaseView {
         optionsStackView.distribution = .fill
         addSubview(optionsStackView)
         
-        instructionsLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        instructionsLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         instructionsLabel.text = WAYStrings.RouteCalculation.InstructionsQuestion
-        instructionsLabel.accessibilityTraits = UIAccessibilityTraitStaticText
+        instructionsLabel.accessibilityTraits = UIAccessibilityTraits.staticText
         instructionsLabel.textAlignment = .center
         instructionsLabel.isEditable = false
         instructionsLabel.isSelectable = false
 
         optionsStackView.addArrangedSubview(instructionsLabel)
         
-        yesButton.setTitle(WAYStrings.RouteCalculation.Yes, for: UIControlState())
+        yesButton.setTitle(WAYStrings.RouteCalculation.Yes, for: UIControl.State())
         optionsStackView.addArrangedSubview(yesButton)
         
-        skipButton.setTitle(WAYStrings.RouteCalculation.SkipPreview, for: UIControlState())
+        skipButton.setTitle(WAYStrings.RouteCalculation.SkipPreview, for: UIControl.State())
         optionsStackView.addArrangedSubview(skipButton)
         
         calculating = true
@@ -123,10 +123,10 @@ final class RouteCalculationView: BaseView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-DefaultMargin-[stackView]-DefaultMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

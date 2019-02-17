@@ -103,7 +103,7 @@ struct WAYVenue {
         if let jsonData = try? Data(contentsOf: URL(fileURLWithPath: venueFilePath)),
             let myGraph = try WAYGraph(filePath: graphFilePath, updatedEdges: updatedEdges) {
                 
-                let venueJSON = JSON(data: jsonData)
+            let venueJSON = try JSON(data: jsonData)
                 try self.init(graph: myGraph, venueJSON: venueJSON["venue"])
                 
                 return

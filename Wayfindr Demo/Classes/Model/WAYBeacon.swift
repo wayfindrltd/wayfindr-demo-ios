@@ -106,8 +106,8 @@ struct WAYBeacon: Equatable {
      */
     init(beacon: CLBeacon, advertisingInterval: String? = nil, batteryLevel: String? = nil, lastUpdated: Date? = nil, shortID: String? = nil, txPower: String? = nil) {
         self.accuracy = beacon.accuracy
-        self.major = Int(beacon.major)
-        self.minor = Int(beacon.minor)
+        self.major = Int(truncating: beacon.major)
+        self.minor = Int(truncating: beacon.minor)
         self.rssi = beacon.rssi
         self.UUIDString = beacon.proximityUUID.uuidString
         

@@ -36,7 +36,7 @@ final class AudioEngine: NSObject {
     fileprivate let audioSession = AVAudioSession.sharedInstance()
     
     /// Font to use for displaying instructions.
-    fileprivate let instructionFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+    fileprivate let instructionFont = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     
     /// Ping sound to play at the beginning of instructions to get user's attention.
     fileprivate var pingSound: AVAudioPlayer?
@@ -74,7 +74,8 @@ final class AudioEngine: NSObject {
         setupNotificationPlayers()
         
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.interruptSpokenAudioAndMixWithOthers)
+//            try audioSession.setCategory(AVAudioSession.Category.playback, with: AVAudioSession.CategoryOptions.interruptSpokenAudioAndMixWithOthers)
+            try audioSession.setCategory(.playback, mode: .default)
             try audioSession.setActive(true)
         } catch {
             valid = false
@@ -174,7 +175,7 @@ final class AudioEngine: NSObject {
     /**
     Plays `upcommingInstruction` after the `delayTimer` has fired.
     */
-    func delayTimerFired() {
+    @objc func delayTimerFired() {
         guard let myUpcomingInstruction = upcomingInstruction else {
             return
         }
@@ -233,16 +234,16 @@ extension AudioEngine: AVSpeechSynthesizerDelegate {
         
         // Highlight a set of characters, if needed.
         if let myHighlightRange = highlightRange {
-            mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: WAYConstants.WAYColors.TextHighlight, range: myHighlightRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:WAYConstants.WAYColors.TextHighlight, range: myHighlightRange)
         }
         
         // Set the font
-        mutableAttributedString.addAttribute(NSFontAttributeName, value: instructionFont, range: NSRange(location: 0, length: mutableAttributedString.length))
+        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: instructionFont, range: NSRange(location: 0, length: mutableAttributedString.length))
         
         // Set the text alignment
         let style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.center
-        mutableAttributedString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: mutableAttributedString.length))
+        mutableAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSRange(location: 0, length: mutableAttributedString.length))
         
         // Update the display
         textView?.attributedText = mutableAttributedString

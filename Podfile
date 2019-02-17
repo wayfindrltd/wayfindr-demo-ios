@@ -2,20 +2,20 @@ platform :ios, '11.2'
 use_frameworks!
 
 target 'Wayfindr Demo' do
-  pod 'AEXML', '~> 4.0.2'
-  pod 'Alamofire', '~> 4.3.0'
-  pod 'Moya', '~> 8.0.1'
-  pod 'SwiftGraph', '~> 1.2.0'
-  pod 'SwiftyJSON', '~> 3.1.4'
-  pod 'SVProgressHUD', '~> 2.1.2'
+  pod 'AEXML', '~> 4.3.3'
+  pod 'Alamofire', '~> 4.8.1'
+  pod 'Moya', '~> 12.0.1'
+  pod 'SwiftGraph', '~> 2.0.0'
+  pod 'SwiftyJSON', '~> 4.2.0'
+  pod 'SVProgressHUD', '~> 2.2.5'
   pod 'BlueCatsSDK', :git => 'https://github.com/bluecats/bluecats-ios-sdk.git'
 end
 
 target 'Wayfindr DemoTests' do
-  pod 'AEXML', '~> 4.0.2'
-  pod 'SwiftyJSON', '~> 3.1.4'
-  pod 'SwiftGraph', '~> 1.2.0'
-  pod 'OHHTTPStubs', '~> 4.6'
+  pod 'AEXML', '~> 4.3.3'
+  pod 'SwiftyJSON', '~> 4.2.0'
+  pod 'SwiftGraph', '~> 2.0.0'
+  pod 'OHHTTPStubs', '~> 6.1.0'
   pod 'BlueCatsSDK', :git => 'https://github.com/bluecats/bluecats-ios-sdk.git'
 end
 

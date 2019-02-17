@@ -45,8 +45,8 @@ class LabeledSlider: BaseStackView {
         
         stackView.addArrangedSubview(slider)
         
-        textLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-        textLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        textLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+        textLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         stackView.addArrangedSubview(textLabel)
     }
     

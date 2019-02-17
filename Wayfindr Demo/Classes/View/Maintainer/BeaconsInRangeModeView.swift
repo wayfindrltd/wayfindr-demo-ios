@@ -59,7 +59,7 @@ final class BeaconsInRangeModeView: BaseStackView {
         addConstraint(NSLayoutConstraint(item: mainView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[mainView]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[mainView]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }
@@ -82,17 +82,17 @@ final class BeaconsInRangeModeMainView: BaseStackView {
         
         stackView.distribution = .equalCentering
         
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         descriptionLabel.lineBreakMode = .byWordWrapping
         descriptionLabel.numberOfLines = 0
         descriptionLabel.text = WAYStrings.BeaconsInRangeMode.Instructions
         addSubview(descriptionLabel)
         
-        specificButton.setTitle(WAYStrings.BeaconsInRangeMode.SpecificBeacon, for: UIControlState())
+        specificButton.setTitle(WAYStrings.BeaconsInRangeMode.SpecificBeacon, for: UIControl.State())
         specificButton.tintColor = WAYConstants.WAYColors.Maintainer
         addSubview(specificButton)
         
-        anyButton.setTitle(WAYStrings.BeaconsInRangeMode.AnyBeacon, for: UIControlState())
+        anyButton.setTitle(WAYStrings.BeaconsInRangeMode.AnyBeacon, for: UIControl.State())
         anyButton.tintColor = WAYConstants.WAYColors.Maintainer
         addSubview(anyButton)
     }
@@ -113,12 +113,12 @@ final class BeaconsInRangeModeMainView: BaseStackView {
         let metrics = WAYConstants.WAYLayout.metrics
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[descriptionLabel]-DoubleMargin-[specificButton]-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-HalfMargin-[descriptionLabel]-DoubleMargin-[specificButton]-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[descriptionLabel]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[specificButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[descriptionLabel]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[specificButton]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-HalfMargin-[anyButton]-HalfMargin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
     
 }

@@ -70,7 +70,7 @@ final class UserActionTableViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 
         // Add table header view with instructions
         let tableHeaderView = UserActionTableHeaderView()

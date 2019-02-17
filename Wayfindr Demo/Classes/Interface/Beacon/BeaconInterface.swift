@@ -49,12 +49,12 @@ protocol BeaconInterface {
     var validBeacons: [BeaconIdentifier]? { get set }
     
     /// Delegate for the `BeaconInterface`.
-    weak var delegate: BeaconInterfaceDelegate? { get set }
+    var delegate: BeaconInterfaceDelegate? { get set }
     
     /// Current state of the `BeaconInterface`.
     var interfaceState: BeaconInterfaceState { get }
     /// Delegate to get updates on the `state` of the `BeaconInterface`.
-    weak var stateDelegate: BeaconInterfaceStateDelegate? { get set }
+    var stateDelegate: BeaconInterfaceStateDelegate? { get set }
 
 
     // MARK: - GET

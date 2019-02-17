@@ -70,13 +70,13 @@ final class BeaconsInRangeModeViewController: BaseViewController<BeaconsInRangeM
     
     // MARK: - Control Actions
     
-    func specificButtonPressed(_ sender: UIButton) {
+    @objc func specificButtonPressed(_ sender: UIButton) {
         let viewController = BeaconsInRangeSearchTableViewController(interface: interface)
         
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func anyButtonPressed(_ sender: UIButton) {
+    @objc func anyButtonPressed(_ sender: UIButton) {
         let viewController = BeaconsInRangeViewController(interface: interface)
         
         navigationController?.pushViewController(viewController, animated: true)
