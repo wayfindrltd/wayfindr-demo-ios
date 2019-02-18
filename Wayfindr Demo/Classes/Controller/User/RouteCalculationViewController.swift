@@ -199,7 +199,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
     
     - parameter sender: Button that has been pressed.
     */
-    func yesButtonPressed(_ sender: UIButton) {
+    @objc func yesButtonPressed(_ sender: UIButton) {
         guard let myNearestBeacon = nearestBeacon else {
             return
         }
@@ -214,7 +214,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
      
      - parameter sender: Button that has been pressed.
      */
-    func skipButtonPressed(_ sender: UIButton) {
+    @objc func skipButtonPressed(_ sender: UIButton) {
         guard let myNearestBeacon = nearestBeacon else {
             return
         }

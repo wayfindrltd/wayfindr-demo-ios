@@ -36,7 +36,7 @@ extension UIViewController {
      */
     func displayError(title: String, message: String) {
         DispatchQueue.main.async(execute: { [weak self] in
-            let alertTitle = title.characters.count > 0 ? title : WAYStrings.CommonStrings.Error
+            let alertTitle = title.count > 0 ? title : WAYStrings.CommonStrings.Error
             
             let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
             let doneButton = UIAlertAction(title: WAYStrings.CommonStrings.Done, style: .default, handler: nil)

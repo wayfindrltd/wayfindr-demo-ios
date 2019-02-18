@@ -41,7 +41,7 @@ extension BlueCatsIBeaconInterface: BCMicroLocationManagerDelegate {
         }
         
         if printErrorInfo {
-            print("microLocationManager didEnterSite:\(site.name)")
+            print("microLocationManager didEnterSite:\(String(describing: site.name))")
         }
     }
     
@@ -50,13 +50,13 @@ extension BlueCatsIBeaconInterface: BCMicroLocationManagerDelegate {
         currentSite = nil
         
         if printErrorInfo {
-            print("microLocationManager didExitSite:\(site.name)")
+            print("microLocationManager didExitSite:\(String(describing: site.name))")
         }
     }
     
     func microLocationManager(_ microLocationManager: BCMicroLocationManager!, monitoringDidFailFor site: BCSite!, withError error: Error!) {
         if printErrorInfo {
-            print("microLocationManager monitoringDidFailForSite:\(site.name) withError:\(error.localizedDescription)")
+            print("microLocationManager monitoringDidFailForSite:\(String(describing: site.name)) withError:\(error.localizedDescription)")
         }
     }
     
@@ -84,7 +84,7 @@ extension BlueCatsIBeaconInterface: BCMicroLocationManagerDelegate {
         let validatedBeacons: [BCBeacon]
         if let myValidBeacons = validBeacons {
             validatedBeacons = filteredSortedBeacons.filter({
-                let beaconID = BeaconIdentifier(major: Int($0.major), minor: Int($0.minor))
+                let beaconID = BeaconIdentifier(major: Int(truncating: $0.major), minor: Int(truncating: $0.minor))
                 
                 return myValidBeacons.contains(beaconID)
             })

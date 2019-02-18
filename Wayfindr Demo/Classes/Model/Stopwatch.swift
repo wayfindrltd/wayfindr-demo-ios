@@ -15,7 +15,7 @@ class Stopwatch: NSObject {
     
     weak var delegate: StopwatchDelegate?
     
-    func countUp() {
+    @objc func countUp() {
         
         seconds += 1
         

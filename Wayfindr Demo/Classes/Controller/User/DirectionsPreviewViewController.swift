@@ -79,7 +79,7 @@ final class DirectionsPreviewViewController: BaseViewController<DirectionsPrevie
         
         super.init()
         
-        addChildViewController(previewTableView)
+        addChild(previewTableView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +112,7 @@ final class DirectionsPreviewViewController: BaseViewController<DirectionsPrevie
     /**
      Begins the route.
      */
-    func beginRoute() {
+    @objc func beginRoute() {
         let viewController = ActiveRouteViewController(interface: interface, venue: venue, route: route, startingBeacon: nearestBeacon, speechEngine: speechEngine)
         
         // Replace current view with the active route
@@ -161,7 +161,7 @@ final class DirectionsPreviewTableViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.reloadData()
         
@@ -180,7 +180,7 @@ final class DirectionsPreviewTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         cell.textLabel?.lineBreakMode = .byWordWrapping
         cell.textLabel?.numberOfLines = 0
         

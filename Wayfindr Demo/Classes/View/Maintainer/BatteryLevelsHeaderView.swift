@@ -61,7 +61,7 @@ final class BatteryLevelsHeaderView: BaseView {
         metrics["QuarterAndBorder"] = WAYConstants.WAYLayout.QuarterMargin + borderThickness
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-QuarterMargin-[segmentControl]-QuarterAndBorder-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-QuarterMargin-[segmentControl]-QuarterAndBorder-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
         
         // Horizontal Constraints
         addConstraint(NSLayoutConstraint(item: segmentControl, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))

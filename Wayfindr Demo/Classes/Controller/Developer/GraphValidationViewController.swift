@@ -307,7 +307,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
     
     // MARK: - Control Actions
     
-    func actionButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func actionButtonPressed(_ sender: UIBarButtonItem) {
         let text = shareableText()
         let printableText = UISimpleTextPrintFormatter(attributedText: text)
         
@@ -319,7 +319,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         present(viewController, animated: true, completion: nil)
     }
     
-    func verboseSwitchValueChanged(_ sender: UISwitch) {
+    @objc func verboseSwitchValueChanged(_ sender: UISwitch) {
         SVProgressHUD.show()
         underlyingView.textView.text = ""
         sender.isEnabled = false
@@ -344,7 +344,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         // Header
         if let headerText = underlyingView.headerLabel.text {
             let headerAttributedString = NSMutableAttributedString(string: headerText + "\n\n\n")
-            headerAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2), range: NSRange(location: 0, length: headerAttributedString.length))
+            headerAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title2), range: NSRange(location: 0, length: headerAttributedString.length))
             
             mutableAttributedString.insert(headerAttributedString, at: 0)
         }
@@ -352,7 +352,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         // Title
         if let venueName = venue?.name {
             let venueNameAttributedString = NSMutableAttributedString(string: venueName + "\n\n")
-            venueNameAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1), range: NSRange(location: 0, length: venueNameAttributedString.length))
+            venueNameAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title1), range: NSRange(location: 0, length: venueNameAttributedString.length))
             
             mutableAttributedString.insert(venueNameAttributedString, at: 0)
         }
@@ -386,7 +386,7 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
         }
         
         // Set the font
-        mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body), range: NSRange(location: 0, length: mutableAttributedString.length))
+        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body), range: NSRange(location: 0, length: mutableAttributedString.length))
         
         // Display the text
         underlyingView.textView.attributedText = mutableAttributedString
@@ -401,10 +401,10 @@ final class GraphValidationViewController: BaseViewController<GraphValidationVie
      */
     fileprivate func highlightString(_ highlightText: String, inString fullText: inout NSMutableAttributedString, color: UIColor) {
         if let regex = try? NSRegularExpression(pattern: highlightText, options: []) {
-            let ranges = regex.matches(in: fullText.string, options: [], range: NSRange(location: 0, length: fullText.string.characters.count)).map { $0.range }
+            let ranges = regex.matches(in: fullText.string, options: [], range: NSRange(location: 0, length: fullText.string.count)).map { $0.range }
             
             for range in ranges {
-                fullText.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+                fullText.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
             }
         }
     }

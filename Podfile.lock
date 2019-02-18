@@ -1,39 +1,50 @@
 PODS:
-  - AEXML (4.0.2)
-  - Alamofire (4.3.0)
-  - BlueCatsSDK (2.0.3)
-  - Moya (8.0.5):
-    - Moya/Core (= 8.0.5)
-  - Moya/Core (8.0.5):
+  - AEXML (4.3.3)
+  - Alamofire (4.8.1)
+  - BlueCatsSDK (2.1.0)
+  - Moya (12.0.1):
+    - Moya/Core (= 12.0.1)
+  - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - OHHTTPStubs (4.8.0):
-    - OHHTTPStubs/Default (= 4.8.0)
-  - OHHTTPStubs/Core (4.8.0)
-  - OHHTTPStubs/Default (4.8.0):
+    - Result (~> 4.0)
+  - OHHTTPStubs (6.1.0):
+    - OHHTTPStubs/Default (= 6.1.0)
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.8.0):
+  - OHHTTPStubs/JSON (6.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.8.0):
+  - OHHTTPStubs/NSURLSession (6.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.8.0)
-  - Result (3.2.4)
-  - SVProgressHUD (2.1.2)
-  - SwiftGraph (1.2.0)
-  - SwiftyJSON (3.1.4)
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - Result (4.1.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftGraph (2.0.0)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
-  - AEXML (~> 4.0.2)
-  - Alamofire (~> 4.3.0)
+  - AEXML (~> 4.3.3)
+  - Alamofire (~> 4.8.1)
   - BlueCatsSDK (from `https://github.com/bluecats/bluecats-ios-sdk.git`)
-  - Moya (~> 8.0.1)
-  - OHHTTPStubs (~> 4.6)
-  - SVProgressHUD (~> 2.1.2)
-  - SwiftGraph (~> 1.2.0)
-  - SwiftyJSON (~> 3.1.4)
+  - Moya (~> 12.0.1)
+  - OHHTTPStubs (~> 6.1.0)
+  - SVProgressHUD (~> 2.2.5)
+  - SwiftGraph (~> 2.0.0)
+  - SwiftyJSON (~> 4.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AEXML
+    - Alamofire
+    - Moya
+    - OHHTTPStubs
+    - Result
+    - SVProgressHUD
+    - SwiftGraph
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   BlueCatsSDK:
@@ -41,20 +52,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BlueCatsSDK:
-    :commit: ab9c5520134a6db6176daf4a41152cded939731c
+    :commit: dfa20233696bc3218e8ca247b6588601678aec93
     :git: https://github.com/bluecats/bluecats-ios-sdk.git
 
 SPEC CHECKSUMS:
-  AEXML: 7de81f28c6c876a210f31924acc2e326cd01e162
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
-  BlueCatsSDK: b60e25af5dd0d3b46e613a1f1a523088d5c74460
-  Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
-  OHHTTPStubs: b393565822317305b87a1440d4c7aff131679f66
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
-  SwiftGraph: 887151185d72dd7d5479af3a46273065a573cd40
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  AEXML: 601f41fcaa7bda7605cad153b0f43db9ec006c0f
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  BlueCatsSDK: 993b2709d0aaaf084403a3b35f6f5c2b3a5c832a
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftGraph: 70f78b282ffd7091add44542e44309ed33482b56
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 4d6dadf1997fcab2779c0ff00e0e7af3bdd62509
+PODFILE CHECKSUM: bd8a6124a07c2a278693cf688a5368c776095a2d
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

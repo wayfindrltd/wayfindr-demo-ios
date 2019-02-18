@@ -39,8 +39,8 @@ final class KeyValueLabel: BaseView {
     override func setup() {
         super.setup()
         
-        keyLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
-        valueLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        keyLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
+        valueLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         
         valueLabel.numberOfLines = 0
         valueLabel.lineBreakMode = .byWordWrapping
@@ -63,11 +63,11 @@ final class KeyValueLabel: BaseView {
         let views = ["key" : keyLabel, "value" : valueLabel]
         
         // Vertical Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[key][value]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[key][value]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
         
         // Horizontal Constraints
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[key]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[value]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[key]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[value]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
     }
     
 }

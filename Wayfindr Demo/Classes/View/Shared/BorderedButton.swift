@@ -50,7 +50,7 @@ final class BorderedButton: BaseButton {
                 layer.borderColor = tintColor.cgColor
             }
             
-            setTitleColor(tintColor, for: UIControlState())
+            setTitleColor(tintColor, for: UIControl.State())
         }
     }
     
@@ -60,10 +60,10 @@ final class BorderedButton: BaseButton {
     override func setup() {
         super.setup()
         
-        setTitleColor(mainColor, for: UIControlState())
+        setTitleColor(mainColor, for: UIControl.State())
         setTitleColor(disabledColor, for: .disabled)
         
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         
         layer.borderWidth = 2.0
         layer.borderColor = mainColor.cgColor

@@ -150,9 +150,9 @@ struct WAYGraph: CustomStringConvertible {
                 
                     edges.remove(at: index)
                     edges.insert(updatedEdge, at: index)
-                    graph.addEdge(from: sourceIndex, to: targetIndex, directed: true, weight: updatedEdge.weight)
+                    graph.addEdge(from: sourceIndex, to: targetIndex, weight: updatedEdge.weight, directed: true)
             } else {
-                graph.addEdge(from: sourceIndex, to: targetIndex, directed: true, weight: edge.weight)
+                graph.addEdge(from: sourceIndex, to: targetIndex, weight: edge.weight, directed: true)
             }
         }
     }

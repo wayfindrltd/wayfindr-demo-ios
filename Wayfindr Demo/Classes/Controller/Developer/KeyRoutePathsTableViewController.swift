@@ -154,7 +154,7 @@ final class KeyRoutePathsTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
 
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 
         title = WAYStrings.KeyRoutePaths.KeyPaths
 
@@ -167,7 +167,7 @@ final class KeyRoutePathsTableViewController: UITableViewController {
 
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.tintColor = WAYConstants.WAYColors.Developer
-        segmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 9)], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 9)], for: .normal)
         segmentedControl.addTarget(self, action: #selector(reloadTable), for: .valueChanged)
 
         let top = segmentedControl.topAnchor.constraint(equalTo: segmentedControlView.topAnchor)

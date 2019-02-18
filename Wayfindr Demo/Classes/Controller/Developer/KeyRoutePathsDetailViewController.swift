@@ -105,7 +105,7 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
         }
         
         if !instructions.isEmpty {
-            instructions = String(instructions.characters.dropLast(2))
+            instructions = String(instructions.dropLast(2))
         }
         
         allInstructions = instructions
@@ -121,7 +121,7 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
         }
         
         if !edges.isEmpty {
-            edges = String(edges.characters.dropLast())
+            edges = String(edges.dropLast())
         }
         
         allEdges = edges
@@ -130,7 +130,7 @@ final class KeyRoutePathsDetailViewController: BaseViewController<KeyRoutePathsD
     
     // MARK: - Control Actions
     
-    func segmentedControlChanged(_ sender: UISegmentedControl) {
+    @objc func segmentedControlChanged(_ sender: UISegmentedControl) {
         guard let segmentType = KeyRoutePathsDetailBodyView.RouteDetailOptions(rawValue: sender.selectedSegmentIndex) else {
             
             return

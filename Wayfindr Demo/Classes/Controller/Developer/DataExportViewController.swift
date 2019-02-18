@@ -45,25 +45,25 @@ final class DataExportViewController: BaseViewController<DataExportView> {
     
     // MARK: - Control Actions
     
-    func exportNodeButtonPressed(_ sender: UIButton) {
+    @objc func exportNodeButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.destinationGraph.vertices)
         
         exportCSV(csvString, filePrefix: "node", sourceView: sender)
     }
     
-    func exportEdgeButtonPressed(_ sender: UIButton) {
+    @objc func exportEdgeButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.destinationGraph.edges)
         
         exportCSV(csvString, filePrefix: "edge", sourceView: sender)
     }
     
-    func exportPlatformButtonPressed(_ sender: UIButton) {
+    @objc func exportPlatformButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.platforms)
         
         exportCSV(csvString, filePrefix: "platform", sourceView: sender)
     }
     
-    func exportExitButtonPressed(_ sender: UIButton) {
+    @objc func exportExitButtonPressed(_ sender: UIButton) {
         let csvString = csvFromArray(venue.exits)
         
         exportCSV(csvString, filePrefix: "exit", sourceView: sender)
