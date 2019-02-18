@@ -1,4 +1,4 @@
-![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
+![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg)
 ![Build Status](https://travis-ci.org/wayfindrltd/wayfindr-demo-ios.svg?branch=master)
 
 # wayfindr-demo-ios
@@ -20,7 +20,7 @@ To learn more, visit the [Wayfindr website](http://www.wayfindr.net).
 
 ## Dependencies
 
-* [Xcode 9.3](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12)
+* [Xcode 10](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12)
 * [CocoaPods 1.4.0](https://www.cocoapods.org)
 
 ## Usage
