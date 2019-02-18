@@ -56,6 +56,7 @@ struct WAYStrings {
         static let BatteryLevels    = NSLocalizedString("Battery Levels", comment: "")
         static let DataExport       = NSLocalizedString("Data Export", comment: "")
         static let DeveloperOptions = NSLocalizedString("Developer Options", comment: "")
+        static let SelectVenue      = NSLocalizedString("Select Venue", comment: "")
     }
     
     struct ErrorTitles {

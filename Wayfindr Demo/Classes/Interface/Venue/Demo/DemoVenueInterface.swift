@@ -21,18 +21,52 @@ struct DemoVenueInterface: VenueInterface {
     *  Temporary information used in the Demo of Wayfindr.
     */
     fileprivate struct DemoFileInformation {
-        static let ConfigFile   = "beaconsconfig"
-        static let VenueName    = "Full scale trial"
-        static let GraphData    = "DemoGraphData"
-        static let VenueData  = "DemoVenueData"
-        static let VenueMap   = "DemoMap"
+        static var ConfigFile   = "beaconsconfig"
+        static var VenueName    = "Full scale trial"
+        static var GraphData    = "DemoGraphData"
+        static var VenueData  = "DemoVenueData"
+        static var VenueMap   = "DemoMap"
     }
     
     
     // MARK: - GET
     
+    func loadDemoFileInfo ()
+    {
+        let currentVenue = WAYAppSettings.sharedInstance.currentVenueSelected as Int
+        WAYAppSettings.loadWAYAppConfig()
+        
+        if (currentVenue >= 0) && (WAYAppSettings.sharedInstance.isMultiSite)
+        {
+            DemoFileInformation.ConfigFile = WAYAppSettings.sharedInstance.wayAppConfig.ConfigFileList[ currentVenue ]
+            DemoFileInformation.GraphData = WAYAppSettings.sharedInstance.wayAppConfig.GraphDataList [ currentVenue ]
+            DemoFileInformation.VenueData = WAYAppSettings.sharedInstance.wayAppConfig.VenueMapList [ currentVenue ]
+            DemoFileInformation.VenueName = WAYAppSettings.sharedInstance.wayAppConfig.VenueNameList [ currentVenue ]
+        }
+        
+    }
+    
     func getBeaconInterface(completionHandler: ((Bool, BeaconInterface?, BeaconInterfaceError?) -> Void)) {
         let interface: BeaconInterface
+        //if let multivenueconfigFilePath = Bundle.main.path(forResource: "venue", ofType: "plist")
+        //{
+        loadDemoFileInfo()
+        
+        /*let appConfigDictionary = NSDictionary(contentsOfFile: multivenueconfigFilePath) as? [String : AnyObject]
+         let venuenames = appConfigDictionary?["venuenames"] as? String
+         let venuenameslist = venuenames?.components(separatedBy: ",")
+         
+         let venuegraphs = appConfigDictionary?["venuegraphs"] as? String
+         let venuegraphslist = venuegraphs?.components(separatedBy: ",")
+         
+         let venuemaps = appConfigDictionary?["venuemaps"] as? String
+         let venuemapslist = venuemaps?.components(separatedBy: ",")
+         
+         let venueconfigs = appConfigDictionary?["venueconfigs"] as? String
+         let venueconfigslist = venueconfigs?.components(separatedBy: ",")
+         */
+        
+        //}
         
         if let configFilePath = Bundle.main.path(forResource: DemoFileInformation.ConfigFile, ofType: "plist"),
             let configDictionary = NSDictionary(contentsOfFile: configFilePath) as? [String : AnyObject],
@@ -61,6 +95,8 @@ struct DemoVenueInterface: VenueInterface {
     
     func getVenue(completionHandler: ((Bool, WAYVenue?, WAYError?) -> Void)) {
         let venue: WAYVenue
+        
+        loadDemoFileInfo()
         
         let venueFileName = DemoFileInformation.VenueData
         let venueFileType = "json"

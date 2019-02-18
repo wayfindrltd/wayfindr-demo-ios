@@ -337,6 +337,8 @@ final class ActiveRouteViewController: BaseViewController<ActiveRouteView>, Beac
         let filteredBeacons = beacons.filter({$0.accuracy >= 0.0})
         
         for beacon in filteredBeacons {
+            NSLog("beacon found \(beacon.minor),\(beacon.major),\(String(describing: beacon.rssi))");
+            
             if beacon.identifier == nearestBeacon.identifier {
                 continue
             }

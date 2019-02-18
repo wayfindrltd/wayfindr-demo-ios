@@ -50,10 +50,15 @@ struct WAYGraphNodeType: OptionSet, CustomStringConvertible {
     static let Shop = WAYGraphNodeType(rawValue: 1 << 14)
     static let StreetCrossing = WAYGraphNodeType(rawValue: 1 << 15)
     static let BusStop = WAYGraphNodeType(rawValue: 1 << 16)
-
+    static let MeetingRoom = WAYGraphNodeType(rawValue: 1 << 17)
+    static let OfficeRoom = WAYGraphNodeType(rawValue: 1 << 18)
+    static let DisabledToilet = WAYGraphNodeType(rawValue: 1 << 19)
+    static let Toilet = WAYGraphNodeType(rawValue: 1 << 20)
+    static let Corridor = WAYGraphNodeType(rawValue: 1 << 21)
+    
     /// Plain text description of the current state of the option set.
     var description: String {
-        let strings = ["None", "Entrance", "Exit", "Lift", "Escalator", "MensToilet", "WomensToilet", "Stairs", "Platform", "TicketBarrier", "TicketMachine", "ATM", "TaxiRank", "Shop", "StreetCrossing", "BusStop"]
+        let strings = ["None", "Entrance", "Exit", "Lift", "Escalator", "MensToilet", "WomensToilet", "Stairs", "Platform", "TicketBarrier", "TicketMachine", "ATM", "TaxiRank", "Shop", "StreetCrossing", "BusStop", "MeetingRoom", "OfficeRoom", "DisabledToilet", "Toilet", "Corridor"]
         var members = [String]()
         
         for (flag, string) in strings.enumerated() where contains(WAYGraphNodeType(rawValue: 1 << (UInt(flag) + 1))) {
@@ -70,7 +75,7 @@ struct WAYGraphNodeType: OptionSet, CustomStringConvertible {
         return result
     }
     
-    static let allValues: WAYGraphNodeType = [.None, .Entrance, .Exit, .Lift, .Escalator, .MensToilet, .WomensToilet, .Stairs, .Platform, .TicketBarrier]
+    static let allValues: WAYGraphNodeType = [.None, .Entrance, .Exit, .Lift, .Escalator, .MensToilet, .WomensToilet, .Stairs, .Platform, .TicketBarrier, .MeetingRoom, .OfficeRoom, .DisabledToilet, .Toilet, .Corridor]
     
 }
 
@@ -248,6 +253,16 @@ struct WAYGraphNode: Equatable, CustomStringConvertible {
             return .StreetCrossing
         case "BusStop":
             return .BusStop
+        case "MeetingRoom":
+            return .MeetingRoom
+        case "OfficeRoom":
+            return .OfficeRoom
+        case "DisabledToilet":
+            return .DisabledToilet
+        case "Toilet":
+            return .Toilet
+        case "Corridor":
+            return .Corridor
         default:
             return nil
         }

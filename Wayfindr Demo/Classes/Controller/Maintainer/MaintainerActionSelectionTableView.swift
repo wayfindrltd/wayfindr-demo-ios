@@ -43,8 +43,9 @@ final class MaintainerActionSelectionTableView: UITableViewController {
     fileprivate enum ToolActions: Int {
         case batteryLevels
         case beaconsInRange
+        case venueSelection
         
-        static let allValues = [batteryLevels, beaconsInRange]
+        static let allValues = [batteryLevels, beaconsInRange, venueSelection]
     }
     
     /// Interface for gathering information about the venue
@@ -172,6 +173,9 @@ final class MaintainerActionSelectionTableView: UITableViewController {
             case .beaconsInRange:
                 text = WAYStrings.MaintainerActionSelection.CheckBeacons
                 cellAccessibilityIdentifier = WAYAccessibilityIdentifier.MaintainerActionSelection.BeaconsInRangeCell
+            case .venueSelection:
+                text = "Venue Selection"
+                cellAccessibilityIdentifier = WAYAccessibilityIdentifier.MaintainerActionSelection.VenueSelection
             }
         }
         
@@ -206,6 +210,9 @@ final class MaintainerActionSelectionTableView: UITableViewController {
                 newViewController = BatteryLevelsTableViewController(interface: myInterface)
             case .beaconsInRange:
                 newViewController = BeaconsInRangeModeViewController(interface: myInterface)
+            case .venueSelection:
+                newViewController = SelectVenueTableViewController()
+                //newViewController = BeaconsInRangeModeViewController(interface: myInterface)
             }
         }
         

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -123,6 +123,10 @@
 		810881C51D40667E00BD2CB0 /* WAYFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810881C41D40667E00BD2CB0 /* WAYFacility.swift */; };
 		810881C71D406CD000BD2CB0 /* FacilitySearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810881C61D406CD000BD2CB0 /* FacilitySearchTableViewController.swift */; };
 		8128EAB11D44600700828252 /* UserActionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8128EAB01D44600700828252 /* UserActionTableHeaderView.swift */; };
+		D568BB77221B14F800BE7F4C /* SelectVenueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568BB76221B14F800BE7F4C /* SelectVenueTableViewController.swift */; };
+		D568BB79221B1AE800BE7F4C /* venue.plist in Resources */ = {isa = PBXBuildFile; fileRef = D568BB78221B1AE800BE7F4C /* venue.plist */; };
+		D568BB7B221B1BAD00BE7F4C /* SelectVenueHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568BB7A221B1BAD00BE7F4C /* SelectVenueHeaderView.swift */; };
+		D568BB7D221B1C6100BE7F4C /* WAYAppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568BB7C221B1C6100BE7F4C /* WAYAppSettings.swift */; };
 		D5F558632040703E009A4A3A /* IOSIBeaconInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F558622040703E009A4A3A /* IOSIBeaconInterface.swift */; };
 /* End PBXBuildFile section */
 
@@ -263,6 +267,10 @@
 		941B53CDFFC8619780539219 /* Pods_Wayfindr_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfindr_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A0B45209ABAD7901A8E776 /* Pods-Wayfindr DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr DemoTests/Pods-Wayfindr DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D414CA3DEDD7EF543468350E /* Pods-Wayfindr Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfindr Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayfindr Demo/Pods-Wayfindr Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		D568BB76221B14F800BE7F4C /* SelectVenueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVenueTableViewController.swift; sourceTree = "<group>"; };
+		D568BB78221B1AE800BE7F4C /* venue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = venue.plist; sourceTree = "<group>"; };
+		D568BB7A221B1BAD00BE7F4C /* SelectVenueHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectVenueHeaderView.swift; sourceTree = "<group>"; };
+		D568BB7C221B1C6100BE7F4C /* WAYAppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAYAppSettings.swift; sourceTree = "<group>"; };
 		D5F558622040703E009A4A3A /* IOSIBeaconInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSIBeaconInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -496,6 +504,7 @@
 				00FE28171C202879003B9162 /* BeaconsInRangeModeViewController.swift */,
 				00FE28151C2022CE003B9162 /* BeaconsInRangeSearchTableViewController.swift */,
 				006EA5151BF3609600BE1B37 /* MaintainerActionSelectionTableView.swift */,
+				D568BB76221B14F800BE7F4C /* SelectVenueTableViewController.swift */,
 			);
 			path = Maintainer;
 			sourceTree = "<group>";
@@ -517,6 +526,7 @@
 		00736BBF1BF498B1004A07FF /* Maintainer */ = {
 			isa = PBXGroup;
 			children = (
+				D568BB7A221B1BAD00BE7F4C /* SelectVenueHeaderView.swift */,
 				00CE72391C1862850007AF28 /* BatteryLevelsHeaderView.swift */,
 				00736BE11BF4BEB2004A07FF /* BeaconsInRangeView.swift */,
 				00FE28191C2028B0003B9162 /* BeaconsInRangeModeView.swift */,
@@ -650,6 +660,7 @@
 		00DAE70C1BF2102A003C679E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D568BB7C221B1C6100BE7F4C /* WAYAppSettings.swift */,
 				77F23A251E70233D007EAF9C /* Stopwatch */,
 				7E13B9FC1CBE4CF400934E16 /* Example Implementation */,
 				00570E081C0D818C0006F757 /* Interface */,
@@ -687,6 +698,7 @@
 				00C441861C4511D100C4F7E5 /* DemoGraphData.graphml */,
 				00C441871C4511D100C4F7E5 /* DemoVenueData.json */,
 				002919CD1C2826A100D2BDD5 /* beaconsconfig.plist */,
+				D568BB78221B1AE800BE7F4C /* venue.plist */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -846,7 +858,6 @@
 				TargetAttributes = {
 					00BF3D441BF20ED40075533D = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = E7J65AP6DQ;
 						LastSwiftMigration = 0820;
 					};
 					00BF3D581BF20ED40075533D = {
@@ -858,7 +869,7 @@
 				};
 			};
 			buildConfigurationList = 00BF3D401BF20ED40075533D /* Build configuration list for PBXProject "Wayfindr Demo" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -889,6 +900,7 @@
 				002919CE1C2826A100D2BDD5 /* beaconsconfig.plist in Resources */,
 				7EB62E311CBD2B2200E16472 /* triPing.mp3 in Resources */,
 				00C441881C4511D100C4F7E5 /* DemoGraphData.graphml in Resources */,
+				D568BB79221B1AE800BE7F4C /* venue.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1030,8 @@
 				00EC11C21C27E39700619EEE /* DeveloperOptionsTableViewController.swift in Sources */,
 				00BDEC8A1C21B29A00FDFB6E /* VenueInterfaceAPIError.swift in Sources */,
 				00D4F9E91C181BF700DE7B70 /* BatteryLevelsTableViewController.swift in Sources */,
+				D568BB7B221B1BAD00BE7F4C /* SelectVenueHeaderView.swift in Sources */,
+				D568BB7D221B1C6100BE7F4C /* WAYAppSettings.swift in Sources */,
 				00A0A4261C0F0B83000DDFB3 /* UIViewController+ErrorMessages.swift in Sources */,
 				0034B1551BFB506A0055F57A /* BaseSearchResultsTableViewController.swift in Sources */,
 				00DAE71A1BF211F9003C679E /* WAYGraphNode.swift in Sources */,
@@ -1078,6 +1092,7 @@
 				00CE72381C184F230007AF28 /* SubtitledDetailTableViewCell.swift in Sources */,
 				810881C51D40667E00BD2CB0 /* WAYFacility.swift in Sources */,
 				00EC11CB1C27E40500619EEE /* KeyRoutePathsDetailView.swift in Sources */,
+				D568BB77221B14F800BE7F4C /* SelectVenueTableViewController.swift in Sources */,
 				00EC11C31C27E39700619EEE /* GraphValidationViewController.swift in Sources */,
 				00FF76851BF9D38B007215B4 /* ActiveRouteView.swift in Sources */,
 				00DAE7191BF211F9003C679E /* WAYGraphEdge.swift in Sources */,
@@ -1226,7 +1241,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1240,12 +1256,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = E7J65AP6DQ;
+				DEVELOPMENT_TEAM = 46758L4QVT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo1";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
@@ -1263,12 +1282,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = E7J65AP6DQ;
+				DEVELOPMENT_TEAM = 46758L4QVT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = "$(SRCROOT)/Wayfindr Demo/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfindr.Wayfindr-Demo1";
 				PRODUCT_NAME = "Wayfindr Demo";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wayfindr Demo/Supporting Files/WayfindrDemo-Bridging-Header.h";
@@ -1284,7 +1306,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = E7J65AP6DQ;
 				INFOPLIST_FILE = "Wayfindr DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfinder.Wayfindr-DemoTests";
 				PRODUCT_MODULE_NAME = Wayfindr_DemoTests;
 				PRODUCT_NAME = "Wayfindr Demo";
@@ -1301,7 +1327,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = E7J65AP6DQ;
 				INFOPLIST_FILE = "Wayfindr DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wayfinder.Wayfindr-DemoTests";
 				PRODUCT_MODULE_NAME = Wayfindr_DemoTests;
 				PRODUCT_NAME = "Wayfindr Demo";

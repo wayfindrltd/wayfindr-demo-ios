@@ -63,6 +63,7 @@ struct WAYAccessibilityIdentifier {
         static let BackBarButtonItem    = "MaintainerHome_BarButtonItem"
         static let BatteryLevelsCell    = "BatteryLevels_Cell"
         static let BeaconsInRangeCell   = "BeaconsInRange_Cell"
+        static let VenueSelection       = "Venue_Selection"
     }
     
     

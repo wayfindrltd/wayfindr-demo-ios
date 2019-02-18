@@ -147,7 +147,7 @@ final class RouteCalculationViewController: BaseViewController<RouteCalculationV
             let _ = myGraph.getNode(major: newNearestBeacon.major, minor: newNearestBeacon.minor) {
                 
                 nearestBeacon = newNearestBeacon
-                
+                NSLog("nearest beacon found");
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
                     guard let success = self?.calculateShortestPath() else {
                         return

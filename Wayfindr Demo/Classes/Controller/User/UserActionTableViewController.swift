@@ -68,13 +68,15 @@ final class UserActionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        WAYAppSettings.loadWAYAppConfig()
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.estimatedRowHeight = WAYConstants.WAYSizes.EstimatedCellHeight
         tableView.rowHeight = UITableView.automaticDimension
 
         // Add table header view with instructions
         let tableHeaderView = UserActionTableHeaderView()
-        tableHeaderView.text = WAYStrings.UserActionSelection.SelectDestination.uppercased()
+        tableHeaderView.text = WAYStrings.UserActionSelection.SelectDestination.uppercased() + " - " + WAYAppSettings.sharedInstance.wayAppConfig.VenueNameList[ WAYAppSettings.sharedInstance.currentVenueSelected ]
         tableHeaderView.accessibilityIdentifier = WAYAccessibilityIdentifier.UserActionSelection.SelectDestinationLabel
         tableView.tableHeaderView = tableHeaderView
 
