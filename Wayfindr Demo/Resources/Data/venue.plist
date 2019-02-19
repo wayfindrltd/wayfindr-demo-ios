@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>venuenames</key>
+	<string>Generic Demo</string>
+	<key>venuegraphs</key>
+	<string>DemoGraphData</string>
+	<key>venuemaps</key>
+	<string>DemoVenueData</string>
+	<key>venueconfigs</key>
+	<string>beaconsconfig</string>
+</dict>
+</plist>
